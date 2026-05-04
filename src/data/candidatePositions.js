@@ -11,7 +11,7 @@ export const CANDIDATE_POSITIONS = [
         dossierId: "wonen",
         party: "D66",
         statement: "Meer betaalbare woningen bouwen, met nadruk op duurzame nieuwbouw en betere benutting van bestaande ruimte.",
-        explanation: "Deze kandidaatpositie is bedoeld als voorbeeld van hoe een geextraheerd programma-standpunt in review komt voordat het live gaat.",
+        explanation: "Deze kandidaatpositie staat in de reviewwachtrij en mag pas live na controle van exact citaat, pagina en formulering.",
         source: {
             type: "verkiezingsprogramma",
             title: "Nieuwe energie voor Nederland",
@@ -32,7 +32,7 @@ export const CANDIDATE_POSITIONS = [
         dossierId: "klimaat",
         party: "CDA",
         statement: "Klimaatbeleid moet haalbaar en betaalbaar zijn, met aandacht voor gezinnen, bedrijven en regio's.",
-        explanation: "Voorbeeldkandidaat voor een klimaatpositie die nog niet als gecontroleerde bronpositie mag worden gebruikt.",
+        explanation: "Deze kandidaatpositie staat in de reviewwachtrij en mag pas live na controle van exact citaat, pagina en formulering.",
         source: {
             type: "verkiezingsprogramma",
             title: "Recht doen",

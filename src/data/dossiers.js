@@ -1,5 +1,37 @@
 ﻿import { SOURCE_REGISTRY } from "./sources.js";
 
+const DEFAULT_SOURCE_IDS = [
+    SOURCE_REGISTRY.tkOpenData.id,
+    SOURCE_REGISTRY.tkStemmingDocs.id,
+    SOURCE_REGISTRY.tkZaakDocs.id,
+    SOURCE_REGISTRY.cbs.id,
+    SOURCE_REGISTRY.cpb.id
+];
+
+function createDossier({ id, title, summary, context, positions, evidenceClaim, impact, sourceIds = DEFAULT_SOURCE_IDS }) {
+    return {
+        id,
+        title,
+        status: "sourceMapped",
+        lastUpdated: "2026-05-04",
+        sourceStrategy: "Officiele stemdata via Tweede Kamer OData; beleidsclaims via publieke databronnen; partijposities voorlopig redactioneel gecodeerd en nog te reviewen op exacte bronpassages.",
+        sourceIds,
+        summary,
+        context,
+        positions,
+        evidence: [
+            {
+                level: "High Confidence",
+                claim: evidenceClaim,
+                sourceIds,
+                reviewStatus: "Bronnen nog exact koppelen aan dossierclaim"
+            }
+        ],
+        votes: [],
+        impact
+    };
+}
+
 export const DOSSIERS = [
     {
         id: "wonen",
@@ -225,6 +257,8 @@ export const DOSSIERS = [
         title: "Zorg",
         status: "sourceMapped",
         lastUpdated: "2026-05-04",
+        sourceStrategy: "Officiele stemdata via Tweede Kamer OData; beleidsclaims via CBS, CPB en zorgbronnen; partijposities voorlopig redactioneel gecodeerd.",
+        sourceIds: [SOURCE_REGISTRY.tkOpenData.id, SOURCE_REGISTRY.tkStemmingDocs.id, SOURCE_REGISTRY.cbs.id, SOURCE_REGISTRY.cpb.id],
         summary: "Kosten, toegankelijkheid, personeelstekort en rol van de markt.",
         context: "De zorg staat onder druk door stijgende kosten, personeelstekort en lange wachttijden. De politieke vraag is hoeveel solidariteit, marktwerking en overheidsregie nodig zijn.",
         positions: [
@@ -267,6 +301,8 @@ export const DOSSIERS = [
         title: "Onderwijs",
         status: "sourceMapped",
         lastUpdated: "2026-05-04",
+        sourceStrategy: "Officiele stemdata via Tweede Kamer OData; beleidsclaims via CBS, CPB en onderwijsbronnen; partijposities voorlopig redactioneel gecodeerd.",
+        sourceIds: [SOURCE_REGISTRY.tkOpenData.id, SOURCE_REGISTRY.tkStemmingDocs.id, SOURCE_REGISTRY.cbs.id, SOURCE_REGISTRY.cpb.id],
         summary: "Kwaliteit, lerarentekort, basisvaardigheden en kansengelijkheid.",
         context: "Onderwijs bepaalt kansen, maar kampt met personeelstekort, dalende basisvaardigheden en verschillen tussen leerlingen en regio's.",
         positions: [
@@ -303,7 +339,329 @@ export const DOSSIERS = [
             losers: "Scholen kunnen extra verantwoordingsdruk ervaren bij sterke nadruk op prestaties en metingen.",
             eu: "Onderwijs is grotendeels nationaal beleid, met beperkte EU-invloed via arbeidsmarkt, diploma-erkenning en onderzoeksprogramma's."
         }
-    }
+    },
+    createDossier({
+        id: "economie",
+        title: "Economie & koopkracht",
+        summary: "Inflatie, belastingen, middeninkomens, bedrijven en verdeling van welvaart.",
+        context: "Economisch beleid draait om de vraag wie lasten draagt en wie ruimte krijgt: huishoudens, ondernemers, overheid of toekomstige generaties.",
+        positions: [
+            {
+                id: "economie-a",
+                party: "VVD",
+                stance: "Lasten laag houden, ondernemerschap stimuleren en overheidsuitgaven scherp prioriteren.",
+                rationale: "Deze lijn ziet economische groei en investeringsruimte voor bedrijven als basis voor banen en koopkracht."
+            },
+            {
+                id: "economie-b",
+                party: "GroenLinks-PvdA",
+                stance: "Sterkere herverdeling via belastingen en gerichte steun voor lage en middeninkomens.",
+                rationale: "Deze positie legt de nadruk op bestaanszekerheid en het eerlijker verdelen van vermogen, winst en lasten."
+            },
+            {
+                id: "economie-c",
+                party: "NSC",
+                stance: "Begrotingsdiscipline combineren met gerichte koopkrachtsteun en beter bestuur van publieke uitgaven.",
+                rationale: "Deze benadering wil voorkomen dat structurele uitgaven worden betaald met tijdelijke dekking of onduidelijke keuzes."
+            }
+        ],
+        evidenceClaim: "Koopkracht wordt sterk beinvloed door inflatie, loonontwikkeling, belastingen en gerichte inkomensmaatregelen.",
+        impact: {
+            winners: "Huishoudens met lage en middeninkomens, ondernemers of spaarders kunnen afhankelijk van de gekozen route winnen.",
+            losers: "Hogere inkomens, bedrijven, toekomstige belastingbetalers of publieke voorzieningen kunnen de rekening voelen.",
+            eu: "EU-begrotingsregels, interne markt en staatssteunregels begrenzen een deel van het economisch beleid."
+        }
+    }),
+    createDossier({
+        id: "arbeid",
+        title: "Werk & sociale zekerheid",
+        summary: "Minimumloon, flexwerk, uitkeringen, arbeidsmigratie en bestaanszekerheid.",
+        context: "De arbeidsmarkt is krap, maar zekerheid is ongelijk verdeeld. De politieke vraag is hoeveel bescherming, verplichting en loonruimte nodig zijn.",
+        positions: [
+            {
+                id: "arbeid-a",
+                party: "SP",
+                stance: "Minimumloon en uitkeringen omhoog, flexwerk beperken en werknemers meer zekerheid geven.",
+                rationale: "Deze lijn ziet bestaanszekerheid als voorwaarde voor vrijheid en gezond werk."
+            },
+            {
+                id: "arbeid-b",
+                party: "VVD",
+                stance: "Werken meer laten lonen, werkgevers ruimte geven en activering boven langdurige afhankelijkheid zetten.",
+                rationale: "Deze positie wil arbeidsparticipatie vergroten en voorkomen dat regels werkgevers afremmen."
+            },
+            {
+                id: "arbeid-c",
+                party: "CDA",
+                stance: "Vaste contracten aantrekkelijker maken en gezinnen, mantelzorgers en vakmensen beter ondersteunen.",
+                rationale: "Deze benadering zoekt balans tussen economische dynamiek en sociale samenhang."
+            }
+        ],
+        evidenceClaim: "Nederland heeft tegelijk arbeidsmarktkrapte en groepen met onzekere inkomens of afstand tot werk.",
+        impact: {
+            winners: "Werknemers, flexwerkers en mensen met lage inkomens kunnen winnen bij meer zekerheid.",
+            losers: "Werkgevers en sectoren met lage marges kunnen hogere kosten of minder flexibiliteit ervaren.",
+            eu: "EU-arbeidsrecht, vrij verkeer en arbeidsmigratie werken door in nationale keuzes."
+        }
+    }),
+    createDossier({
+        id: "veiligheid",
+        title: "Veiligheid & rechtsstaat",
+        summary: "Politie, justitie, georganiseerde misdaad, privacy en rechtsbescherming.",
+        context: "Veiligheidsbeleid gaat over bescherming tegen criminaliteit, maar ook over de grenzen van staatsmacht en burgerrechten.",
+        positions: [
+            {
+                id: "veiligheid-a",
+                party: "PVV",
+                stance: "Harder straffen, meer politie op straat en strengere aanpak van overlast en geweld.",
+                rationale: "Deze lijn legt de nadruk op directe bescherming en zichtbare handhaving."
+            },
+            {
+                id: "veiligheid-b",
+                party: "D66",
+                stance: "Investeren in opsporing en preventie, maar burgerrechten en rechtsbescherming stevig bewaken.",
+                rationale: "Deze positie ziet veiligheid en rechtsstaat als voorwaarden die elkaar moeten versterken."
+            },
+            {
+                id: "veiligheid-c",
+                party: "VVD",
+                stance: "Georganiseerde misdaad harder aanpakken met extra bevoegdheden, capaciteit en internationale samenwerking.",
+                rationale: "Deze benadering richt zich op ondermijning, drugscriminaliteit en daadkrachtige handhaving."
+            }
+        ],
+        evidenceClaim: "Opsporing, rechtspraak en gevangeniswezen kampen met capaciteitsdruk en toenemende complexiteit.",
+        impact: {
+            winners: "Slachtoffers, buurten met overlast en politie/justitie kunnen profiteren van meer capaciteit.",
+            losers: "Burgers kunnen privacy- of rechtsbeschermingsrisico's lopen bij ruimere bevoegdheden.",
+            eu: "Grensoverschrijdende misdaad, datadeling en mensenrechtenkaders zijn sterk Europees verbonden."
+        }
+    }),
+    createDossier({
+        id: "landbouw",
+        title: "Landbouw, natuur & stikstof",
+        summary: "Boeren, natuurherstel, stikstofruimte, voedselproductie en landgebruik.",
+        context: "Landbouwbeleid raakt boereninkomens, natuurkwaliteit, woningbouw, economie en vertrouwen in de overheid tegelijk.",
+        positions: [
+            {
+                id: "landbouw-a",
+                party: "BBB",
+                stance: "Boeren meer zekerheid geven, minder gedwongen krimp en stikstofbeleid praktischer maken.",
+                rationale: "Deze lijn ziet voedselproductie en leefbaarheid van het platteland als zwaarwegende publieke belangen."
+            },
+            {
+                id: "landbouw-b",
+                party: "GroenLinks-PvdA",
+                stance: "Sneller natuur herstellen, veestapel verkleinen en boeren helpen omschakelen naar duurzame landbouw.",
+                rationale: "Deze positie legt de nadruk op ecologische grenzen en langetermijnkwaliteit van bodem, water en natuur."
+            },
+            {
+                id: "landbouw-c",
+                party: "CDA",
+                stance: "Gebiedsgericht beleid met perspectief voor familiebedrijven en duidelijke langjarige afspraken.",
+                rationale: "Deze benadering zoekt draagvlak door regio's, boeren en overheid samen keuzes te laten maken."
+            }
+        ],
+        evidenceClaim: "Stikstof, waterkwaliteit en natuurdoelen beperken de ruimte voor landbouw, bouw en infrastructuur.",
+        impact: {
+            winners: "Boeren met duidelijk perspectief, natuurgebieden of bouwprojecten kunnen afhankelijk van de route winnen.",
+            losers: "Intensieve veehouderij, natuurkwaliteit of woningbouw kunnen verliezen als keuzes worden uitgesteld.",
+            eu: "Habitatrichtlijn, Kaderrichtlijn Water en landbouwsubsidies maken dit sterk Europees verweven."
+        }
+    }),
+    createDossier({
+        id: "energie",
+        title: "Energie",
+        summary: "Betaalbaarheid, energiezekerheid, netcongestie, kernenergie en verduurzaming.",
+        context: "Energiebeleid raakt iedere rekening en elk bedrijf. De kernvraag is hoe Nederland schoon, betaalbaar en betrouwbaar energie organiseert.",
+        positions: [
+            {
+                id: "energie-a",
+                party: "VVD",
+                stance: "Inzetten op kernenergie, infrastructuur en leveringszekerheid met realistisch tempo.",
+                rationale: "Deze lijn ziet betrouwbare energie als randvoorwaarde voor industrie, huishoudens en klimaatbeleid."
+            },
+            {
+                id: "energie-b",
+                party: "GroenLinks-PvdA",
+                stance: "Versnellen met isolatie, hernieuwbare energie en publieke regie op betaalbare energie.",
+                rationale: "Deze positie wil fossiele afhankelijkheid verminderen en huishoudens beschermen tegen prijsschokken."
+            },
+            {
+                id: "energie-c",
+                party: "FVD",
+                stance: "Stoppen met dure energietransitie en prioriteit geven aan lage prijzen en fossiele leveringszekerheid.",
+                rationale: "Deze benadering betwijfelt of de kosten en dwang van de transitie opwegen tegen de opbrengsten."
+            }
+        ],
+        evidenceClaim: "Netcongestie en energieprijzen hebben grote invloed op verduurzaming, bedrijven en huishoudens.",
+        impact: {
+            winners: "Huishoudens met isolatie, energie-intensieve bedrijven of groene industrie kunnen winnen afhankelijk van keuzes.",
+            losers: "Fossiele sectoren, huurders zonder isolatie of regio's met netcongestie kunnen achterblijven.",
+            eu: "Europese energiemarkt, ETS en infrastructuurafspraken bepalen veel nationale ruimte."
+        }
+    }),
+    createDossier({
+        id: "defensie",
+        title: "Defensie & internationale veiligheid",
+        summary: "NAVO, Oekraïne, krijgsmacht, Europese samenwerking en defensie-uitgaven.",
+        context: "Defensie staat hoger op de agenda door oorlog in Europa en geopolitieke spanning. De vraag is hoeveel Nederland wil betalen voor veiligheid.",
+        positions: [
+            {
+                id: "defensie-a",
+                party: "VVD",
+                stance: "Defensie-uitgaven verhogen en de krijgsmacht sneller versterken binnen NAVO-verband.",
+                rationale: "Deze lijn ziet afschrikking en bondgenootschappelijke betrouwbaarheid als kern van veiligheid."
+            },
+            {
+                id: "defensie-b",
+                party: "SP",
+                stance: "Terughoudender met militaire escalatie en meer nadruk op diplomatie en vredespolitiek.",
+                rationale: "Deze positie waarschuwt dat hogere defensie-uitgaven publieke middelen verdringen en conflicten kunnen verdiepen."
+            },
+            {
+                id: "defensie-c",
+                party: "Volt",
+                stance: "Meer Europese defensiesamenwerking en gezamenlijke inkoop, naast steun aan Oekraïne.",
+                rationale: "Deze benadering ziet veiligheid als Europees schaalvraagstuk dat nationale versnippering moet overstijgen."
+            }
+        ],
+        evidenceClaim: "Nederland heeft zich binnen NAVO-verband verbonden aan hogere defensie-inspanningen en capaciteit.",
+        impact: {
+            winners: "Krijgsmacht, defensie-industrie en bondgenoten kunnen profiteren van hogere investeringen.",
+            losers: "Andere publieke uitgaven kunnen onder druk komen bij structureel hogere defensiebudgetten.",
+            eu: "NAVO, EU-defensiesamenwerking en steun aan Oekraïne zijn direct verbonden."
+        }
+    }),
+    createDossier({
+        id: "mobiliteit",
+        title: "Mobiliteit & infrastructuur",
+        summary: "OV, wegen, files, bereikbaarheid, luchtvaart en regionale verbindingen.",
+        context: "Mobiliteit bepaalt toegang tot werk, onderwijs en voorzieningen. Politiek draait het om de verdeling tussen auto, OV, fiets, regio en klimaat.",
+        positions: [
+            {
+                id: "mobiliteit-a",
+                party: "VVD",
+                stance: "Investeren in wegen, doorstroming en bereikbaarheid voor automobilisten en ondernemers.",
+                rationale: "Deze lijn ziet bereikbaarheid en economische doorstroming als primaire doelen."
+            },
+            {
+                id: "mobiliteit-b",
+                party: "GroenLinks-PvdA",
+                stance: "Meer investeren in betaalbaar OV, fiets en minder vervuilende mobiliteit.",
+                rationale: "Deze positie wil mobiliteit toegankelijker maken en uitstoot verminderen."
+            },
+            {
+                id: "mobiliteit-c",
+                party: "CDA",
+                stance: "Regionale bereikbaarheid versterken met betrouwbaar OV, wegenonderhoud en voorzieningen dichtbij.",
+                rationale: "Deze benadering kijkt naar mobiliteit als voorwaarde voor leefbare dorpen en regio's."
+            }
+        ],
+        evidenceClaim: "Bereikbaarheid verschilt sterk per regio en vervoersvorm, en investeringen hebben lange doorlooptijden.",
+        impact: {
+            winners: "Forenzen, regio's en ondernemers kunnen profiteren van betere verbindingen.",
+            losers: "Omwonenden, natuur of klimaatafspraken kunnen onder druk staan bij uitbreiding van infrastructuur.",
+            eu: "Luchtvaart, spoor, emissienormen en TEN-T-netwerken hebben Europese kaders."
+        }
+    }),
+    createDossier({
+        id: "digitalisering",
+        title: "Digitalisering & privacy",
+        summary: "AI, platformmacht, cyberveiligheid, privacy en digitale overheid.",
+        context: "Digitale systemen bepalen steeds vaker toegang tot werk, overheid en informatie. De vraag is wie controle houdt: burger, overheid of markt.",
+        positions: [
+            {
+                id: "digitalisering-a",
+                party: "D66",
+                stance: "Digitale rechten, privacy en transparante algoritmes stevig wettelijk beschermen.",
+                rationale: "Deze lijn ziet grondrechten als uitgangspunt voor technologiebeleid."
+            },
+            {
+                id: "digitalisering-b",
+                party: "VVD",
+                stance: "Innovatie en cyberveiligheid versterken, met ruimte voor bedrijven en gerichte overheidsregie.",
+                rationale: "Deze positie wil concurrentiekracht en veiligheid combineren zonder innovatie onnodig te remmen."
+            },
+            {
+                id: "digitalisering-c",
+                party: "NSC",
+                stance: "Digitale overheid menselijker maken, fouten herstelbaar maken en algoritmes controleerbaar houden.",
+                rationale: "Deze benadering legt nadruk op bescherming tegen systeemfalen en ondoorzichtige besluitvorming."
+            }
+        ],
+        evidenceClaim: "Digitale besluitvorming en datagebruik vragen om toezicht, transparantie en cyberweerbaarheid.",
+        impact: {
+            winners: "Burgers, bedrijven en publieke diensten kunnen winnen bij veilige en duidelijke digitale systemen.",
+            losers: "Privacy, autonomie of kleine organisaties kunnen onder druk komen bij snelle digitalisering.",
+            eu: "AI Act, AVG en digitale-marktwetgeving maken dit sterk Europees gereguleerd."
+        },
+        sourceIds: [SOURCE_REGISTRY.tkOpenData.id, SOURCE_REGISTRY.tkStemmingDocs.id, SOURCE_REGISTRY.tkZaakDocs.id, SOURCE_REGISTRY.eu.id, SOURCE_REGISTRY.cbs.id]
+    }),
+    createDossier({
+        id: "bestuur",
+        title: "Bestuur & democratie",
+        summary: "Vertrouwen, transparantie, uitvoeringsorganisaties, grondrechten en democratische controle.",
+        context: "Veel politieke conflicten gaan uiteindelijk over vertrouwen: kan de overheid leveren, luisteren en fouten herstellen?",
+        positions: [
+            {
+                id: "bestuur-a",
+                party: "NSC",
+                stance: "Bestuur hervormen met meer dualisme, betere rechtsbescherming en minder macht bij achterkamertjes.",
+                rationale: "Deze lijn ziet institutionele controle en herstel van vertrouwen als hoofdopgave."
+            },
+            {
+                id: "bestuur-b",
+                party: "D66",
+                stance: "Democratie vernieuwen met meer transparantie, burgerparticipatie en bescherming van grondrechten.",
+                rationale: "Deze positie wil democratische inspraak en liberale rechtsstaat versterken."
+            },
+            {
+                id: "bestuur-c",
+                party: "PVV",
+                stance: "Meer directe invloed voor kiezers en minder macht voor bestuurlijke elites en instituties.",
+                rationale: "Deze benadering legt nadruk op volkswil en wantrouwen tegenover gevestigde bestuurlijke macht."
+            }
+        ],
+        evidenceClaim: "Vertrouwen in overheid hangt sterk samen met uitvoering, transparantie en ervaren rechtvaardigheid.",
+        impact: {
+            winners: "Burgers die vastlopen in systemen, parlementaire controle en uitvoeringsorganisaties kunnen winnen.",
+            losers: "Snelle besluitvorming of bestuurlijke flexibiliteit kan afnemen bij meer waarborgen en controles.",
+            eu: "Rechtsstaatnormen, mensenrechten en Europese besluitvorming raken nationale democratie."
+        }
+    }),
+    createDossier({
+        id: "europa",
+        title: "Europa & soevereiniteit",
+        summary: "EU-samenwerking, nationale zeggenschap, interne markt, migratie en veiligheid.",
+        context: "Veel beleid wordt deels in Brussel gemaakt. De politieke vraag is wanneer Europese schaal helpt en wanneer nationale autonomie zwaarder weegt.",
+        positions: [
+            {
+                id: "europa-a",
+                party: "Volt",
+                stance: "Meer Europese samenwerking en waar nodig gezamenlijke Europese besluitvorming.",
+                rationale: "Deze lijn ziet klimaat, defensie, migratie en economie als grensoverschrijdende problemen."
+            },
+            {
+                id: "europa-b",
+                party: "PVV",
+                stance: "Nationale soevereiniteit terughalen en EU-invloed op migratie, geld en regels beperken.",
+                rationale: "Deze positie ziet Europese integratie als verlies van democratische controle."
+            },
+            {
+                id: "europa-c",
+                party: "CDA",
+                stance: "Pragmatisch samenwerken in Europa waar nodig, maar nationale gemeenschappen beschermen.",
+                rationale: "Deze benadering zoekt Europese samenwerking zonder alle zeggenschap te centraliseren."
+            }
+        ],
+        evidenceClaim: "EU-regels werken direct door in nationale keuzes over markt, migratie, klimaat, landbouw en veiligheid.",
+        impact: {
+            winners: "Exporteurs, grensoverschrijdende sectoren en gezamenlijke veiligheidsprojecten kunnen winnen bij samenwerking.",
+            losers: "Nationale beleidsvrijheid en groepen die last hebben van EU-regels kunnen druk ervaren.",
+            eu: "Dit dossier gaat direct over EU-verdragen, instellingen en bevoegdheidsverdeling."
+        },
+        sourceIds: [SOURCE_REGISTRY.tkOpenData.id, SOURCE_REGISTRY.tkStemmingDocs.id, SOURCE_REGISTRY.tkZaakDocs.id, SOURCE_REGISTRY.eu.id]
+    })
 ];
 
 export const EVIDENCE_LEVELS = {

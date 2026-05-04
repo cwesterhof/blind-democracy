@@ -7,129 +7,129 @@ export const PROMISE_VERDICTS = {
 
 export const PROMISE_CHECKS = [
     {
-        id: "test-gebroken-belofte-zorg",
-        type: "party",
-        party: "TESTPARTIJ",
-        politician: null,
-        dossierId: "zorg",
-        promise: "Wij beloven het eigen risico volledig af te schaffen.",
-        promiseSource: {
-            title: "Test verkiezingsprogramma",
-            url: "#"
-        },
-        vote: {
-            title: "Voorstel afschaffen eigen risico",
-            voted: "against",
-            date: "2024-06-12",
-            sourceUrl: "#"
-        },
-        verdict: "broken",
-        explanation:
-            "Deze testpartij beloofde het eigen risico af te schaffen, maar stemde tegen een voorstel dat precies dat doel ondersteunt."
-    },
-    {
-        id: "vvd-wonen-betaalbare-huur",
-        type: "party",
-        party: "VVD",
-        politician: null,
-        dossierId: "wonen",
-        promise: "Meer woningen bouwen en de woningmarkt beter laten werken.",
-        promiseSource: {
-            title: "Verkiezingsprogramma VVD",
-            url: "#"
-        },
-        vote: {
-            title: "Wet betaalbare huur",
-            voted: "against",
-            date: "2024-04-25",
-            sourceUrl: "#"
-        },
-        verdict: "mixed",
-        explanation:
-            "De VVD zet sterk in op meer bouw en marktwerking. Tegenstemmen bij huurregulering is daarom niet automatisch een gebroken belofte, maar het schuurt wel met betaalbaarheid voor huurders."
-    },
-    {
-        id: "sp-zorg-eigen-risico",
-        type: "party",
-        party: "SP",
-        politician: null,
-        dossierId: "zorg",
-        promise: "Het eigen risico moet worden afgeschaft.",
-        promiseSource: {
-            title: "Verkiezingsprogramma SP",
-            url: "#"
-        },
-        vote: {
-            title: "Voorstel verlaging eigen risico",
-            voted: "for",
-            date: "2024-06-12",
-            sourceUrl: "#"
-        },
-        verdict: "kept",
-        explanation:
-            "De stem sluit aan bij de belofte om zorgkosten voor patiënten direct te verlagen."
-    },
-    {
-        id: "fvd-klimaat-klimaatfonds",
+        id: "fvd-klimaat-klimaatfonds-2026",
         type: "party",
         party: "FVD",
         politician: null,
         dossierId: "klimaat",
         promise: "Stoppen met duur nationaal klimaatbeleid.",
         promiseSource: {
-            title: "Verkiezingsprogramma FVD",
-            url: "#"
+            title: "Verkiezingsprogramma FVD 2023",
+            url: "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
         },
         vote: {
-            title: "Klimaatfonds",
+            title: "Vaststelling begrotingsstaat Klimaatfonds 2026",
             voted: "against",
-            date: "2023-12-19",
-            sourceUrl: "#"
+            date: "2026-05-04",
+            sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(c519746c-8d25-4f43-9230-0f957581f9a3)"
         },
         verdict: "kept",
         explanation:
-            "Tegenstemmen bij extra klimaatuitgaven past bij de belofte om nationaal klimaatbeleid af te remmen."
+            "Tegenstemmen bij de begrotingsstaat van het Klimaatfonds past bij de belofte om nationaal klimaatbeleid en klimaatuitgaven af te remmen."
     },
     {
-        id: "d66-immigratie-eu-verdeling",
+        id: "vvd-wonen-huurcommissie-2026",
+        type: "party",
+        party: "VVD",
+        politician: null,
+        dossierId: "wonen",
+        promise: "Meer woningen bouwen en procedures op de woningmarkt beter laten werken.",
+        promiseSource: {
+            title: "Verkiezingsprogramma VVD 2023",
+            url: "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+        },
+        vote: {
+            title: "Wet toekomstbestendige huurcommissie",
+            voted: "for",
+            date: "2026-04-21",
+            sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(56cc4a04-48c0-42b2-9fb1-a4911a71faa6)"
+        },
+        verdict: "kept",
+        explanation:
+            "Voorstemmen bij de Wet toekomstbestendige huurcommissie sluit aan bij de belofte om procedures rond huur en woningmarkt werkbaarder te maken."
+    },
+    {
+        id: "d66-immigratie-tweestatusstelsel-2026",
         type: "party",
         party: "D66",
         politician: null,
         dossierId: "immigratie",
-        promise: "Meer Europese samenwerking en eerlijkere verdeling van asielopvang.",
+        promise: "Snellere procedures, betere Europese samenwerking en een juridisch houdbaar migratiestelsel.",
         promiseSource: {
-            title: "Verkiezingsprogramma D66",
-            url: "#"
+            title: "Verkiezingsprogramma D66 2023",
+            url: "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
         },
         vote: {
-            title: "Spreidingswet",
-            voted: "for",
-            date: "2024-01-23",
-            sourceUrl: "#"
+            title: "Wet invoering tweestatusstelsel",
+            voted: "against",
+            date: "2026-04-21",
+            sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(5ac89466-e75a-489d-a74e-217222177483)"
         },
-        verdict: "kept",
+        verdict: "mixed",
         explanation:
-            "Voorstemmen bij verdeling van opvang sluit aan bij de belofte om opvang eerlijker te organiseren."
+            "Tegenstemmen bij aanscherping van nareis en invoering van een tweestatusstelsel past deels bij een juridisch terughoudender migratielijn, maar de koppeling met Europese verdeling blijft inhoudelijk breder dan deze ene stemming."
     },
     {
-        id: "pvv-immigratie-spreidingswet",
+        id: "pvv-immigratie-tweestatusstelsel-2026",
         type: "party",
         party: "PVV",
         politician: null,
         dossierId: "immigratie",
-        promise: "Asielinstroom beperken en verplichte opvang tegengaan.",
+        promise: "Asielinstroom beperken en nareisregels aanscherpen.",
         promiseSource: {
-            title: "Verkiezingsprogramma PVV",
-            url: "#"
+            title: "Verkiezingsprogramma PVV 2023",
+            url: "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
         },
         vote: {
-            title: "Spreidingswet",
-            voted: "against",
-            date: "2024-01-23",
-            sourceUrl: "#"
+            title: "Wet invoering tweestatusstelsel",
+            voted: "for",
+            date: "2026-04-21",
+            sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(5ac89466-e75a-489d-a74e-217222177483)"
         },
         verdict: "kept",
         explanation:
-            "Tegenstemmen bij verplichte verdeling van opvang past bij de belofte om asielbeleid strenger te maken."
+            "Voorstemmen bij een tweestatusstelsel en strengere nareisvoorwaarden sluit aan bij de belofte om asielbeleid verder aan te scherpen."
+    },
+    {
+        id: "glpvda-wonen-huurcommissie-2026",
+        type: "party",
+        party: "GroenLinks-PvdA",
+        politician: null,
+        dossierId: "wonen",
+        promise: "Huurders sterker beschermen en publieke regie op betaalbaar wonen vergroten.",
+        promiseSource: {
+            title: "Verkiezingsprogramma GroenLinks-PvdA 2023",
+            url: "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+        },
+        vote: {
+            title: "Wet toekomstbestendige huurcommissie",
+            voted: "for",
+            date: "2026-04-21",
+            sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(56cc4a04-48c0-42b2-9fb1-a4911a71faa6)"
+        },
+        verdict: "kept",
+        explanation:
+            "Voorstemmen bij versterking en toekomstbestendigheid van huurcommissieprocedures sluit aan bij een lijn waarin huurdersbescherming centraal staat."
+    },
+    {
+        id: "bbb-klimaat-klimaatfonds-2026",
+        type: "party",
+        party: "BBB",
+        politician: null,
+        dossierId: "klimaat",
+        promise: "Klimaatbeleid moet betaalbaar blijven en rekening houden met landbouw, regio en uitvoerbaarheid.",
+        promiseSource: {
+            title: "Verkiezingsprogramma BBB 2023",
+            url: "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+        },
+        vote: {
+            title: "Vaststelling begrotingsstaat Klimaatfonds 2026",
+            voted: "against",
+            date: "2026-05-04",
+            sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(c519746c-8d25-4f43-9230-0f957581f9a3)"
+        },
+        verdict: "kept",
+        explanation:
+            "Tegenstemmen bij de begrotingsstaat van het Klimaatfonds past bij een lijn die klimaatuitgaven kritisch weegt op betaalbaarheid en uitvoerbaarheid."
     }
 ];

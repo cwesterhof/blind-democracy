@@ -12,7 +12,19 @@ const maxZakenPerDossier = 12;
 const dossierSearchTerms = {
     wonen: ["wonen", "woning", "huur", "woningbouw", "huurcommissie", "volkshuisvesting", "betaalbare huur"],
     immigratie: ["spreidingswet", "statushouders", "nareis", "migratie", "vreemdelingen", "asiel", "opvang"],
-    klimaat: ["fossiele", "klimaatfonds", "CO2", "duurzaam", "klimaat", "energie", "emissie"]
+    klimaat: ["fossiele", "klimaatfonds", "CO2", "duurzaam", "klimaat", "energie", "emissie"],
+    zorg: ["zorg", "eigen risico", "personeelstekort", "ziekenhuis", "huisarts", "ggz", "zorgverzekering"],
+    onderwijs: ["onderwijs", "lerarentekort", "basisvaardigheden", "kansengelijkheid", "school", "mbo", "hoger onderwijs"],
+    economie: ["koopkracht", "inflatie", "belasting", "economie", "begroting", "middeninkomens", "ondernemers"],
+    arbeid: ["arbeidsmarkt", "minimumloon", "flexwerk", "uitkering", "sociale zekerheid", "arbeidsmigratie", "bestaanszekerheid"],
+    veiligheid: ["veiligheid", "politie", "justitie", "ondermijning", "criminaliteit", "rechtsstaat", "strafrecht"],
+    landbouw: ["landbouw", "stikstof", "natuur", "boeren", "waterkwaliteit", "mest", "platteland"],
+    energie: ["energie", "kernenergie", "netcongestie", "elektriciteit", "gas", "isolatie", "energieprijzen"],
+    defensie: ["defensie", "NAVO", "Oekraïne", "krijgsmacht", "militaire", "veiligheid", "munitie"],
+    mobiliteit: ["mobiliteit", "openbaar vervoer", "spoor", "wegen", "luchtvaart", "bereikbaarheid", "files"],
+    digitalisering: ["digitalisering", "privacy", "AI", "algoritme", "cyberveiligheid", "digitale overheid", "data"],
+    bestuur: ["bestuur", "democratie", "rechtsstaat", "transparantie", "toeslagen", "uitvoering", "grondrechten"],
+    europa: ["Europa", "Europese Unie", "EU", "soevereiniteit", "Brussel", "interne markt", "Europese samenwerking"]
 };
 
 const importedAt = new Date().toISOString();

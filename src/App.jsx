@@ -3,7 +3,7 @@ import { DOSSIERS, EVIDENCE_LEVELS } from "./data/dossiers";
 import { DOSSIER_STATUSES, SOURCE_REGISTRY } from "./data/sources";
 import importedTweedeKamer from "./data/importedTweedeKamer.json";
 import { RELIABILITY_DIMENSIONS, buildMemberReliability, buildPartyReliability } from "./data/reliability.js";
-import { POSITION_CONFIDENCE, PARTY_POSITIONS, getPositionsForDossier } from "./data/partyPositions.js";
+import { POSITION_CONFIDENCE, getPositionsForDossier } from "./data/partyPositions.js";
 import { CANDIDATE_POSITIONS, CANDIDATE_STATUSES } from "./data/candidatePositions.js";
 import reviewedPositionImports from "./data/reviewedPositionImports.json";
 import { PROMISE_CHECKS, PROMISE_VERDICTS } from "./data/promiseChecks";
@@ -16,9 +16,11 @@ const DATA_TABS = [
     { id: "bronnen", label: "Bronnen" }
 ];
 
-function BlindTestPage() {
+function BlindTestPage({ partyReliability = [] }) {
     const [activeDossierId, setActiveDossierId] = useState(DOSSIERS[0].id);
     const [answers, setAnswers] = useState({});
+    const [showPriorityModal, setShowPriorityModal] = useState(false);
+    const [priorityWeights, setPriorityWeights] = useState({});
     const [resultsRevealed, setResultsRevealed] = useState(false);
     const [activeDataTab, setActiveDataTab] = useState(DATA_TABS[0].id);
 
@@ -29,14 +31,16 @@ function BlindTestPage() {
         () => DOSSIERS.find((dossier) => dossier.id === activeDossierId) ?? DOSSIERS[0],
         [activeDossierId]
     );
-    const activePositions = useMemo(() => getPositionsForDossier(activeDossier.id), [activeDossier.id]);
+    const activePositions = useMemo(() => getBlindPositionsForDossier(activeDossier), [activeDossier]);
 
     const selectedPositionId = answers[activeDossier.id] ?? null;
     const selectedPosition = activePositions.find((position) => position.id === selectedPositionId);
     const revealed = resultsRevealed;
     const completedCount = DOSSIERS.filter((dossier) => answers[dossier.id]).length;
     const allChosen = completedCount === DOSSIERS.length;
-    const results = calculateResults(answers, resultsRevealed);
+    const results = calculateResults(answers, resultsRevealed, priorityWeights);
+    const votingMatches = calculateVotingMatches(answers, resultsRevealed, importedByDossier, partyReliability, priorityWeights);
+    const revealOutcome = getRevealOutcome(results, votingMatches);
     const chosenPositions = getChosenPositions(answers, resultsRevealed);
     const remainingCount = DOSSIERS.length - completedCount;
 
@@ -46,18 +50,43 @@ function BlindTestPage() {
     }
 
     function choosePosition(positionId) {
-        setAnswers((current) => ({
-            ...current,
+        const nextAnswers = {
+            ...answers,
             [activeDossier.id]: positionId
-        }));
+        };
+
+        setAnswers(() => nextAnswers);
         setResultsRevealed(false);
         setActiveDataTab(DATA_TABS[0].id);
+
+        if (Object.keys(nextAnswers).length === DOSSIERS.length) {
+            setShowPriorityModal(true);
+        }
+    }
+
+    function togglePriority(dossierId) {
+        setPriorityWeights((current) => {
+            const next = { ...current };
+
+            if (next[dossierId]) {
+                delete next[dossierId];
+            } else {
+                next[dossierId] = 2;
+            }
+
+            return next;
+        });
     }
 
     function revealResults() {
         if (allChosen) {
-            setResultsRevealed(true);
+            setShowPriorityModal(true);
         }
+    }
+
+    function applyPriorities() {
+        setShowPriorityModal(false);
+        setResultsRevealed(true);
     }
 
     function resetActiveChoice() {
@@ -78,14 +107,15 @@ function BlindTestPage() {
 
     return (
         <>
-            <header className="hero-band compact-hero">
-                <div className="hero-content">
-                    <p className="eyebrow">Blind Democracy</p>
-                    <h1>Kies eerst het beleid. Zie daarna pas de partij.</h1>
-                </div>
-            </header>
+            <div className={showPriorityModal ? "app-content blurred" : "app-content"}>
+                <header className="hero-band compact-hero">
+                    <div className="hero-content">
+                        <p className="eyebrow">Blind Democracy</p>
+                        <h1>Kies eerst het beleid. Zie daarna pas de partij.</h1>
+                    </div>
+                </header>
 
-            <main className="product-shell test-shell">
+                <main className="product-shell test-shell">
                 <aside className="dossier-nav progress-sidebar" aria-label="Voortgang blind test">
                     <div className="nav-heading">
                         <span>01</span>
@@ -101,20 +131,27 @@ function BlindTestPage() {
                     </div>
 
                     <div className="dossier-list flow-list">
-                        {DOSSIERS.map((dossier, index) => (
-                            <button
-                                className={activeDossier.id === dossier.id ? "dossier-button active" : "dossier-button"}
-                                key={dossier.id}
-                                onClick={() => chooseDossier(dossier.id)}
-                                type="button"
-                            >
-                                <span className="flow-index">{index + 1}</span>
-                                <span>
-                                    <strong>{dossier.title}</strong>
-                                    <small>{statusLabel(dossier.id, answers, resultsRevealed)}</small>
-                                </span>
-                            </button>
-                        ))}
+                        {DOSSIERS.map((dossier, index) => {
+                            const answered = Boolean(answers[dossier.id]);
+
+                            return (
+                                <div
+                                    className={dossierNavClass(activeDossier.id === dossier.id, answered)}
+                                    key={dossier.id}
+                                >
+                                    <button
+                                        className="dossier-main-button"
+                                        onClick={() => chooseDossier(dossier.id)}
+                                        type="button"
+                                    >
+                                        <span className="flow-index">{index + 1}</span>
+                                        <span>
+                                            <strong>{dossier.title}</strong>
+                                        </span>
+                                    </button>
+                                </div>
+                            );
+                        })}
                     </div>
 
                     {resultsRevealed && <Scoreboard results={results} />}
@@ -152,31 +189,49 @@ function BlindTestPage() {
                         </div>
                     )}
 
-                    <div className="action-row reveal-actions">
-                        <button
-                            className="primary-action reveal-action"
-                            disabled={!allChosen || resultsRevealed}
-                            onClick={revealResults}
-                            type="button"
-                        >
-                            {resultsRevealed ? "Resultaten onthuld" : allChosen ? "Onthul resultaten" : `Nog ${remainingCount} te kiezen`}
-                        </button>
-                        <button
-                            className="secondary-action"
-                            disabled={!selectedPositionId}
-                            onClick={resetActiveChoice}
-                            type="button"
-                        >
-                            Opnieuw kiezen
-                        </button>
-                        {!allChosen && (
-                            <button className="secondary-action" onClick={goToNextDossier} type="button">
-                                Volgende dossier
-                            </button>
-                        )}
-                    </div>
+                    {resultsRevealed && (
+                        <RevealPanel
+                            allChosen={allChosen}
+                            outcome={revealOutcome}
+                            position={selectedPosition}
+                            resultsRevealed={resultsRevealed}
+                        />
+                    )}
 
-                    <RevealPanel allChosen={allChosen} position={selectedPosition} resultsRevealed={resultsRevealed} />
+                    {!resultsRevealed && (
+                        <>
+                            <div className="action-row reveal-actions">
+                                <button
+                                    className="primary-action reveal-action"
+                                    disabled={!allChosen}
+                                    onClick={revealResults}
+                                    type="button"
+                                >
+                                    {allChosen ? "Onthul resultaten" : `Nog ${remainingCount} te kiezen`}
+                                </button>
+                                <button
+                                    className="secondary-action"
+                                    disabled={!selectedPositionId}
+                                    onClick={resetActiveChoice}
+                                    type="button"
+                                >
+                                    Opnieuw kiezen
+                                </button>
+                                {!allChosen && (
+                                    <button className="secondary-action" onClick={goToNextDossier} type="button">
+                                        Volgende dossier
+                                    </button>
+                                )}
+                            </div>
+
+                            <RevealPanel
+                                allChosen={allChosen}
+                                outcome={revealOutcome}
+                                position={selectedPosition}
+                                resultsRevealed={resultsRevealed}
+                            />
+                        </>
+                    )}
 
                     {resultsRevealed && <ChosenPositionsSummary positions={chosenPositions} />}
 
@@ -191,8 +246,48 @@ function BlindTestPage() {
                         />
                     )}
                 </section>
-            </main>
+                </main>
+            </div>
+
+            {showPriorityModal && (
+                <PriorityModal
+                    onApply={applyPriorities}
+                    priorityWeights={priorityWeights}
+                    togglePriority={togglePriority}
+                />
+            )}
         </>
+    );
+}
+
+function PriorityModal({ onApply, priorityWeights, togglePriority }) {
+    return (
+        <div className="priority-modal" role="dialog" aria-modal="true" aria-labelledby="priority-title">
+            <section className="priority-card">
+                <div className="priority-heading">
+                    <p className="eyebrow">Prioriteiten</p>
+                    <h2 id="priority-title">Wat vind je extra belangrijk?</h2>
+                    <p>Niet alles weegt even zwaar. Kies wat voor jou zwaarder mee moet tellen.</p>
+                </div>
+
+                <div className="priority-list">
+                    {DOSSIERS.map((dossier) => (
+                        <label className="priority-option" key={dossier.id}>
+                            <input
+                                checked={Boolean(priorityWeights[dossier.id])}
+                                onChange={() => togglePriority(dossier.id)}
+                                type="checkbox"
+                            />
+                            <span>{dossier.title}</span>
+                        </label>
+                    ))}
+                </div>
+
+                <button className="primary-action priority-submit" onClick={onApply} type="button">
+                    Ga naar resultaten
+                </button>
+            </section>
+        </div>
     );
 }
 
@@ -201,7 +296,7 @@ function Scoreboard({ results }) {
 
     return (
         <section className="score-card">
-            <h3>Richting na reveal</h3>
+            <h3>Partijen achter je keuzes</h3>
             <div className="score-list">
                 {results.map((result) => (
                     <div className="score-row" key={result.party}>
@@ -217,7 +312,7 @@ function Scoreboard({ results }) {
     );
 }
 
-function RevealPanel({ allChosen, position, resultsRevealed }) {
+function RevealPanel({ allChosen, outcome, position, resultsRevealed }) {
     if (!position) {
         return (
             <section className="reveal-panel quiet slim-reveal">
@@ -238,12 +333,52 @@ function RevealPanel({ allChosen, position, resultsRevealed }) {
 
     return (
         <section className="reveal-summary">
-            <div>
-                <p className="eyebrow">Je koos blind</p>
-                <strong>{position.party}</strong>
+            <div className="policy-reveal-block">
+                <p className="eyebrow">Jouw keuzes</p>
+                <span>Je koos standpunten uit verschillende partijen.</span>
             </div>
-            <span>{position.explanation}</span>
+            <div className="vote-reveal-block">
+                <div className="reveal-copy">
+                    <p className="eyebrow">Beste match op stemgedrag</p>
+                    <strong>{outcome.title}</strong>
+                </div>
+                {outcome.match ? (
+                    <div className="reveal-match-block">
+                        <MatchGauge score={outcome.match.score} />
+                        <div className="match-explainer">
+                            <span>Deze partij stemt het vaakst zoals jij koos.</span>
+                            <small>
+                                {outcome.match.voteScore}% stemoverlap · {outcome.match.reliabilityScore}% betrouwbaarheid · {outcome.match.comparisons} stemvergelijkingen
+                            </small>
+                        </div>
+                    </div>
+                ) : (
+                    <span>{outcome.description}</span>
+                )}
+            </div>
+            {outcome.alternatives?.length > 0 && (
+                <div className="reveal-alternatives">
+                    <p className="eyebrow">Top 3 alternatieven</p>
+                    <div>
+                        {outcome.alternatives.map((alternative) => (
+                            <article key={alternative.party}>
+                                <strong>{alternative.party}</strong>
+                                <span>{alternative.score}%</span>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            )}
         </section>
+    );
+}
+
+function MatchGauge({ score }) {
+    return (
+        <div className="match-gauge" style={{ "--match-score": `${score}%` }} aria-label={`Match ${score}%`}>
+            <strong>{score}%</strong>
+            <small>match</small>
+        </div>
     );
 }
 
@@ -263,8 +398,9 @@ function ChosenPositionsSummary({ positions }) {
             <div className="chosen-position-grid">
                 {positions.map(({ dossier, position }) => (
                     <article className="chosen-position-card" key={position.id}>
-                        <span>{dossier.title}</span>
+                        <span>Jij koos:</span>
                         <h4>{position.party}</h4>
+                        <small>{dossier.title}</small>
                         <strong>{position.statement}</strong>
                         <p>{position.explanation}</p>
                         <div className="source-status-row">
@@ -370,43 +506,104 @@ function ImportedKamerData({ importedDossier }) {
 
             <div className="kamer-list">
                 {importedDossier.zaken.slice(0, 6).map((zaak) => (
-                    <article className={zaak.voteSummary.totalVotes > 0 ? "kamer-item has-votes" : "kamer-item"} key={zaak.id}>
-                        <a href={zaak.sourceUrl} rel="noreferrer" target="_blank">
-                            <span>{zaak.type}</span>
-                            <strong>{zaak.title}</strong>
-                            <small>{zaak.number} · {zaak.parliamentaryYear} · match: {zaak.matchedTerms?.join(", ") ?? zaak.matchedTerm}</small>
-                        </a>
-                        <VoteSummary zaak={zaak} />
-                    </article>
+                    <KamerZaakItem key={zaak.id} zaak={zaak} />
                 ))}
             </div>
         </section>
     );
 }
 
-function VoteSummary({ zaak }) {
-    if (!zaak.voteSummary?.totalVotes) {
+function KamerZaakItem({ zaak }) {
+    const voteStats = getVoteStats(zaak);
+    const status = voteStats ? (voteStats.accepted ? "AANGENOMEN" : "VERWORPEN") : "Geen stemdata";
+
+    return (
+        <details className={`${voteStats ? "kamer-item has-votes" : "kamer-item"} zaak-type-${slugifyType(zaak.type)}`}>
+            <summary className="kamer-summary">
+                <span className="kamer-type">{zaak.type}</span>
+                <strong>{shortTitle(zaak.title)}</strong>
+                <span className={voteStats ? "kamer-vote-line" : "kamer-vote-line no-data"}>
+                    {voteStats ? `${status} · ${voteStats.forSeats} voor · ${voteStats.againstSeats} tegen` : "Geen fractiestemming gevonden"}
+                </span>
+                <span className="kamer-summary-action">
+                    <span className="closed-label">Open</span>
+                    <span className="open-label">Sluit</span>
+                </span>
+                <small>Klik voor stemdetails</small>
+            </summary>
+
+            <div className="kamer-detail-body">
+                <div className="kamer-detail-layout">
+                    <div className="kamer-detail-meta">
+                        <dl className="zaak-meta-grid">
+                            <div>
+                                <dt>Volledige titel</dt>
+                                <dd>{zaak.title}</dd>
+                            </div>
+                            <div>
+                                <dt>Zaaknummer</dt>
+                                <dd>{zaak.number ?? "Onbekend"}</dd>
+                            </div>
+                            <div>
+                                <dt>Parlementair jaar</dt>
+                                <dd>{zaak.parliamentaryYear ?? "Onbekend"}</dd>
+                            </div>
+                            <div>
+                                <dt>Match termen</dt>
+                                <dd>{zaak.matchedTerms?.join(", ") ?? zaak.matchedTerm ?? "Geen matchterm"}</dd>
+                            </div>
+                        </dl>
+
+                        <a className="kamer-source-button" href={zaak.sourceUrl} rel="noreferrer" target="_blank">
+                            Bekijk volledige Kamerzaak →
+                        </a>
+                    </div>
+
+                    <VotePartyBreakdown zaak={zaak} />
+                </div>
+            </div>
+        </details>
+    );
+}
+
+function VotePartyBreakdown({ zaak }) {
+    const voteStats = getVoteStats(zaak);
+
+    if (!voteStats) {
         return <p className="no-votes">Geen fractiestemming gevonden in deze zaak.</p>;
     }
 
-    const visibleParties = zaak.voteSummary.parties.slice(0, 8);
-
     return (
-        <div className="vote-summary">
-            <div className="vote-totals">
-                {Object.entries(zaak.voteSummary.byVote).map(([vote, seats]) => (
-                    <span className={vote === "Voor" ? "vote-for" : "vote-against"} key={vote}>
-                        {vote}: {seats} zetels
-                    </span>
-                ))}
+        <div className="vote-detail-panel">
+            <div className={voteStats.accepted ? "vote-outcome accepted" : "vote-outcome rejected"}>
+                <span>{voteStats.accepted ? "Aangenomen" : "Verworpen"}</span>
+                <strong>{voteStats.forSeats} voor · {voteStats.againstSeats} tegen</strong>
+                <small>{voteStats.totalVotes} zetels geteld</small>
             </div>
-            <div className="party-votes">
-                {visibleParties.map((item) => (
-                    <span className={item.vote === "Voor" ? "vote-for" : "vote-against"} key={`${item.party}-${item.vote}`}>
-                        {item.party}: {item.vote}
-                    </span>
-                ))}
+            <div className="vote-columns">
+                <VotePartyColumn label="Voor" parties={voteStats.forParties} tone="for" />
+                <VotePartyColumn label="Tegen" parties={voteStats.againstParties} tone="against" />
             </div>
+        </div>
+    );
+}
+
+function VotePartyColumn({ label, parties, tone }) {
+    return (
+        <div className={`vote-party-column ${tone}`}>
+            <h4>{label}</h4>
+            {parties.length > 0 ? (
+                <div className="party-vote-list">
+                    {parties.map((party) => (
+                        <span className={`party-vote ${tone}`} key={party}>
+                            <span className="dot" aria-hidden="true" />
+                            {party}
+                        </span>
+                    ))}
+                </div>
+            ) : (
+                <p>Geen partijen gevonden.</p>
+            )}
         </div>
     );
 }
@@ -490,10 +687,13 @@ function cardClass(positionId, selectedPositionId, revealed) {
     return classes.join(" ");
 }
 
-function statusLabel(dossierId, answers, resultsRevealed) {
-    if (resultsRevealed && answers[dossierId]) return "Onthuld";
-    if (answers[dossierId]) return "Gekozen";
-    return "Nog open";
+function dossierNavClass(active, answered) {
+    const classes = ["dossier-button"];
+
+    if (active) classes.push("active");
+    if (answered) classes.push("answered");
+
+    return classes.join(" ");
 }
 
 function formatDate(dateValue) {
@@ -507,19 +707,23 @@ function formatDate(dateValue) {
 function getChosenPositions(answers, resultsRevealed) {
     if (!resultsRevealed) return [];
 
-    return DOSSIERS.map((dossier) => ({
-        dossier,
-        position: PARTY_POSITIONS.find((position) => position.id === answers[dossier.id])
-    })).filter((item) => item.position);
+    return DOSSIERS.map((dossier) => {
+        const positions = getBlindPositionsForDossier(dossier);
+
+        return {
+            dossier,
+            position: positions.find((position) => position.id === answers[dossier.id])
+        };
+    }).filter((item) => item.position);
 }
-function calculateResults(answers, resultsRevealed) {
+function calculateResults(answers, resultsRevealed, importance = {}) {
     const counts = DOSSIERS.reduce((acc, dossier) => {
         if (!resultsRevealed) return acc;
 
-        const position = PARTY_POSITIONS.find((item) => item.id === answers[dossier.id]);
+        const position = getBlindPositionsForDossier(dossier).find((item) => item.id === answers[dossier.id]);
 
         if (position) {
-            acc[position.party] = (acc[position.party] ?? 0) + 1;
+            acc[position.party] = (acc[position.party] ?? 0) + getDossierWeight(dossier.id, importance);
         }
 
         return acc;
@@ -532,10 +736,218 @@ function calculateResults(answers, resultsRevealed) {
     return Object.entries(counts)
         .map(([party, count]) => ({
             party,
-            count,
+            count: Number(count.toFixed(1)),
             percentage: Math.round((count / total) * 100)
         }))
         .sort((a, b) => b.count - a.count || a.party.localeCompare(b.party, "nl"));
+}
+
+function getBlindPositionsForDossier(dossier) {
+    const sourcedPositions = getPositionsForDossier(dossier.id);
+
+    if (sourcedPositions.length > 0) {
+        return sourcedPositions.map((position) => normalizeBlindPosition(position, dossier.id));
+    }
+
+    return (dossier.positions ?? []).map((position) => normalizeBlindPosition(position, dossier.id));
+}
+
+function normalizeBlindPosition(position, dossierId) {
+    return {
+        id: position.id,
+        party: position.party,
+        statement: position.statement ?? position.stance,
+        explanation: position.explanation ?? position.rationale,
+        confidence: position.confidence ?? "editorialDraft",
+        reviewedByHuman: position.reviewedByHuman ?? false,
+        reviewStatus: position.reviewStatus ?? "Redactioneel dossierstandpunt; bron nog controleren",
+        source: position.source ?? {
+            type: "dossier",
+            title: "Dossierstandpunt in review",
+            url: SOURCE_REGISTRY.tkOpenData.url,
+            quote: null
+        },
+        dossierId: position.dossierId ?? dossierId
+    };
+}
+
+function getRevealOutcome(results, votingMatches) {
+    const bestMatch = votingMatches[0];
+
+    if (bestMatch) {
+        return {
+            title: bestMatch.party,
+            description: "Niet op basis van partijprogramma's. Deze partij past het best bij jouw keuzes als je kijkt naar werkelijk stemgedrag in de Tweede Kamer, meegewogen met betrouwbaarheid.",
+            match: bestMatch,
+            alternatives: votingMatches.slice(1, 4)
+        };
+    }
+
+    if (results.length === 0) {
+        return {
+            title: "Nog geen resultaat",
+            description: "Kies eerst per dossier een standpunt. Daarna onthullen we pas welke partijen erachter zaten."
+        };
+    }
+
+    const highestCount = results[0].count;
+    const winners = results.filter((result) => result.count === highestCount);
+
+    if (winners.length === 1) {
+        return {
+            title: winners[0].party,
+            description: "Niet omdat je de partij koos. Maar omdat je het eens was met het beleid."
+        };
+    }
+
+    return {
+        title: "Verdeeld resultaat",
+        description: `Je keuzes zijn verdeeld over: ${formatPartyList(winners.map((result) => result.party))}.`
+    };
+}
+
+function calculateVotingMatches(answers, resultsRevealed, importedByDossier, partyReliability, importance = {}) {
+    if (!resultsRevealed) return [];
+
+    const reliabilityByParty = Object.fromEntries(partyReliability.map((item) => [item.party, item]));
+    const partyStats = new Map();
+
+    DOSSIERS.forEach((dossier) => {
+        const selectedPositionId = answers[dossier.id];
+        if (!selectedPositionId) return;
+
+        const selectedPosition = getBlindPositionsForDossier(dossier).find((position) => position.id === selectedPositionId);
+        const selectedParty = selectedPosition?.party;
+        const importedDossier = importedByDossier[dossier.id];
+        const dossierWeight = getDossierWeight(dossier.id, importance);
+
+        if (!selectedParty || !importedDossier) return;
+
+        importedDossier.zaken.forEach((zaak) => {
+            const voteSummary = getDisplayVoteSummary(zaak);
+            if (!voteSummary?.parties?.length) return;
+
+            const selectedPartyVote = voteSummary.parties.find((item) => item.party === selectedParty)?.vote;
+            if (!selectedPartyVote) return;
+
+            voteSummary.parties.forEach((item) => {
+                if (!item.party || !item.vote) return;
+
+                const current = partyStats.get(item.party) ?? { party: item.party, matches: 0, comparisons: 0 };
+                current.comparisons += dossierWeight;
+                if (item.vote === selectedPartyVote) current.matches += dossierWeight;
+                partyStats.set(item.party, current);
+            });
+        });
+    });
+
+    return [...partyStats.values()]
+        .filter((item) => item.comparisons > 0)
+        .map((item) => {
+            const voteScore = Math.round((item.matches / item.comparisons) * 100);
+            const reliabilityScore = reliabilityByParty[item.party]?.score ?? 0;
+
+            return {
+                ...item,
+                voteScore,
+                reliabilityScore,
+                score: Math.round((voteScore * 0.85) + (reliabilityScore * 0.15))
+            };
+        })
+        .sort((a, b) =>
+            b.score - a.score ||
+            b.voteScore - a.voteScore ||
+            b.reliabilityScore - a.reliabilityScore ||
+            b.comparisons - a.comparisons ||
+            a.party.localeCompare(b.party, "nl")
+        );
+}
+
+function getDossierWeight(dossierId, importance = {}) {
+    return importance[dossierId] ?? 1;
+}
+
+function formatPartyList(parties) {
+    if (parties.length <= 1) return parties[0] ?? "";
+    if (parties.length === 2) return parties.join(" en ");
+
+    return `${parties.slice(0, -1).join(", ")} en ${parties.at(-1)}`;
+}
+
+function getDisplayVoteSummary(zaak) {
+    const besluitSummary = (zaak.besluiten ?? []).find((besluit) => besluit.voteSummary?.totalVotes > 0)?.voteSummary;
+
+    return dedupeVoteSummary(besluitSummary ?? zaak.voteSummary);
+}
+
+function dedupeVoteSummary(voteSummary) {
+    if (!voteSummary?.parties?.length) return voteSummary;
+
+    const partiesByName = new Map();
+
+    voteSummary.parties.forEach((item) => {
+        if (!item.party || partiesByName.has(item.party)) return;
+        partiesByName.set(item.party, item);
+    });
+
+    const parties = [...partiesByName.values()];
+    const byVote = parties.reduce((acc, item) => {
+        acc[item.vote] = (acc[item.vote] ?? 0) + (item.seats || 1);
+        return acc;
+    }, {});
+
+    return {
+        ...voteSummary,
+        totalVotes: parties.length,
+        totalSeats: Object.values(byVote).reduce((sum, seats) => sum + seats, 0),
+        byVote,
+        parties
+    };
+}
+
+function getPartiesByVote(voteSummary, vote) {
+    return voteSummary.parties
+        .filter((item) => item.vote === vote)
+        .map((item) => item.party)
+        .sort((a, b) => a.localeCompare(b, "nl"));
+}
+
+function getVoteStats(zaak) {
+    const voteSummary = getDisplayVoteSummary(zaak);
+
+    if (!voteSummary?.totalVotes) return null;
+
+    const forSeats = voteSummary.byVote?.Voor ?? 0;
+    const againstSeats = voteSummary.byVote?.Tegen ?? 0;
+
+    return {
+        accepted: forSeats > againstSeats,
+        forSeats,
+        againstSeats,
+        totalVotes: voteSummary.totalSeats,
+        forParties: getPartiesByVote(voteSummary, "Voor"),
+        againstParties: getPartiesByVote(voteSummary, "Tegen")
+    };
+}
+
+function shortTitle(title, max = 95) {
+    if (!title) return "";
+    return title.length > max ? `${title.slice(0, max)}...` : title;
+}
+
+function slugifyType(type) {
+    const slug = String(type)
+        .toLowerCase()
+        .replaceAll(" ", "-")
+        .replaceAll("/", "-");
+
+    if (slug.includes("wetgeving")) return "wetgeving";
+    if (slug.includes("motie")) return "motie";
+    if (slug.includes("amendement")) return "amendement";
+    if (slug.includes("begroting")) return "begroting";
+    if (slug.includes("brief")) return "brief";
+
+    return "overig";
 }
 
 
@@ -583,10 +995,10 @@ function App() {
                 </div>
             </nav>
 
-            {page === "blind" && <BlindTestPage />}
+            {page === "blind" && <BlindTestPage partyReliability={partyReliability} />}
             {page === "onderwerpen" && <TopicsPage />}
             {page === "partijen" && <ReliabilityPage items={partyReliability} title="Betrouwbaarheid per partij" type="party" />}
-            {page === "kamerleden" && <ReliabilityPage items={memberReliability} title="Betrouwbaarheid per Kamerlid" type="member" />}
+            {page === "kamerleden" && <ReliabilityPage items={memberReliability} title="Wat weten we over dit Kamerlid?" type="member" />}
             {page === "leugens" && <LieDetectorPage />}
             {page === "review" && <PositionReviewPage />}
             {page === "methode" && <MethodPage />}
@@ -600,7 +1012,7 @@ function TopicsPage() {
     const sourcesById = Object.fromEntries(Object.values(SOURCE_REGISTRY).map((source) => [source.id, source]));
     const importedByDossier = Object.fromEntries(importedTweedeKamer.dossiers.map((dossier) => [dossier.dossierId, dossier]));
     const selectedDossier = DOSSIERS.find((dossier) => dossier.id === selectedDossierId) ?? DOSSIERS[0];
-    const positions = getPositionsForDossier(selectedDossier.id);
+    const positions = getBlindPositionsForDossier(selectedDossier);
     const importedDossier = importedByDossier[selectedDossier.id];
     const voteableCount = importedDossier?.zaken.filter((zaak) => zaak.voteSummary.totalVotes > 0).length ?? 0;
 
@@ -622,7 +1034,7 @@ function TopicsPage() {
             <section className="topics-layout">
                 <aside className="topic-card-list" aria-label="Onderwerpen">
                     {DOSSIERS.map((dossier) => {
-                        const dossierPositions = getPositionsForDossier(dossier.id);
+                        const dossierPositions = getBlindPositionsForDossier(dossier);
                         const imported = importedByDossier[dossier.id];
                         const votes = imported?.zaken.filter((zaak) => zaak.voteSummary.totalVotes > 0).length ?? 0;
 
@@ -714,25 +1126,26 @@ function TopicPositions({ positions }) {
     );
 }
 function ReliabilityPage({ items, title, type }) {
+    const isMemberPage = type === "member";
+
     return (
-        <main className="reliability-page">
+        <main className={isMemberPage ? "reliability-page member-knowledge-page" : "reliability-page"}>
             <header className="page-heading">
-                <p className="eyebrow">Betrouwbaarheidsmeter</p>
+                <p className="eyebrow">{isMemberPage ? "Kamerleden" : "Betrouwbaarheidsmeter"}</p>
                 <h1>{title}</h1>
-                <p>
-                    Scores tonen alleen wat nu meetbaar is. Ontbrekende onderdelen blijven zichtbaar als open meetpunt,
-                    zodat de meter niet meer zekerheid suggereert dan de data toelaat.
-                </p>
+                <p>{isMemberPage ? "We laten zien wat we al kunnen controleren — en wat nog niet." : "Scores tonen alleen wat nu meetbaar is. Ontbrekende onderdelen blijven zichtbaar als open meetpunt, zodat de meter niet meer zekerheid suggereert dan de data toelaat."}</p>
             </header>
 
-            <section className="metric-legend">
-                {RELIABILITY_DIMENSIONS.map((dimension) => (
-                    <article key={dimension.id}>
-                        <strong>{dimension.label}</strong>
-                        <p>{dimension.description}</p>
-                    </article>
-                ))}
-            </section>
+            {!isMemberPage && (
+                <section className="metric-legend">
+                    {RELIABILITY_DIMENSIONS.map((dimension) => (
+                        <article key={dimension.id}>
+                            <strong>{dimension.label}</strong>
+                            <p>{dimension.description}</p>
+                        </article>
+                    ))}
+                </section>
+            )}
 
             <section className="reliability-grid">
                 {items.map((item) => (
@@ -744,6 +1157,10 @@ function ReliabilityPage({ items, title, type }) {
 }
 
 function ReliabilityCard({ item, type }) {
+    if (type === "member") {
+        return <MemberKnowledgeCard item={item} />;
+    }
+
     return (
         <article className="reliability-card">
             <div className="reliability-topline">
@@ -772,6 +1189,81 @@ function ReliabilityCard({ item, type }) {
             </div>
         </article>
     );
+}
+
+function MemberKnowledgeCard({ item }) {
+    const checklist = buildMemberChecklist(item);
+
+    return (
+        <article className="member-knowledge-card">
+            <div className="member-knowledge-topline">
+                <div>
+                    <p className="eyebrow">{item.party}</p>
+                    <h2>{item.name}</h2>
+                </div>
+                <span>{knowledgeLabel(checklist)}</span>
+            </div>
+
+            <div className="knowledge-dots" aria-label={knowledgeLabel(checklist)}>
+                {checklist.map((entry) => (
+                    <span className={entry.available ? "filled" : ""} key={entry.id} />
+                ))}
+            </div>
+
+            <div className="member-checklist">
+                <h3>Wat weten we:</h3>
+                {checklist.map((entry) => (
+                    <div className={entry.available ? "known" : "unknown"} key={entry.id}>
+                        <span aria-hidden="true">{entry.available ? "✔" : "○"}</span>
+                        <p>{entry.text}</p>
+                    </div>
+                ))}
+            </div>
+        </article>
+    );
+}
+
+function buildMemberChecklist(item) {
+    const dimensions = item.dimensions;
+
+    return [
+        {
+            id: "voteCoverage",
+            available: dimensions.voteCoverage.score !== null,
+            text: dimensions.voteCoverage.score === null
+                ? "We weten nog niet hoe deze partij stemt"
+                : "We weten hoe deze partij meestal stemt"
+        },
+        {
+            id: "positionTraceability",
+            available: dimensions.positionTraceability.score !== null && dimensions.positionTraceability.score >= 100,
+            text: dimensions.positionTraceability.score >= 100
+                ? "De belangrijkste standpunten zijn bekend"
+                : "We kennen nog niet alle belangrijke standpunten"
+        },
+        {
+            id: "promiseVoteMatch",
+            available: dimensions.promiseVoteMatch.score !== null,
+            text: dimensions.promiseVoteMatch.score === null
+                ? "We weten nog niet of beloftes worden nagekomen"
+                : "We kunnen zien of beloftes worden nagekomen"
+        },
+        {
+            id: "claimAccuracy",
+            available: dimensions.claimAccuracy.score !== null,
+            text: dimensions.claimAccuracy.score === null
+                ? "We weten nog niet of uitspraken kloppen"
+                : "We kunnen uitspraken controleren"
+        }
+    ];
+}
+
+function knowledgeLabel(checklist) {
+    const known = checklist.filter((entry) => entry.available).length;
+
+    if (known >= 3) return "Goed controleerbaar";
+    if (known >= 2) return "Gedeeltelijk controleerbaar";
+    return "Nauwelijks controleerbaar";
 }
 
 function ReliabilityGauge({ score, label }) {
@@ -888,7 +1380,7 @@ function LieDetectorPage() {
                 <p className="eyebrow">De Leugendetector</p>
                 <h1>Belofte vs stemgedrag</h1>
                 <p>
-                    Welke partijen zeggen A, maar stemmen B? De zwaarste tegenstrijdigheden staan bovenaan.
+                    Welke partijen en politici stemmen anders dan ze beloofden?
                 </p>
             </header>
 
@@ -914,6 +1406,15 @@ function LieDetectorPage() {
                         </p>
 
                         <p>{item.explanation}</p>
+
+                        <div className="promise-source-row">
+                            <a href={item.promiseSource.url} rel="noreferrer" target="_blank">
+                                Beloftebron
+                            </a>
+                            <a href={item.vote.sourceUrl} rel="noreferrer" target="_blank">
+                                Stembron
+                            </a>
+                        </div>
                     </article>
                 ))}
             </section>
@@ -935,10 +1436,3 @@ function voteLabel(vote) {
 }
 
 export default App;
-
-
-
-
-
-
-
