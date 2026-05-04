@@ -6,6 +6,7 @@ import { RELIABILITY_DIMENSIONS, buildMemberReliability, buildPartyReliability }
 import { POSITION_CONFIDENCE, PARTY_POSITIONS, getPositionsForDossier } from "./data/partyPositions.js";
 import { CANDIDATE_POSITIONS, CANDIDATE_STATUSES } from "./data/candidatePositions.js";
 import reviewedPositionImports from "./data/reviewedPositionImports.json";
+import { PROMISE_CHECKS, PROMISE_VERDICTS } from "./data/promiseChecks";
 import "./App.css";
 
 const DATA_TABS = [
@@ -548,6 +549,7 @@ const PAGES = [
     { id: "onderwerpen", label: "Onderwerpen" },
     { id: "partijen", label: "Partijen" },
     { id: "kamerleden", label: "Kamerleden" },
+    { id: "leugens", label: "Leugendetector" },
     { id: "review", label: "Review" },
     { id: "methode", label: "Methode" }
 ];
@@ -585,6 +587,7 @@ function App() {
             {page === "onderwerpen" && <TopicsPage />}
             {page === "partijen" && <ReliabilityPage items={partyReliability} title="Betrouwbaarheid per partij" type="party" />}
             {page === "kamerleden" && <ReliabilityPage items={memberReliability} title="Betrouwbaarheid per Kamerlid" type="member" />}
+            {page === "leugens" && <LieDetectorPage />}
             {page === "review" && <PositionReviewPage />}
             {page === "methode" && <MethodPage />}
         </>
@@ -865,6 +868,70 @@ function MethodPage() {
             </section>
         </main>
     );
+}
+
+function LieDetectorPage() {
+    const sortedChecks = [...PROMISE_CHECKS].sort((a, b) => {
+        const order = {
+            broken: 1,
+            mixed: 2,
+            unclear: 3,
+            kept: 4
+        };
+
+        return order[a.verdict] - order[b.verdict];
+    });
+
+    return (
+        <main className="reliability-page">
+            <header className="page-heading">
+                <p className="eyebrow">De Leugendetector</p>
+                <h1>Belofte vs stemgedrag</h1>
+                <p>
+                    Welke partijen zeggen A, maar stemmen B? De zwaarste tegenstrijdigheden staan bovenaan.
+                </p>
+            </header>
+
+            <section className="candidate-grid">
+                {sortedChecks.map((item) => (
+                    <article className={`candidate-card promise-card verdict-${item.verdict}`} key={item.id}>
+                        <div className="candidate-topline">
+                            <div>
+                                <p className="eyebrow">{item.dossierId}</p>
+                                <h2>{item.party}</h2>
+                            </div>
+                            <span className={`verdict-badge verdict-${item.verdict}`}>
+                                {verdictIcon(item.verdict)} {PROMISE_VERDICTS[item.verdict]}
+                            </span>
+                        </div>
+
+                        <strong>Belofte</strong>
+                        <p>{item.promise}</p>
+
+                        <strong>Stemming</strong>
+                        <p>
+                            {item.vote.title} → {voteLabel(item.vote.voted)}
+                        </p>
+
+                        <p>{item.explanation}</p>
+                    </article>
+                ))}
+            </section>
+        </main>
+    );
+}
+
+function verdictIcon(verdict) {
+    if (verdict === "broken") return "✖";
+    if (verdict === "kept") return "✔";
+    if (verdict === "mixed") return "⚠";
+    return "•";
+}
+
+function voteLabel(vote) {
+    if (vote === "for") return "Voor";
+    if (vote === "against") return "Tegen";
+    return vote;
 }
 
 export default App;

@@ -1935,3 +1935,52 @@
         flex-direction: column;
     }
 }
+
+/* === LEUGENDETECTOR === */
+
+.promise-card {
+    border-left: 12px solid var(--line);
+    padding-left: 18px;
+}
+
+    .promise-card .candidate-topline > span {
+        border-radius: 999px;
+        font-weight: 850;
+        padding: 7px 10px;
+    }
+
+    .promise-card.verdict-broken {
+        border-left-color: #b94a48;
+    }
+
+        .promise-card.verdict-broken .candidate-topline > span {
+            background: rgba(185, 74, 72, 0.14);
+            color: #8f2523;
+        }
+
+    .promise-card.verdict-mixed {
+        border-left-color: #bd7a22;
+    }
+
+        .promise-card.verdict-mixed .candidate-topline > span {
+            background: rgba(189, 122, 34, 0.14);
+            color: #87510f;
+        }
+
+    .promise-card.verdict-unclear {
+        border-left-color: #6b7280;
+    }
+
+        .promise-card.verdict-unclear .candidate-topline > span {
+            background: rgba(107, 114, 128, 0.14);
+            color: #374151;
+        }
+
+    .promise-card.verdict-kept {
+        border-left-color: #2f7d5c;
+    }
+
+        .promise-card.verdict-kept .candidate-topline > span {
+            background: rgba(47, 125, 92, 0.14);
+            color: #1f5c43;
+        }
