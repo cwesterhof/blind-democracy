@@ -1,0 +1,242 @@
+[
+  {
+    "id": "ismail-el-abassi",
+    "name": "Ismail el Abassi",
+    "party": "DENK",
+    "positions": {
+      "immigration": "for",
+      "climate": "against",
+      "healthcare": "for"
+    }
+  },
+  {
+    "id": "fatihya-abdi",
+    "name": "Fatihya Abdi",
+    "party": "GroenLinks-PvdA"
+  },
+  {
+    "id": "elles-van-ark",
+    "name": "Elles van Ark",
+    "party": "CDA"
+  },
+  {
+    "id": "etkin-armut",
+    "name": "Etkin Armut",
+    "party": "CDA"
+  },
+  {
+    "id": "robert-van-asten",
+    "name": "Robert van Asten",
+    "party": "D66"
+  },
+  {
+    "id": "stephan-van-baarle",
+    "name": "Stephan van Baarle",
+    "party": "DENK"
+  },
+  {
+    "id": "mpanzu-bamenga",
+    "name": "Mpanzu Bamenga",
+    "party": "D66"
+  },
+  {
+    "id": "bente-becker",
+    "name": "Bente Becker",
+    "party": "VVD"
+  },
+  {
+    "id": "sandra-beckerman",
+    "name": "Sandra Beckerman",
+    "party": "SP"
+  },
+  {
+    "id": "martin-de-beer",
+    "name": "Martin de Beer",
+    "party": "VVD"
+  },
+  {
+    "id": "fatimazhra-belhirch",
+    "name": "Fatimazhra Belhirch",
+    "party": "D66"
+  },
+  {
+    "id": "daniel-van-den-berg",
+    "name": "Daniël van den Berg",
+    "party": "JA21"
+  },
+  {
+    "id": "harry-bevers",
+    "name": "Harry Bevers",
+    "party": "VVD"
+  },
+  {
+    "id": "anouschka-biekman",
+    "name": "Anouschka Biekman",
+    "party": "D66"
+  },
+  {
+    "id": "mirjam-bikker",
+    "name": "Mirjam Bikker",
+    "party": "ChristenUnie"
+  },
+  {
+    "id": "bart-bikkers",
+    "name": "Bart Bikkers",
+    "party": "VVD"
+  },
+  {
+    "id": "henri-bontenbal",
+    "name": "Henri Bontenbal",
+    "party": "CDA"
+  },
+  {
+    "id": "diederik-boomsma",
+    "name": "Diederik Boomsma",
+    "party": "JA21"
+  },
+  {
+    "id": "maikel-boon",
+    "name": "Maikel Boon",
+    "party": "PVV"
+  },
+  {
+    "id": "martin-bosma",
+    "name": "Martin Bosma",
+    "party": "PVV"
+  },
+  {
+    "id": "ruben-brekelmans",
+    "name": "Ruben Brekelmans",
+    "party": "VVD"
+  },
+  {
+    "id": "corrie-van-brenk",
+    "name": "Corrie van Brenk",
+    "party": "50PLUS"
+  },
+  {
+    "id": "laura-bromet",
+    "name": "Laura Bromet",
+    "party": "GroenLinks-PvdA"
+  },
+  {
+    "id": "julian-bushoff",
+    "name": "Julian Bushoff",
+    "party": "GroenLinks-PvdA"
+  },
+  {
+    "id": "thom-van-campen",
+    "name": "Thom van Campen",
+    "party": "VVD"
+  },
+  {
+    "id": "don-ceder",
+    "name": "Don Ceder",
+    "party": "ChristenUnie"
+  },
+  {
+    "id": "laurens-dassen",
+    "name": "Laurens Dassen",
+    "party": "Volt"
+  },
+  {
+    "id": "tony-van-dijck",
+    "name": "Tony van Dijck",
+    "party": "PVV"
+  },
+  {
+    "id": "jimmy-dijk",
+    "name": "Jimmy Dijk",
+    "party": "SP"
+  },
+  {
+    "id": "diederik-van-dijk",
+    "name": "Diederik van Dijk",
+    "party": "SGP"
+  },
+  {
+    "id": "emiel-van-dijk",
+    "name": "Emiel van Dijk",
+    "party": "PVV"
+  },
+  {
+    "id": "inge-van-dijk",
+    "name": "Inge van Dijk",
+    "party": "CDA"
+  },
+  {
+    "id": "sarah-dobbe",
+    "name": "Sarah Dobbe",
+    "party": "SP"
+  },
+  {
+    "id": "joost-eerdmans",
+    "name": "Joost Eerdmans",
+    "party": "JA21"
+  },
+  {
+    "id": "wendy-van-eijk",
+    "name": "Wendy van Eijk",
+    "party": "VVD"
+  },
+  {
+    "id": "ulysse-ellian",
+    "name": "Ulysse Ellian",
+    "party": "VVD"
+  },
+  {
+    "id": "dogukan-ergin",
+    "name": "Doğukan Ergin",
+    "party": "DENK"
+  },
+  {
+    "id": "marjolein-faber",
+    "name": "Marjolein Faber",
+    "party": "PVV"
+  },
+  {
+    "id": "andre-flach",
+    "name": "André Flach",
+    "party": "SGP"
+  },
+  {
+    "id": "dion-graus",
+    "name": "Dion Graus",
+    "party": "PVV"
+  },
+  {
+    "id": "pieter-grinwis",
+    "name": "Pieter Grinwis",
+    "party": "ChristenUnie"
+  },
+  {
+    "id": "peter-de-groot",
+    "name": "Peter de Groot",
+    "party": "VVD"
+  },
+  {
+    "id": "habtamu-de-hoop",
+    "name": "Habtamu de Hoop",
+    "party": "GroenLinks-PvdA"
+  },
+  {
+    "id": "pepijn-van-houwelingen",
+    "name": "Pepijn van Houwelingen",
+    "party": "FVD"
+  },
+  {
+    "id": "frederik-jansen",
+    "name": "Frederik Jansen",
+    "party": "FVD"
+  },
+  {
+    "id": "gideon-van-meijeren",
+    "name": "Gideon van Meijeren",
+    "party": "FVD"
+  },
+  {
+    "id": "geert-wilders",
+    "name": "Geert Wilders",
+    "party": "PVV"
+  }
+]

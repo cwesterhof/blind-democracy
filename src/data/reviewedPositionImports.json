@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-05-04T12:05:27.835Z",
+  "summary": {
+    "candidates": 2,
+    "approved": 0,
+    "promoted": 0,
+    "duplicates": 0,
+    "pending": 2,
+    "rejected": 0
+  },
+  "promotedPositions": [],
+  "pending": [
+    {
+      "id": "candidate-wonen-d66-betaalbaar-bouwen",
+      "dossierId": "wonen",
+      "party": "D66",
+      "status": "needsReview",
+      "reviewerNotes": "Exact citaat en pagina uit verkiezingsprogramma toevoegen voordat dit live mag."
+    },
+    {
+      "id": "candidate-klimaat-cda-realistisch",
+      "dossierId": "klimaat",
+      "party": "CDA",
+      "status": "needsReview",
+      "reviewerNotes": "Controleer of deze formulering de partijpositie niet te sterk samenvat."
+    }
+  ],
+  "rejected": [],
+  "duplicates": []
+}
