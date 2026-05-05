@@ -4,14 +4,14 @@ const HERO_SLIDES = [
     {
         eyebrow: "Blind kiezen",
         title: "Kies eerst het beleid. Zie daarna pas de partij.",
-        text: "Geen logo’s, kleuren of gezichten. Alleen de inhoud telt.",
+        text: "Geen logo's, kleuren of gezichten. Alleen de inhoud telt.",
         cta: "Start de blind test",
         tone: "blind",
         targetPage: "blind"
     },
     {
         eyebrow: "Stemgedrag telt",
-        title: "Zie wat partijen écht doen.",
+        title: "Zie wat partijen echt doen.",
         text: "Vergelijk verkiezingsbeloftes met daadwerkelijk stemgedrag.",
         cta: "Bekijk stemgedrag",
         tone: "votes",
@@ -47,8 +47,6 @@ export default function HeroSlider({ setPage }) {
     }, []);
 
     function handleCtaClick(targetPage) {
-        console.log("Hero CTA clicked:", targetPage);
-
         if (targetPage && targetPage !== "blind") {
             setPage(targetPage);
             window.scrollTo({ top: 0, behavior: "smooth" });

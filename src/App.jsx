@@ -19,37 +19,6 @@ const DATA_TABS = [
     { id: "bronnen", label: "Bronnen" }
 ];
 
-const HERO_SLIDES = [
-    {
-        eyebrow: "Blind kiezen",
-        headline: "Kies eerst het beleid. Zie daarna pas de partij.",
-        text: "Geen logo's, kleuren of gezichten. Alleen de inhoud telt.",
-        cta: "Start de test",
-        tone: "blind"
-    },
-    {
-        eyebrow: "Stemgedrag telt",
-        headline: "Zie wat partijen echt doen.",
-        text: "Vergelijk verkiezingsbeloftes met daadwerkelijk stemgedrag in de Tweede Kamer.",
-        cta: "Bekijk stemdata",
-        tone: "votes"
-    },
-    {
-        eyebrow: "De Leugendetector",
-        headline: "Waar breken partijen hun beloftes?",
-        text: "Ontdek welke partijen anders stemmen dan ze aan kiezers beloofden.",
-        cta: "Open Leugendetector",
-        tone: "truth"
-    },
-    {
-        eyebrow: "Bewijs boven framing",
-        headline: "Feiten, bronnen en context.",
-        text: "Elke claim krijgt bronvermelding, bewijsniveau en uitleg over impact.",
-        cta: "Lees de methode",
-        tone: "evidence"
-    }
-];
-
 function BlindTestPage({ partyReliability = [], setPage }) {
     const [activeDossierId, setActiveDossierId] = useState(DOSSIERS[0].id);
     const [answers, setAnswers] = useState({});
@@ -1187,7 +1156,6 @@ function slugifyType(type) {
     return "overig";
 }
 
-
 const PAGES = [
     { id: "blind", label: "Blind test" },
     { id: "onderwerpen", label: "Onderwerpen" },
@@ -1196,6 +1164,16 @@ const PAGES = [
     { id: "redactie", label: "Redactie" },
     { id: "methode", label: "Methode" }
 ];
+
+const DEFAULT_PAGE = "blind";
+
+function normalizePageId(pageId) {
+    return PAGES.some((page) => page.id === pageId) ? pageId : DEFAULT_PAGE;
+}
+
+function pageFromLocation() {
+    return normalizePageId(window.location.hash.replace("#", "") || DEFAULT_PAGE);
+}
 
 const PROMISE_REVIEW_STATUSES = {
     approved: "Betrouwbaar",
@@ -1278,9 +1256,33 @@ function buildPromiseVoteStatementItems() {
 }
 
 function App() {
-    const [page, setPage] = useState("blind");
+    const [page, setActivePage] = useState(pageFromLocation);
     const partyReliability = useMemo(() => buildPartyReliability(), []);
     const memberReliability = useMemo(() => buildMemberReliability(), []);
+
+    useEffect(() => {
+        function syncPageFromHash() {
+            setActivePage(pageFromLocation());
+        }
+
+        window.addEventListener("hashchange", syncPageFromHash);
+        window.addEventListener("popstate", syncPageFromHash);
+
+        return () => {
+            window.removeEventListener("hashchange", syncPageFromHash);
+            window.removeEventListener("popstate", syncPageFromHash);
+        };
+    }, []);
+
+    function setPage(nextPage) {
+        const normalizedPage = normalizePageId(nextPage);
+        setActivePage(normalizedPage);
+
+        const nextHash = `#${normalizedPage}`;
+        if (window.location.hash !== nextHash) {
+            window.history.pushState(null, "", nextHash);
+        }
+    }
 
     return (
         <>
@@ -1499,11 +1501,11 @@ function ReliabilityCard({ item, type }) {
         <article className="reliability-card">
             <div className="reliability-topline">
                 <div className="identity-line">
-                    <PartyAvatar party={item.party} size="large" />
+                    <PartyAvatar logoUrl={item.logoUrl} party={item.party} size="large" />
                     <div>
                         <p className="eyebrow">{type === "party" ? "Partij" : item.party}</p>
                         <h2>{type === "party" ? item.party : item.name}</h2>
-                        {type === "party" && <small>{item.memberCount} Kamerleden in lokale dataset</small>}
+                        {type === "party" && <small>{item.memberCount} Kamerleden uit Tweede Kamer Open Data</small>}
                     </div>
                 </div>
                 <ReliabilityGauge score={item.score} label={item.scoreLabel} />
@@ -1528,8 +1530,9 @@ function ReliabilityCard({ item, type }) {
     );
 }
 
-function PartyAvatar({ party, size = "medium" }) {
+function PartyAvatar({ logoUrl, party, size = "medium" }) {
     const visual = PARTY_VISUALS[party] ?? {};
+    const imageUrl = logoUrl ?? visual.logoUrl;
 
     return (
         <span
@@ -1537,7 +1540,7 @@ function PartyAvatar({ party, size = "medium" }) {
             style={{ "--avatar-color": visual.color ?? "#18251f" }}
             title={party}
         >
-            {visual.logoUrl ? <img alt={`${party} logo`} src={visual.logoUrl} /> : <span>{partyInitials(party)}</span>}
+            {imageUrl ? <img alt={`${party} logo`} src={imageUrl} /> : <span>{partyInitials(party)}</span>}
         </span>
     );
 }
@@ -1582,7 +1585,7 @@ function MemberKnowledgeCard({ item }) {
                     <PersonAvatar person={item} />
                     <div>
                         <p className="eyebrow party-with-logo">
-                            <PartyAvatar party={item.party} size="small" />
+                            <PartyAvatar logoUrl={item.partyLogoUrl} party={item.party} size="small" />
                             {item.party}
                         </p>
                         <h2>{item.name}</h2>

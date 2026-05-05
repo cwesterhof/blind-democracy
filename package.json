@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "npm run build && wrangler dev",
     "import:tk": "node scripts/importTweedeKamerData.mjs",
+    "import:members": "node scripts/importTweedeKamerMembers.mjs",
     "positions:review": "node scripts/reviewCandidatePositions.mjs",
     "deploy": "npm run build && wrangler deploy"
   },

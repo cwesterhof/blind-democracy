@@ -15,6 +15,16 @@ voteCases.forEach((zaak) => {
 const partiesFromPositions = new Set(PARTY_POSITIONS.map((position) => position.party));
 
 const partiesFromMembers = new Set(members.map((member) => member.party));
+const partyMetaByParty = members.reduce((acc, member) => {
+    if (!acc[member.party]) {
+        acc[member.party] = {
+            partyName: member.partyName,
+            logoUrl: member.partyLogoUrl
+        };
+    }
+
+    return acc;
+}, {});
 
 export const RELIABILITY_DIMENSIONS = [
     {
@@ -71,6 +81,8 @@ export function buildPartyReliability() {
 
         return {
             party,
+            partyName: partyMetaByParty[party]?.partyName,
+            logoUrl: partyMetaByParty[party]?.logoUrl,
             memberCount,
             score: averageKnownScore(dimensions),
             scoreLabel: knownScoreLabel(dimensions),
@@ -100,8 +112,13 @@ export function buildMemberReliability() {
 
         return {
             id: member.id,
+            apiId: member.apiId,
             name: member.name,
             party: member.party,
+            partyName: member.partyName,
+            photoUrl: member.photoUrl,
+            partyLogoUrl: member.partyLogoUrl,
+            sourceUrl: member.sourceUrl,
             score: averageKnownScore(dimensions),
             scoreLabel: knownScoreLabel(dimensions),
             dimensions
