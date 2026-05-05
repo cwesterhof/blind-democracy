@@ -1,0 +1,24 @@
+<svg width="600" height="140" viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .ink { fill: #151719; }
+    .trust { fill: #1f3a5f; }
+    .accent { fill: #c58a2a; }
+    .tag { fill: #6b7280; font-size: 14px; letter-spacing: 1px; }
+  </style>
+
+  <!-- BD mark -->
+  <text x="20" y="90" font-size="80" font-weight="700" class="ink">B</text>
+  <path d="M80,20 A50,50 0 1,1 80,120" stroke="#c58a2a" stroke-width="14" fill="none"></path>
+
+  <!-- Divider -->
+  <line x1="150" y1="20" x2="150" y2="120" stroke="#ded6c8" stroke-width="2"></line>
+
+  <!-- Text -->
+  <text x="180" y="65" font-size="36" font-weight="700" class="ink">BLIND</text>
+  <text x="180" y="105" font-size="36" font-weight="700" class="trust">DEMOCRACY</text>
+
+  <!-- Tagline -->
+  <text x="180" y="130" class="tag">
+    EERLIJK KIEZEN OP BASIS VAN WAT POLITICI ÉCHT DOEN
+  </text>
+</svg>

@@ -1,0 +1,13 @@
+<svg width="260" height="60" viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .ink { fill: #151719; }
+    .trust { fill: #1f3a5f; }
+    .accent { fill: #c58a2a; }
+  </style>
+
+  <text x="10" y="40" font-size="32" font-weight="700" class="ink">B</text>
+  <path d="M40,10 A20,20 0 1,1 40,50" stroke="#c58a2a" stroke-width="6" fill="none"></path>
+
+  <text x="80" y="30" font-size="18" font-weight="700" class="ink">BLIND</text>
+  <text x="80" y="50" font-size="18" font-weight="700" class="trust">DEMOCRACY</text>
+</svg>

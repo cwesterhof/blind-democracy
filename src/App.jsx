@@ -1,12 +1,15 @@
-﻿import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DOSSIERS, EVIDENCE_LEVELS } from "./data/dossiers";
 import { DOSSIER_STATUSES, SOURCE_REGISTRY } from "./data/sources";
 import importedTweedeKamer from "./data/importedTweedeKamer.json";
 import { RELIABILITY_DIMENSIONS, buildMemberReliability, buildPartyReliability } from "./data/reliability.js";
-import { POSITION_CONFIDENCE, getPositionsForDossier } from "./data/partyPositions.js";
+import { PARTY_POSITIONS, POSITION_CONFIDENCE, getPositionsForDossier } from "./data/partyPositions.js";
 import { CANDIDATE_POSITIONS, CANDIDATE_STATUSES } from "./data/candidatePositions.js";
 import reviewedPositionImports from "./data/reviewedPositionImports.json";
 import { PROMISE_CHECKS, PROMISE_VERDICTS } from "./data/promiseChecks";
+import Footer from "./components/Footer";
+import navLogo from "/favicon.svg";
+import HeroSlider from "./components/HeroSlider";
 import "./App.css";
 
 const DATA_TABS = [
@@ -16,13 +19,45 @@ const DATA_TABS = [
     { id: "bronnen", label: "Bronnen" }
 ];
 
-function BlindTestPage({ partyReliability = [] }) {
+const HERO_SLIDES = [
+    {
+        eyebrow: "Blind kiezen",
+        headline: "Kies eerst het beleid. Zie daarna pas de partij.",
+        text: "Geen logo's, kleuren of gezichten. Alleen de inhoud telt.",
+        cta: "Start de test",
+        tone: "blind"
+    },
+    {
+        eyebrow: "Stemgedrag telt",
+        headline: "Zie wat partijen echt doen.",
+        text: "Vergelijk verkiezingsbeloftes met daadwerkelijk stemgedrag in de Tweede Kamer.",
+        cta: "Bekijk stemdata",
+        tone: "votes"
+    },
+    {
+        eyebrow: "De Leugendetector",
+        headline: "Waar breken partijen hun beloftes?",
+        text: "Ontdek welke partijen anders stemmen dan ze aan kiezers beloofden.",
+        cta: "Open Leugendetector",
+        tone: "truth"
+    },
+    {
+        eyebrow: "Bewijs boven framing",
+        headline: "Feiten, bronnen en context.",
+        text: "Elke claim krijgt bronvermelding, bewijsniveau en uitleg over impact.",
+        cta: "Lees de methode",
+        tone: "evidence"
+    }
+];
+
+function BlindTestPage({ partyReliability = [], setPage }) {
     const [activeDossierId, setActiveDossierId] = useState(DOSSIERS[0].id);
     const [answers, setAnswers] = useState({});
     const [showPriorityModal, setShowPriorityModal] = useState(false);
     const [priorityWeights, setPriorityWeights] = useState({});
     const [resultsRevealed, setResultsRevealed] = useState(false);
     const [activeDataTab, setActiveDataTab] = useState(DATA_TABS[0].id);
+    const [expandedPositionId, setExpandedPositionId] = useState(null);
 
     const sourcesById = Object.fromEntries(Object.values(SOURCE_REGISTRY).map((source) => [source.id, source]));
     const importedByDossier = Object.fromEntries(importedTweedeKamer.dossiers.map((dossier) => [dossier.dossierId, dossier]));
@@ -47,6 +82,7 @@ function BlindTestPage({ partyReliability = [] }) {
     function chooseDossier(dossierId) {
         setActiveDossierId(dossierId);
         setActiveDataTab(DATA_TABS[0].id);
+        setExpandedPositionId(null);
     }
 
     function choosePosition(positionId) {
@@ -62,6 +98,10 @@ function BlindTestPage({ partyReliability = [] }) {
         if (Object.keys(nextAnswers).length === DOSSIERS.length) {
             setShowPriorityModal(true);
         }
+    }
+
+    function togglePositionInfo(positionId) {
+        setExpandedPositionId((current) => (current === positionId ? null : positionId));
     }
 
     function togglePriority(dossierId) {
@@ -108,12 +148,7 @@ function BlindTestPage({ partyReliability = [] }) {
     return (
         <>
             <div className={showPriorityModal ? "app-content blurred" : "app-content"}>
-                <header className="hero-band compact-hero">
-                    <div className="hero-content">
-                        <p className="eyebrow">Blind Democracy</p>
-                        <h1>Kies eerst het beleid. Zie daarna pas de partij.</h1>
-                    </div>
-                </header>
+                <HeroSlider setPage={setPage} />
 
                 <main className="product-shell test-shell">
                 <aside className="dossier-nav progress-sidebar" aria-label="Voortgang blind test">
@@ -174,17 +209,61 @@ function BlindTestPage({ partyReliability = [] }) {
                     {!resultsRevealed && (
                         <div className={selectedPositionId ? "position-grid has-selection" : "position-grid"}>
                         {activePositions.map((position, index) => (
-                            <button
-                                className={cardClass(position.id, selectedPositionId, revealed)}
+                            <article
+                                className={`${cardClass(position.id, selectedPositionId, revealed)} ${expandedPositionId === position.id ? "info-open" : ""}`}
                                 key={position.id}
-                                onClick={() => choosePosition(position.id)}
-                                type="button"
                             >
-                                <span className="anonymous-label">Standpunt {index + 1}</span>
-                                <strong className="position-statement">{position.statement}</strong>
-                                <p>{position.explanation}</p>
-                                <span className="blind-source-hint">{revealed ? position.party : POSITION_CONFIDENCE[position.confidence]}</span>
-                            </button>
+                                <button
+                                    className="blind-card-choice"
+                                    onClick={() => choosePosition(position.id)}
+                                    type="button"
+                                >
+                                    <span className="anonymous-label">Standpunt {index + 1}</span>
+                                    <strong className="position-statement">{position.statement}</strong>
+                                </button>
+
+                                <div className="blind-card-footer">
+                                    <button
+                                        className="position-info-toggle"
+                                        onClick={() => togglePositionInfo(position.id)}
+                                        type="button"
+                                    >
+                                        {expandedPositionId === position.id ? "Minder info" : "Meer info"}
+                                    </button>
+                                    {revealed && <span className="blind-source-hint">{position.party}</span>}
+                                </div>
+
+                                {expandedPositionId === position.id && (
+                                    <div className="position-info-panel">
+                                        <div>
+                                            <h4>Uitleg</h4>
+                                            <p>{position.explanation}</p>
+                                        </div>
+                                        <div>
+                                            <h4>Hoe werkt dit?</h4>
+                                            <p>{position.how}</p>
+                                        </div>
+                                        <div className="pros-cons-grid">
+                                            <div>
+                                                <h4>Voordelen</h4>
+                                                <ul className="pros-list">
+                                                    {position.pros.map((item) => (
+                                                        <li key={item}>{item}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h4>Nadelen</h4>
+                                                <ul className="cons-list">
+                                                    {position.cons.map((item) => (
+                                                        <li key={item}>{item}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </article>
                         ))}
                         </div>
                     )}
@@ -233,6 +312,14 @@ function BlindTestPage({ partyReliability = [] }) {
                         </>
                     )}
 
+                    {resultsRevealed && (
+                        <ResultMatrix
+                            importedByDossier={importedByDossier}
+                            partyReliability={partyReliability}
+                            positions={chosenPositions}
+                        />
+                    )}
+
                     {resultsRevealed && <ChosenPositionsSummary positions={chosenPositions} />}
 
                     {resultsRevealed && (
@@ -259,6 +346,8 @@ function BlindTestPage({ partyReliability = [] }) {
         </>
     );
 }
+
+
 
 function PriorityModal({ onApply, priorityWeights, togglePriority }) {
     return (
@@ -413,6 +502,62 @@ function ChosenPositionsSummary({ positions }) {
         </section>
     );
 }
+
+function ResultMatrix({ importedByDossier, partyReliability, positions }) {
+    if (positions.length === 0) return null;
+
+    const reliabilityByParty = Object.fromEntries(partyReliability.map((item) => [item.party, item]));
+
+    return (
+        <section className="result-matrix-panel">
+            <div className="result-matrix-heading">
+                <div>
+                    <p className="eyebrow">Matrix</p>
+                    <h3>Waar kwam je keuze vandaan?</h3>
+                </div>
+                <span>Programma + stemgedrag</span>
+            </div>
+
+            <div className="result-matrix" role="table" aria-label="Resultaatmatrix per dossier">
+                <div className="result-matrix-row header" role="row">
+                    <span role="columnheader">Dossier</span>
+                            <span role="columnheader">Jij koos</span>
+                            <span role="columnheader">Partij</span>
+                            <span role="columnheader">Belofte vs stem</span>
+                            <span role="columnheader">Werkelijk stemgedrag</span>
+                            <span role="columnheader">Betrouwbaarheid</span>
+                        </div>
+
+                {positions.map(({ dossier, position }) => {
+                    const voteSignal = getPartyDossierVoteSignal(position.party, importedByDossier[dossier.id]);
+                    const promiseSignal = getPromiseVoteSignal(position, importedByDossier[dossier.id]);
+                    const reliability = reliabilityByParty[position.party];
+
+                    return (
+                        <div className="result-matrix-row" key={position.id} role="row">
+                            <span className="matrix-dossier" data-label="Dossier" role="cell">{dossier.title}</span>
+                            <strong data-label="Jij koos" role="cell">{position.statement}</strong>
+                            <span className="matrix-party" data-label="Partij" role="cell">{position.party}</span>
+                            <span className={`matrix-promise ${promiseSignal.tone}`} data-label="Belofte vs stem" role="cell">
+                                <b>{promiseSignal.label}</b>
+                                <small>{promiseSignal.detail}</small>
+                            </span>
+                            <span className={`matrix-vote ${voteSignal.tone}`} data-label="Werkelijk stemgedrag" role="cell">
+                                <b>{voteSignal.label}</b>
+                                <small>{voteSignal.detail}</small>
+                            </span>
+                            <span className="matrix-reliability" data-label="Betrouwbaarheid" role="cell">
+                                <b>{reliability ? `${reliability.score}%` : "Nog onbekend"}</b>
+                                <small>{reliability?.scoreLabel ?? "Nog geen meetpunten"}</small>
+                            </span>
+                        </div>
+                    );
+                })}
+            </div>
+        </section>
+    );
+}
+
 function DataTabs({ activeTab, dossier, importedDossier, selectedPosition, setActiveTab, sourcesById }) {
     return (
         <section className="data-tabs-panel">
@@ -516,14 +661,18 @@ function ImportedKamerData({ importedDossier }) {
 function KamerZaakItem({ zaak }) {
     const voteStats = getVoteStats(zaak);
     const status = voteStats ? (voteStats.accepted ? "AANGENOMEN" : "VERWORPEN") : "Geen stemdata";
+    const statusClass = voteStats ? (voteStats.accepted ? "accepted" : "rejected") : "no-data";
 
     return (
         <details className={`${voteStats ? "kamer-item has-votes" : "kamer-item"} zaak-type-${slugifyType(zaak.type)}`}>
             <summary className="kamer-summary">
-                <span className="kamer-type">{zaak.type}</span>
-                <strong>{shortTitle(zaak.title)}</strong>
-                <span className={voteStats ? "kamer-vote-line" : "kamer-vote-line no-data"}>
-                    {voteStats ? `${status} · ${voteStats.forSeats} voor · ${voteStats.againstSeats} tegen` : "Geen fractiestemming gevonden"}
+                <span className={`kamer-rail ${statusClass}`} aria-hidden="true" />
+                <span className="kamer-summary-copy">
+                    <span className="kamer-type">{zaak.number ? `${zaak.number} · ${zaak.type}` : zaak.type}</span>
+                    <strong>{shortTitle(zaak.title)}</strong>
+                    <span className={`kamer-vote-line ${statusClass}`}>
+                        {voteStats ? status : "Geen fractiestemming gevonden"}
+                    </span>
                 </span>
                 <span className="kamer-summary-action">
                     <span className="closed-label">Open</span>
@@ -534,6 +683,8 @@ function KamerZaakItem({ zaak }) {
 
             <div className="kamer-detail-body">
                 <div className="kamer-detail-layout">
+                    <VotePartyBreakdown zaak={zaak} />
+
                     <div className="kamer-detail-meta">
                         <dl className="zaak-meta-grid">
                             <div>
@@ -555,11 +706,9 @@ function KamerZaakItem({ zaak }) {
                         </dl>
 
                         <a className="kamer-source-button" href={zaak.sourceUrl} rel="noreferrer" target="_blank">
-                            Bekijk volledige Kamerzaak →
+                            Bekijk volledige Kamerzaak ?
                         </a>
                     </div>
-
-                    <VotePartyBreakdown zaak={zaak} />
                 </div>
             </div>
         </details>
@@ -758,6 +907,10 @@ function normalizeBlindPosition(position, dossierId) {
         party: position.party,
         statement: position.statement ?? position.stance,
         explanation: position.explanation ?? position.rationale,
+        how: position.how ?? "De precieze uitvoering moet nog redactioneel worden uitgewerkt.",
+        pros: position.pros ?? ["Maakt de beleidsrichting duidelijker voor kiezers"],
+        cons: position.cons ?? ["Uitvoering, kosten en neveneffecten moeten nog beter worden getoetst"],
+        voteLinks: position.voteLinks ?? [],
         confidence: position.confidence ?? "editorialDraft",
         reviewedByHuman: position.reviewedByHuman ?? false,
         reviewStatus: position.reviewStatus ?? "Redactioneel dossierstandpunt; bron nog controleren",
@@ -867,6 +1020,90 @@ function getDossierWeight(dossierId, importance = {}) {
     return importance[dossierId] ?? 1;
 }
 
+function getPartyDossierVoteSignal(party, importedDossier) {
+    if (!importedDossier?.zaken?.length) {
+        return {
+            label: "Geen dossierdata",
+            detail: "Voor dit dossier is nog geen Kamerdata gekoppeld.",
+            tone: "unknown"
+        };
+    }
+
+    const votes = importedDossier.zaken
+        .map((zaak) => getDisplayVoteSummary(zaak)?.parties?.find((item) => item.party === party)?.vote)
+        .filter(Boolean);
+
+    if (votes.length === 0) {
+        return {
+            label: "Geen fractiestem gevonden",
+            detail: `${party} komt in de gekoppelde stemmingen niet voor.`,
+            tone: "unknown"
+        };
+    }
+
+    const forCount = votes.filter((vote) => vote === "Voor").length;
+    const againstCount = votes.filter((vote) => vote === "Tegen").length;
+    const otherCount = votes.length - forCount - againstCount;
+    const direction = forCount === againstCount
+        ? "gemengd"
+        : forCount > againstCount ? "meestal voor" : "meestal tegen";
+
+    return {
+        label: `${votes.length} stemmingen · ${direction}`,
+        detail: `${forCount} voor · ${againstCount} tegen${otherCount ? ` · ${otherCount} anders` : ""}`,
+        tone: forCount === againstCount ? "mixed" : forCount > againstCount ? "support" : "oppose"
+    };
+}
+
+function getPromiseVoteSignal(position, importedDossier) {
+    const links = position.voteLinks ?? [];
+
+    if (links.length === 0) {
+        return {
+            label: "Nog niet gekoppeld",
+            detail: "Dit standpunt heeft nog geen expliciete Kamerstemming als toets.",
+            tone: "unknown"
+        };
+    }
+
+    const evaluated = links.map((link) => {
+        const zaak = importedDossier?.zaken?.find((item) => item.number === link.zaakNumber || item.id === link.zaakId);
+        const partyVote = getDisplayVoteSummary(zaak)?.parties?.find((item) => item.party === position.party)?.vote;
+
+        return {
+            ...link,
+            zaak,
+            partyVote,
+            matches: partyVote === link.expectedVote
+        };
+    });
+
+    const withVotes = evaluated.filter((item) => item.partyVote);
+
+    if (withVotes.length === 0) {
+        return {
+            label: "Stem nog niet gevonden",
+            detail: `Wel gekoppeld aan ${links.length} Kamerzaak${links.length === 1 ? "" : "en"}, maar geen fractiestem gevonden.`,
+            tone: "unknown"
+        };
+    }
+
+    const matches = withVotes.filter((item) => item.matches).length;
+    const score = Math.round((matches / withVotes.length) * 100);
+    const weakLinks = withVotes.filter((item) => item.confidence === "weak").length;
+    const first = withVotes[0];
+    const label = score === 100
+        ? "Komt overeen"
+        : score === 0 ? "Wijkt af" : "Gemengd beeld";
+    const tone = score === 100 ? "kept" : score === 0 ? "broken" : "mixed";
+
+    return {
+        label,
+        detail: `${matches}/${withVotes.length} gekoppelde stemmingen matchen · verwacht ${first.expectedVote}, stemde ${first.partyVote}${weakLinks ? " · zwakke koppeling" : ""}`,
+        tone
+    };
+}
+
 function formatPartyList(parties) {
     if (parties.length <= 1) return parties[0] ?? "";
     if (parties.length === 2) return parties.join(" en ");
@@ -951,20 +1188,94 @@ function slugifyType(type) {
 }
 
 
-
-
-
-
-
 const PAGES = [
     { id: "blind", label: "Blind test" },
     { id: "onderwerpen", label: "Onderwerpen" },
-    { id: "partijen", label: "Partijen" },
-    { id: "kamerleden", label: "Kamerleden" },
+    { id: "betrouwbaarheid", label: "Betrouwbaarheid" },
     { id: "leugens", label: "Leugendetector" },
-    { id: "review", label: "Review" },
+    { id: "redactie", label: "Redactie" },
     { id: "methode", label: "Methode" }
 ];
+
+const PROMISE_REVIEW_STATUSES = {
+    approved: "Betrouwbaar",
+    review: "Review nodig",
+    missing: "Stem ontbreekt",
+    uncoded: "Belofte ontbreekt"
+};
+
+const PARTY_VISUALS = {
+    "BBB": { color: "#72bf44" },
+    "CDA": { color: "#2b8f41" },
+    "ChristenUnie": { color: "#00a7e1" },
+    "D66": { color: "#00ae41" },
+    "DENK": { color: "#00a6a6" },
+    "FVD": { color: "#8b1e3f" },
+    "GroenLinks-PvdA": { color: "#d71920" },
+    "JA21": { color: "#1f4e79" },
+    "PVV": { color: "#1e9bd7" },
+    "SP": { color: "#e30613" },
+    "Volt": { color: "#582c83" },
+    "VVD": { color: "#f58220" }
+};
+
+function buildPromiseVoteStatementItems() {
+    const importedByDossier = Object.fromEntries(importedTweedeKamer.dossiers.map((dossier) => [dossier.dossierId, dossier]));
+    const dossierById = Object.fromEntries(DOSSIERS.map((dossier) => [dossier.id, dossier]));
+    const linkedStatements = new Map();
+
+    PARTY_POSITIONS.forEach((position) => {
+        (position.voteLinks ?? []).forEach((link) => {
+            const key = `${position.dossierId}:${link.zaakNumber ?? link.zaakId}`;
+            if (!linkedStatements.has(key)) {
+                linkedStatements.set(key, {
+                    dossierId: position.dossierId,
+                    dossierTitle: dossierById[position.dossierId]?.title ?? position.dossierId,
+                    zaakNumber: link.zaakNumber ?? link.zaakId
+                });
+            }
+        });
+    });
+
+    return [...linkedStatements.values()].map((statement) => {
+        const importedDossier = importedByDossier[statement.dossierId];
+        const zaak = importedDossier?.zaken?.find((item) => item.number === statement.zaakNumber || item.id === statement.zaakNumber);
+        const voteSummary = getDisplayVoteSummary(zaak);
+        const positions = PARTY_POSITIONS.filter((position) => position.dossierId === statement.dossierId);
+        const rows = positions.map((position) => {
+            const link = (position.voteLinks ?? []).find((item) =>
+                item.zaakNumber === statement.zaakNumber || item.zaakId === statement.zaakNumber
+            );
+            const partyVote = voteSummary?.parties?.find((item) => item.party === position.party)?.vote ?? null;
+            const expectedVote = link?.expectedVote ?? null;
+            const matches = expectedVote && partyVote ? expectedVote === partyVote : false;
+            const status = !expectedVote
+                ? "uncoded"
+                : !partyVote ? "missing" : link.status ?? (link.confidence === "weak" ? "review" : "approved");
+
+            return {
+                party: position.party,
+                promise: position.statement,
+                expectedVote,
+                partyVote,
+                matches,
+                status,
+                rationale: link?.rationale ?? "Nog geen redactionele koppeling voor deze partij."
+            };
+        }).sort((a, b) => a.party.localeCompare(b.party, "nl"));
+
+        const codedRows = rows.filter((row) => row.expectedVote);
+        const matchedRows = codedRows.filter((row) => row.matches);
+
+        return {
+            ...statement,
+            zaakTitle: shortTitle(zaak?.title ?? "Kamerzaak niet gevonden", 150),
+            rows,
+            codedCount: codedRows.length,
+            matchedCount: matchedRows.length
+        };
+    }).sort((a, b) => a.dossierTitle.localeCompare(b.dossierTitle, "nl") || a.zaakNumber.localeCompare(b.zaakNumber, "nl"));
+}
 
 function App() {
     const [page, setPage] = useState("blind");
@@ -975,12 +1286,14 @@ function App() {
         <>
             <nav className="platform-nav" aria-label="Blind Democracy pagina's">
                 <button className="brand-mark" onClick={() => setPage("blind")} type="button">
-                    <img alt="Blind Democracy" src="/logo.png" />
-                    <span>
-                        <strong>Blind Democracy</strong>
-                        <small>Truth. Transparency. Trust.</small>
-                    </span>
+                    <img className="brand-icon" alt="Blind Democracy" src={navLogo} />
+
+                    <div className="brand-text">
+                        <strong>Blind <span>Democracy</span></strong>
+                        <small>Eerlijk kiezen op basis van wat politici echt doen</small>
+                    </div>
                 </button>
+
                 <div>
                     {PAGES.map((item) => (
                         <button
@@ -995,13 +1308,14 @@ function App() {
                 </div>
             </nav>
 
-            {page === "blind" && <BlindTestPage partyReliability={partyReliability} />}
+            {page === "blind" && <BlindTestPage setPage={setPage} partyReliability={partyReliability} />}
             {page === "onderwerpen" && <TopicsPage />}
-            {page === "partijen" && <ReliabilityPage items={partyReliability} title="Betrouwbaarheid per partij" type="party" />}
-            {page === "kamerleden" && <ReliabilityPage items={memberReliability} title="Wat weten we over dit Kamerlid?" type="member" />}
+            {page === "betrouwbaarheid" && <ReliabilityHub memberReliability={memberReliability} partyReliability={partyReliability} />}
             {page === "leugens" && <LieDetectorPage />}
-            {page === "review" && <PositionReviewPage />}
+            {page === "redactie" && <EditorialHub />}
             {page === "methode" && <MethodPage />}
+
+            <Footer setPage={setPage} />
         </>
     );
 }
@@ -1125,6 +1439,26 @@ function TopicPositions({ positions }) {
         </section>
     );
 }
+
+function ReliabilityHub({ memberReliability, partyReliability }) {
+    const [activeTab, setActiveTab] = useState("partijen");
+
+    return (
+        <>
+            <section className="hub-tabs" aria-label="Betrouwbaarheid weergave">
+                <button className={activeTab === "partijen" ? "active" : ""} onClick={() => setActiveTab("partijen")} type="button">
+                    Partijen
+                </button>
+                <button className={activeTab === "kamerleden" ? "active" : ""} onClick={() => setActiveTab("kamerleden")} type="button">
+                    Kamerleden
+                </button>
+            </section>
+            {activeTab === "partijen" && <ReliabilityPage items={partyReliability} title="Betrouwbaarheid per partij" type="party" />}
+            {activeTab === "kamerleden" && <ReliabilityPage items={memberReliability} title="Wat weten we over dit Kamerlid?" type="member" />}
+        </>
+    );
+}
+
 function ReliabilityPage({ items, title, type }) {
     const isMemberPage = type === "member";
 
@@ -1164,10 +1498,13 @@ function ReliabilityCard({ item, type }) {
     return (
         <article className="reliability-card">
             <div className="reliability-topline">
-                <div>
-                    <p className="eyebrow">{type === "party" ? "Partij" : item.party}</p>
-                    <h2>{type === "party" ? item.party : item.name}</h2>
-                    {type === "party" && <small>{item.memberCount} Kamerleden in lokale dataset</small>}
+                <div className="identity-line">
+                    <PartyAvatar party={item.party} size="large" />
+                    <div>
+                        <p className="eyebrow">{type === "party" ? "Partij" : item.party}</p>
+                        <h2>{type === "party" ? item.party : item.name}</h2>
+                        {type === "party" && <small>{item.memberCount} Kamerleden in lokale dataset</small>}
+                    </div>
                 </div>
                 <ReliabilityGauge score={item.score} label={item.scoreLabel} />
             </div>
@@ -1191,15 +1528,65 @@ function ReliabilityCard({ item, type }) {
     );
 }
 
+function PartyAvatar({ party, size = "medium" }) {
+    const visual = PARTY_VISUALS[party] ?? {};
+
+    return (
+        <span
+            className={`round-avatar party-avatar ${size}`}
+            style={{ "--avatar-color": visual.color ?? "#18251f" }}
+            title={party}
+        >
+            {visual.logoUrl ? <img alt={`${party} logo`} src={visual.logoUrl} /> : <span>{partyInitials(party)}</span>}
+        </span>
+    );
+}
+
+function PersonAvatar({ person }) {
+    return (
+        <span className="round-avatar person-avatar" title={person.name}>
+            {person.photoUrl ? <img alt={`Foto van ${person.name}`} src={person.photoUrl} /> : <span>{personInitials(person.name)}</span>}
+        </span>
+    );
+}
+
+function partyInitials(party) {
+    if (!party) return "?";
+    if (party === "GroenLinks-PvdA") return "GL";
+    if (party === "ChristenUnie") return "CU";
+
+    return party
+        .split(/[\s-]+/)
+        .map((part) => part[0])
+        .join("")
+        .slice(0, 3)
+        .toUpperCase();
+}
+
+function personInitials(name) {
+    if (!name) return "?";
+    const parts = name.split(" ").filter(Boolean);
+    const first = parts[0]?.[0] ?? "";
+    const last = parts.length > 1 ? parts.at(-1)[0] : "";
+
+    return `${first}${last}`.toUpperCase();
+}
+
 function MemberKnowledgeCard({ item }) {
     const checklist = buildMemberChecklist(item);
 
     return (
         <article className="member-knowledge-card">
             <div className="member-knowledge-topline">
-                <div>
-                    <p className="eyebrow">{item.party}</p>
-                    <h2>{item.name}</h2>
+                <div className="identity-line member-line">
+                    <PersonAvatar person={item} />
+                    <div>
+                        <p className="eyebrow party-with-logo">
+                            <PartyAvatar party={item.party} size="small" />
+                            {item.party}
+                        </p>
+                        <h2>{item.name}</h2>
+                    </div>
                 </div>
                 <span>{knowledgeLabel(checklist)}</span>
             </div>
@@ -1214,7 +1601,7 @@ function MemberKnowledgeCard({ item }) {
                 <h3>Wat weten we:</h3>
                 {checklist.map((entry) => (
                     <div className={entry.available ? "known" : "unknown"} key={entry.id}>
-                        <span aria-hidden="true">{entry.available ? "✔" : "○"}</span>
+                        <span aria-hidden="true">{entry.available ? "?" : "?"}</span>
                         <p>{entry.text}</p>
                     </div>
                 ))}
@@ -1338,6 +1725,127 @@ function PositionReviewPage() {
         </main>
     );
 }
+
+function PromiseVoteReviewPage({ embedded = false }) {
+    const [selectedDossierId, setSelectedDossierId] = useState("all");
+    const statementItems = buildPromiseVoteStatementItems();
+    const filteredItems = selectedDossierId === "all"
+        ? statementItems
+        : statementItems.filter((item) => item.dossierId === selectedDossierId);
+    const rows = statementItems.flatMap((item) => item.rows);
+    const summary = rows.reduce((acc, item) => {
+        acc[item.status] = (acc[item.status] ?? 0) + 1;
+        return acc;
+    }, {});
+
+    return (
+        <main className={embedded ? "embedded-review-page" : "reliability-page review-page"}>
+            {!embedded && (
+                <header className="page-heading">
+                    <p className="eyebrow">Stemreview</p>
+                    <h1>Stellingen: belofte vs daadwerkelijke stem</h1>
+                    <p>
+                        Kies een dossier en bekijk per Kamerstelling welke partijen een belofte/verwachte stem hebben en
+                        hoe ze daadwerkelijk stemden.
+                    </p>
+                </header>
+            )}
+
+            <section className="review-summary">
+                <article>
+                    <strong>{statementItems.length}</strong>
+                    <span>Stellingen</span>
+                </article>
+                <article>
+                    <strong>{summary.approved ?? 0}</strong>
+                    <span>Gecodeerd</span>
+                </article>
+                <article>
+                    <strong>{summary.review ?? 0}</strong>
+                    <span>Review nodig</span>
+                </article>
+                <article>
+                    <strong>{summary.uncoded ?? 0}</strong>
+                    <span>Belofte ontbreekt</span>
+                </article>
+            </section>
+
+            <div className="dossier-filter" aria-label="Filter op dossier">
+                <button
+                    className={selectedDossierId === "all" ? "active" : ""}
+                    onClick={() => setSelectedDossierId("all")}
+                    type="button"
+                >
+                    Alle dossiers
+                </button>
+                {DOSSIERS.filter((dossier) => statementItems.some((item) => item.dossierId === dossier.id)).map((dossier) => (
+                    <button
+                        className={selectedDossierId === dossier.id ? "active" : ""}
+                        key={dossier.id}
+                        onClick={() => setSelectedDossierId(dossier.id)}
+                        type="button"
+                    >
+                        {dossier.title}
+                    </button>
+                ))}
+            </div>
+
+            <section className="promise-statement-list">
+                {filteredItems.map((item) => (
+                    <article className="promise-statement-card" key={`${item.dossierId}-${item.zaakNumber}`}>
+                        <div className="promise-statement-heading">
+                            <div>
+                                <p className="eyebrow">{item.dossierTitle}</p>
+                                <h2>{item.zaakTitle}</h2>
+                                <small>{item.zaakNumber}</small>
+                            </div>
+                            <span>{item.matchedCount}/{item.codedCount || item.rows.length} match</span>
+                        </div>
+
+                        <div className="promise-party-table">
+                            <div className="promise-party-row header">
+                                <span>Partij</span>
+                                <span>Belofte/positie</span>
+                                <span>Verwacht</span>
+                                <span>Werkelijk</span>
+                                <span>Status</span>
+                            </div>
+                            {item.rows.map((row) => (
+                                <div className={`promise-party-row status-${row.status}`} key={`${item.zaakNumber}-${row.party}`}>
+                                    <strong>{row.party}</strong>
+                                    <span>{row.promise}</span>
+                                    <span>{row.expectedVote ?? "Nog te coderen"}</span>
+                                    <span>{row.partyVote ?? "Niet gevonden"}</span>
+                                    <span>{PROMISE_REVIEW_STATUSES[row.status]}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </article>
+                ))}
+            </section>
+        </main>
+    );
+}
+
+function EditorialHub() {
+    const [activeTab, setActiveTab] = useState("standpunten");
+
+    return (
+        <>
+            <section className="hub-tabs" aria-label="Redactie onderdelen">
+                <button className={activeTab === "standpunten" ? "active" : ""} onClick={() => setActiveTab("standpunten")} type="button">
+                    Standpunten
+                </button>
+                <button className={activeTab === "stemreview" ? "active" : ""} onClick={() => setActiveTab("stemreview")} type="button">
+                    Stemkoppelingen
+                </button>
+            </section>
+            {activeTab === "standpunten" && <PositionReviewPage />}
+            {activeTab === "stemreview" && <PromiseVoteReviewPage />}
+        </>
+    );
+}
+
 function MethodPage() {
     return (
         <main className="reliability-page method-page">
@@ -1363,6 +1871,7 @@ function MethodPage() {
 }
 
 function LieDetectorPage() {
+    const [activeTab, setActiveTab] = useState("partij");
     const sortedChecks = [...PROMISE_CHECKS].sort((a, b) => {
         const order = {
             broken: 1,
@@ -1384,48 +1893,61 @@ function LieDetectorPage() {
                 </p>
             </header>
 
-            <section className="candidate-grid">
-                {sortedChecks.map((item) => (
-                    <article className={`candidate-card promise-card verdict-${item.verdict}`} key={item.id}>
-                        <div className="candidate-topline">
-                            <div>
-                                <p className="eyebrow">{item.dossierId}</p>
-                                <h2>{item.party}</h2>
-                            </div>
-                            <span className={`verdict-badge verdict-${item.verdict}`}>
-                                {verdictIcon(item.verdict)} {PROMISE_VERDICTS[item.verdict]}
-                            </span>
-                        </div>
-
-                        <strong>Belofte</strong>
-                        <p>{item.promise}</p>
-
-                        <strong>Stemming</strong>
-                        <p>
-                            {item.vote.title} → {voteLabel(item.vote.voted)}
-                        </p>
-
-                        <p>{item.explanation}</p>
-
-                        <div className="promise-source-row">
-                            <a href={item.promiseSource.url} rel="noreferrer" target="_blank">
-                                Beloftebron
-                            </a>
-                            <a href={item.vote.sourceUrl} rel="noreferrer" target="_blank">
-                                Stembron
-                            </a>
-                        </div>
-                    </article>
-                ))}
+            <section className="hub-tabs inline-tabs" aria-label="Leugendetector weergave">
+                <button className={activeTab === "partij" ? "active" : ""} onClick={() => setActiveTab("partij")} type="button">
+                    Per partij
+                </button>
+                <button className={activeTab === "stelling" ? "active" : ""} onClick={() => setActiveTab("stelling")} type="button">
+                    Per stelling
+                </button>
             </section>
+
+            {activeTab === "partij" && (
+                <section className="candidate-grid">
+                    {sortedChecks.map((item) => (
+                        <article className={`candidate-card promise-card verdict-${item.verdict}`} key={item.id}>
+                            <div className="candidate-topline">
+                                <div>
+                                    <p className="eyebrow">{item.dossierId}</p>
+                                    <h2>{item.party}</h2>
+                                </div>
+                                <span className={`verdict-badge verdict-${item.verdict}`}>
+                                    {verdictIcon(item.verdict)} {PROMISE_VERDICTS[item.verdict]}
+                                </span>
+                            </div>
+
+                            <strong>Belofte</strong>
+                            <p>{item.promise}</p>
+
+                            <strong>Stemming</strong>
+                            <p>
+                                {item.vote.title} ? {voteLabel(item.vote.voted)}
+                            </p>
+
+                            <p>{item.explanation}</p>
+
+                            <div className="promise-source-row">
+                                <a href={item.promiseSource.url} rel="noreferrer" target="_blank">
+                                    Beloftebron
+                                </a>
+                                <a href={item.vote.sourceUrl} rel="noreferrer" target="_blank">
+                                    Stembron
+                                </a>
+                            </div>
+                        </article>
+                    ))}
+                </section>
+            )}
+
+            {activeTab === "stelling" && <PromiseVoteReviewPage embedded />}
         </main>
     );
 }
 
 function verdictIcon(verdict) {
-    if (verdict === "broken") return "✖";
-    if (verdict === "kept") return "✔";
-    if (verdict === "mixed") return "⚠";
+    if (verdict === "broken") return "?";
+    if (verdict === "kept") return "?";
+    if (verdict === "mixed") return "?";
     return "•";
 }
 
@@ -1436,3 +1958,4 @@ function voteLabel(vote) {
 }
 
 export default App;
+

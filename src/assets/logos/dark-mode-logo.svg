@@ -1,0 +1,18 @@
+<svg width="600" height="140" viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .light { fill: #ffffff; }
+    .trust { fill: #6fa3d6; }
+    .accent { fill: #c58a2a; }
+    .tag { fill: #d1d5db; font-size: 14px; }
+  </style>
+
+  <text x="20" y="90" font-size="80" font-weight="700" class="light">B</text>
+  <path d="M80,20 A50,50 0 1,1 80,120" stroke="#c58a2a" stroke-width="14" fill="none"></path>
+
+  <text x="180" y="65" font-size="36" font-weight="700" class="light">BLIND</text>
+  <text x="180" y="105" font-size="36" font-weight="700" class="trust">DEMOCRACY</text>
+
+  <text x="180" y="130" class="tag">
+    EERLIJK KIEZEN OP BASIS VAN WAT POLITICI ÉCHT DOEN
+  </text>
+</svg>
