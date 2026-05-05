@@ -120,6 +120,29 @@ function BlindTestPage({ partyReliability = [], setPage }) {
                 <HeroSlider setPage={setPage} />
 
                 <main className="product-shell test-shell">
+                <section className="mobile-test-controls" aria-label="Voortgang blind test">
+                    <div className="mobile-progress-card">
+                        <div>
+                            <strong>{completedCount}/{DOSSIERS.length} gekozen</strong>
+                            <small>Partijen blijven verborgen tot je onthult.</small>
+                        </div>
+                        <div className="progress-track" aria-hidden="true">
+                            <div style={{ width: `${(completedCount / DOSSIERS.length) * 100}%` }} />
+                        </div>
+                    </div>
+
+                    <label className="mobile-dossier-select">
+                        <span>Dossier</span>
+                        <select value={activeDossier.id} onChange={(event) => chooseDossier(event.target.value)}>
+                            {DOSSIERS.map((dossier, index) => (
+                                <option key={dossier.id} value={dossier.id}>
+                                    {index + 1}. {dossier.title}{answers[dossier.id] ? " - gekozen" : ""}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                </section>
+
                 <aside className="dossier-nav progress-sidebar" aria-label="Voortgang blind test">
                     <div className="nav-heading">
                         <span>01</span>
@@ -1257,6 +1280,7 @@ function buildPromiseVoteStatementItems() {
 
 function App() {
     const [page, setActivePage] = useState(pageFromLocation);
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const partyReliability = useMemo(() => buildPartyReliability(), []);
     const memberReliability = useMemo(() => buildMemberReliability(), []);
 
@@ -1277,6 +1301,7 @@ function App() {
     function setPage(nextPage) {
         const normalizedPage = normalizePageId(nextPage);
         setActivePage(normalizedPage);
+        setMobileNavOpen(false);
 
         const nextHash = `#${normalizedPage}`;
         if (window.location.hash !== nextHash) {
@@ -1296,7 +1321,20 @@ function App() {
                     </div>
                 </button>
 
-                <div>
+                <button
+                    aria-controls="primary-navigation"
+                    aria-expanded={mobileNavOpen}
+                    aria-label={mobileNavOpen ? "Sluit menu" : "Open menu"}
+                    className="mobile-menu-toggle"
+                    onClick={() => setMobileNavOpen((current) => !current)}
+                    type="button"
+                >
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
+                </button>
+
+                <div className="desktop-nav" id="primary-navigation">
                     {PAGES.map((item) => (
                         <button
                             className={page === item.id ? "platform-tab active" : "platform-tab"}
@@ -1308,6 +1346,21 @@ function App() {
                         </button>
                     ))}
                 </div>
+
+                {mobileNavOpen && (
+                    <div className="mobile-menu-panel">
+                        {PAGES.map((item) => (
+                            <button
+                                className={page === item.id ? "platform-tab active" : "platform-tab"}
+                                key={item.id}
+                                onClick={() => setPage(item.id)}
+                                type="button"
+                            >
+                                {item.label}
+                            </button>
+                        ))}
+                    </div>
+                )}
             </nav>
 
             {page === "blind" && <BlindTestPage setPage={setPage} partyReliability={partyReliability} />}
