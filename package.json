@@ -10,6 +10,8 @@
     "preview": "npm run build && wrangler dev",
     "import:tk": "node scripts/importTweedeKamerData.mjs",
     "import:members": "node scripts/importTweedeKamerMembers.mjs",
+    "db:export-seeds": "node scripts/db/exportLocalSeeds.mjs",
+    "positions:promote": "node scripts/db/promoteApprovedPositions.mjs",
     "positions:review": "node scripts/reviewCandidatePositions.mjs",
     "deploy": "npm run build && wrangler deploy"
   },

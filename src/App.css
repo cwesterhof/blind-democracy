@@ -2048,6 +2048,38 @@
   color: white;
 }
 
+.hub-tabs .admin-exit-button {
+  margin-left: auto;
+}
+
+.admin-access-page {
+  min-height: calc(100svh - 180px);
+}
+
+.admin-access-card {
+  background: var(--surface);
+  border: 1px solid rgba(189, 122, 34, 0.28);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.admin-access-card h1 {
+  color: var(--text);
+  font-size: clamp(36px, 5vw, 62px);
+  letter-spacing: 0;
+  line-height: 0.96;
+}
+
+.admin-access-card p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
 .reliability-page {
   padding: clamp(24px, 5vw, 58px);
 }
@@ -2566,6 +2598,341 @@
   font-weight: 850;
 }
 
+.review-workflow-note {
+  align-items: center;
+  background: rgba(24, 37, 31, 0.05);
+  border: 1px solid rgba(24, 37, 31, 0.1);
+  border-radius: 8px;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding: 16px;
+}
+
+.review-workflow-note strong,
+.review-workflow-note span {
+  display: block;
+}
+
+.review-workflow-note strong {
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.review-workflow-note span {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.review-export-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.review-export-actions a,
+.review-export-actions button {
+  align-items: center;
+  background: #18251f;
+  border: 1px solid #18251f;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  justify-content: center;
+  line-height: 1;
+  min-height: 36px;
+  padding: 9px 12px;
+  text-decoration: none;
+}
+
+.review-export-actions button {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.review-export-actions a:focus-visible,
+.review-export-actions button:focus-visible {
+  outline: 3px solid rgba(189, 122, 34, 0.28);
+  outline-offset: 2px;
+}
+
+.review-filter {
+  margin-bottom: 18px;
+}
+
+.review-candidate {
+  border-left: 5px solid rgba(189, 122, 34, 0.45);
+}
+
+.review-candidate.status-approved {
+  border-left-color: var(--good);
+}
+
+.review-candidate.status-rejected {
+  border-left-color: var(--bad);
+}
+
+.review-candidate.status-needsSource {
+  border-left-color: var(--accent);
+}
+
+.review-proposal {
+  background: var(--color-alt);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 7px;
+  padding: 14px;
+}
+
+.review-proposal strong {
+  color: var(--text);
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.review-proposal p:last-child {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.review-edit-row {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 160px;
+}
+
+.review-edit-field {
+  display: grid;
+  gap: 6px;
+}
+
+.review-edit-field span {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.review-edit-field input,
+.review-edit-field select,
+.review-edit-field textarea {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  line-height: 1.4;
+  padding: 10px;
+  width: 100%;
+}
+
+.review-edit-field textarea {
+  resize: vertical;
+}
+
+.review-edit-field input:focus-visible,
+.review-edit-field select:focus-visible,
+.review-edit-field textarea:focus-visible {
+  border-color: var(--accent);
+  outline: 3px solid rgba(189, 122, 34, 0.18);
+}
+
+.review-evidence-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.review-evidence-grid div {
+  background: rgba(255, 253, 250, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 5px;
+  padding: 11px;
+}
+
+.review-evidence-grid div:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+.review-evidence-grid dt {
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.review-evidence-grid dd {
+  color: var(--text);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.review-note-field {
+  display: grid;
+  gap: 7px;
+}
+
+.review-note-field span {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.review-note-field textarea {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  line-height: 1.4;
+  min-height: 84px;
+  padding: 11px;
+  resize: vertical;
+}
+
+.review-note-field textarea:focus-visible {
+  border-color: var(--accent);
+  outline: 3px solid rgba(189, 122, 34, 0.18);
+}
+
+.review-warning {
+  background: rgba(189, 122, 34, 0.12);
+  border: 1px solid rgba(189, 122, 34, 0.25);
+  border-radius: 8px;
+  color: var(--accent-dark);
+  font-weight: 850;
+  padding: 11px;
+}
+
+.review-history {
+  background: rgba(24, 37, 31, 0.04);
+  border: 1px solid rgba(24, 37, 31, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.review-history summary {
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 11px;
+}
+
+.review-history summary:focus-visible {
+  outline: 3px solid rgba(189, 122, 34, 0.24);
+  outline-offset: -3px;
+}
+
+.review-history > p,
+.review-history-list {
+  border-top: 1px solid rgba(24, 37, 31, 0.1);
+  padding: 11px;
+}
+
+.review-history-list {
+  display: grid;
+  gap: 8px;
+}
+
+.review-history-list div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+}
+
+.review-history-list strong,
+.review-history-list span,
+.review-history-list p,
+.review-history-list small {
+  display: block;
+}
+
+.review-history-list strong {
+  color: var(--text);
+}
+
+.review-history-list span,
+.review-history-list small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.review-history-list p {
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.review-history-list button {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 850;
+  justify-self: start;
+  padding: 8px 10px;
+}
+
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.review-actions button {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 850;
+  padding: 9px 12px;
+}
+
+.review-actions button.approve {
+  background: #edf5ef;
+  border-color: rgba(47, 125, 92, 0.25);
+  color: var(--good);
+}
+
+.review-actions button.reject {
+  background: rgba(185, 74, 72, 0.09);
+  border-color: rgba(185, 74, 72, 0.2);
+  color: var(--bad);
+}
+
+.review-actions button:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.review-actions button:focus-visible {
+  outline: 3px solid rgba(189, 122, 34, 0.28);
+  outline-offset: 2px;
+}
+
 .dossier-filter {
   display: flex;
   flex-wrap: wrap;
@@ -2705,6 +3072,19 @@
 @media (max-width: 980px) {
   .review-summary,
   .candidate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-workflow-note {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .review-evidence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-edit-row {
     grid-template-columns: 1fr;
   }
 

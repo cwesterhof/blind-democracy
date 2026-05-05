@@ -1,7 +1,7 @@
 ﻿import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { DOSSIERS } from "../src/data/dossiers.js";
+import { listDossiers } from "../src/dataAccess/dossiers.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, "..");
@@ -30,7 +30,7 @@ const dossierSearchTerms = {
 const importedAt = new Date().toISOString();
 const dossiers = [];
 
-for (const dossier of DOSSIERS) {
+for (const dossier of listDossiers()) {
     const terms = dossierSearchTerms[dossier.id] ?? [dossier.title.toLowerCase()];
     const seen = new Map();
 

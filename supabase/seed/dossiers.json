@@ -1,0 +1,107 @@
+[
+  {
+    "id": "wonen",
+    "title": "Wonen",
+    "summary": "Betaalbare woningen, huurregels, nieuwbouw en de verdeling van schaarse ruimte.",
+    "context": "Nederland heeft een groot woningtekort. De politieke vraag is niet alleen hoeveel er gebouwd moet worden, maar ook voor wie, waar en met welke rol voor markt, overheid en corporaties.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "immigratie",
+    "title": "Immigratie",
+    "summary": "Asiel, arbeidsmigratie, integratie en de uitvoerbaarheid van grenzen en opvang.",
+    "context": "Het immigratiedebat mengt morele, juridische en praktische vragen. De kern is vaak: wie mag blijven, wie beslist dat, en hoeveel druk kan opvang en integratie dragen?",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "klimaat",
+    "title": "Klimaat",
+    "summary": "CO2-reductie, energieprijzen, industrie, landbouw en wie de rekening betaalt.",
+    "context": "Klimaatbeleid gaat niet alleen over doelen, maar ook over tempo, betaalbaarheid en verdeling. Veel maatregelen raken huishoudens, boeren en industrie verschillend.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "zorg",
+    "title": "Zorg",
+    "summary": "Kosten, toegankelijkheid, personeelstekort en rol van de markt.",
+    "context": "De zorg staat onder druk door stijgende kosten, personeelstekort en lange wachttijden. De politieke vraag is hoeveel solidariteit, marktwerking en overheidsregie nodig zijn.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "onderwijs",
+    "title": "Onderwijs",
+    "summary": "Kwaliteit, lerarentekort, basisvaardigheden en kansengelijkheid.",
+    "context": "Onderwijs bepaalt kansen, maar kampt met personeelstekort, dalende basisvaardigheden en verschillen tussen leerlingen en regio's.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "economie",
+    "title": "Economie & koopkracht",
+    "summary": "Inflatie, belastingen, middeninkomens, bedrijven en verdeling van welvaart.",
+    "context": "Economisch beleid draait om de vraag wie lasten draagt en wie ruimte krijgt: huishoudens, ondernemers, overheid of toekomstige generaties.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "arbeid",
+    "title": "Werk & sociale zekerheid",
+    "summary": "Minimumloon, flexwerk, uitkeringen, arbeidsmigratie en bestaanszekerheid.",
+    "context": "De arbeidsmarkt is krap, maar zekerheid is ongelijk verdeeld. De politieke vraag is hoeveel bescherming, verplichting en loonruimte nodig zijn.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "veiligheid",
+    "title": "Veiligheid & rechtsstaat",
+    "summary": "Politie, justitie, georganiseerde misdaad, privacy en rechtsbescherming.",
+    "context": "Veiligheidsbeleid gaat over bescherming tegen criminaliteit, maar ook over de grenzen van staatsmacht en burgerrechten.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "landbouw",
+    "title": "Landbouw, natuur & stikstof",
+    "summary": "Boeren, natuurherstel, stikstofruimte, voedselproductie en landgebruik.",
+    "context": "Landbouwbeleid raakt boereninkomens, natuurkwaliteit, woningbouw, economie en vertrouwen in de overheid tegelijk.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "energie",
+    "title": "Energie",
+    "summary": "Betaalbaarheid, energiezekerheid, netcongestie, kernenergie en verduurzaming.",
+    "context": "Energiebeleid raakt iedere rekening en elk bedrijf. De kernvraag is hoe Nederland schoon, betaalbaar en betrouwbaar energie organiseert.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "defensie",
+    "title": "Defensie & internationale veiligheid",
+    "summary": "NAVO, Oekraïne, krijgsmacht, Europese samenwerking en defensie-uitgaven.",
+    "context": "Defensie staat hoger op de agenda door oorlog in Europa en geopolitieke spanning. De vraag is hoeveel Nederland wil betalen voor veiligheid.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "mobiliteit",
+    "title": "Mobiliteit & infrastructuur",
+    "summary": "OV, wegen, files, bereikbaarheid, luchtvaart en regionale verbindingen.",
+    "context": "Mobiliteit bepaalt toegang tot werk, onderwijs en voorzieningen. Politiek draait het om de verdeling tussen auto, OV, fiets, regio en klimaat.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "digitalisering",
+    "title": "Digitalisering & privacy",
+    "summary": "AI, platformmacht, cyberveiligheid, privacy en digitale overheid.",
+    "context": "Digitale systemen bepalen steeds vaker toegang tot werk, overheid en informatie. De vraag is wie controle houdt: burger, overheid of markt.",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "bestuur",
+    "title": "Bestuur & democratie",
+    "summary": "Vertrouwen, transparantie, uitvoeringsorganisaties, grondrechten en democratische controle.",
+    "context": "Veel politieke conflicten gaan uiteindelijk over vertrouwen: kan de overheid leveren, luisteren en fouten herstellen?",
+    "status": "sourceMapped"
+  },
+  {
+    "id": "europa",
+    "title": "Europa & soevereiniteit",
+    "summary": "EU-samenwerking, nationale zeggenschap, interne markt, migratie en veiligheid.",
+    "context": "Veel beleid wordt deels in Brussel gemaakt. De politieke vraag is wanneer Europese schaal helpt en wanneer nationale autonomie zwaarder weegt.",
+    "status": "sourceMapped"
+  }
+]

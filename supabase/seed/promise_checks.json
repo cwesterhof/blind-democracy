@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fvd-klimaat-klimaatfonds-2026",
+    "dossier_id": "klimaat",
+    "party_id": "fvd",
+    "politician_id": null,
+    "promise": "Stoppen met duur nationaal klimaatbeleid.",
+    "vote_title": "Vaststelling begrotingsstaat Klimaatfonds 2026",
+    "verdict": "kept",
+    "severity": 1,
+    "explanation": "Tegenstemmen bij de begrotingsstaat van het Klimaatfonds past bij de belofte om nationaal klimaatbeleid en klimaatuitgaven af te remmen.",
+    "review_status": "approved"
+  },
+  {
+    "id": "vvd-wonen-huurcommissie-2026",
+    "dossier_id": "wonen",
+    "party_id": "vvd",
+    "politician_id": null,
+    "promise": "Meer woningen bouwen en procedures op de woningmarkt beter laten werken.",
+    "vote_title": "Wet toekomstbestendige huurcommissie",
+    "verdict": "kept",
+    "severity": 1,
+    "explanation": "Voorstemmen bij de Wet toekomstbestendige huurcommissie sluit aan bij de belofte om procedures rond huur en woningmarkt werkbaarder te maken.",
+    "review_status": "approved"
+  },
+  {
+    "id": "d66-immigratie-tweestatusstelsel-2026",
+    "dossier_id": "immigratie",
+    "party_id": "d66",
+    "politician_id": null,
+    "promise": "Snellere procedures, betere Europese samenwerking en een juridisch houdbaar migratiestelsel.",
+    "vote_title": "Wet invoering tweestatusstelsel",
+    "verdict": "mixed",
+    "severity": 1,
+    "explanation": "Tegenstemmen bij aanscherping van nareis en invoering van een tweestatusstelsel past deels bij een juridisch terughoudender migratielijn, maar de koppeling met Europese verdeling blijft inhoudelijk breder dan deze ene stemming.",
+    "review_status": "approved"
+  },
+  {
+    "id": "pvv-immigratie-tweestatusstelsel-2026",
+    "dossier_id": "immigratie",
+    "party_id": "pvv",
+    "politician_id": null,
+    "promise": "Asielinstroom beperken en nareisregels aanscherpen.",
+    "vote_title": "Wet invoering tweestatusstelsel",
+    "verdict": "kept",
+    "severity": 1,
+    "explanation": "Voorstemmen bij een tweestatusstelsel en strengere nareisvoorwaarden sluit aan bij de belofte om asielbeleid verder aan te scherpen.",
+    "review_status": "approved"
+  },
+  {
+    "id": "glpvda-wonen-huurcommissie-2026",
+    "dossier_id": "wonen",
+    "party_id": "groenlinks-pvda",
+    "politician_id": null,
+    "promise": "Huurders sterker beschermen en publieke regie op betaalbaar wonen vergroten.",
+    "vote_title": "Wet toekomstbestendige huurcommissie",
+    "verdict": "kept",
+    "severity": 1,
+    "explanation": "Voorstemmen bij versterking en toekomstbestendigheid van huurcommissieprocedures sluit aan bij een lijn waarin huurdersbescherming centraal staat.",
+    "review_status": "approved"
+  },
+  {
+    "id": "bbb-klimaat-klimaatfonds-2026",
+    "dossier_id": "klimaat",
+    "party_id": "bbb",
+    "politician_id": null,
+    "promise": "Klimaatbeleid moet betaalbaar blijven en rekening houden met landbouw, regio en uitvoerbaarheid.",
+    "vote_title": "Vaststelling begrotingsstaat Klimaatfonds 2026",
+    "verdict": "kept",
+    "severity": 1,
+    "explanation": "Tegenstemmen bij de begrotingsstaat van het Klimaatfonds past bij een lijn die klimaatuitgaven kritisch weegt op betaalbaarheid en uitvoerbaarheid.",
+    "review_status": "approved"
+  }
+]

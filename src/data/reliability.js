@@ -1,18 +1,16 @@
-﻿import { DOSSIERS } from "./dossiers.js";
-import importedTweedeKamer from "./importedTweedeKamer.json";
-import members from "./members.json";
-import { PARTY_POSITIONS } from "./partyPositions.js";
+﻿import members from "./members.json";
+import { countDossiers } from "../dataAccess/dossiers.js";
+import { listImportedVoteCases } from "../dataAccess/kamerVotes.js";
+import { listApprovedPositions, listApprovedPositionsByParty } from "../dataAccess/positions.js";
 
 const partiesFromVotes = new Set();
-const voteCases = importedTweedeKamer.dossiers.flatMap((dossier) =>
-    dossier.zaken.filter((zaak) => zaak.voteSummary?.totalVotes > 0)
-);
+const voteCases = listImportedVoteCases();
 
 voteCases.forEach((zaak) => {
     zaak.voteSummary.parties.forEach((item) => partiesFromVotes.add(item.party));
 });
 
-const partiesFromPositions = new Set(PARTY_POSITIONS.map((position) => position.party));
+const partiesFromPositions = new Set(listApprovedPositions().map((position) => position.party));
 
 const partiesFromMembers = new Set(members.map((member) => member.party));
 const partyMetaByParty = members.reduce((acc, member) => {
@@ -59,7 +57,7 @@ export function buildPartyReliability() {
         const voteAppearances = voteCases.filter((zaak) =>
             zaak.voteSummary.parties.some((item) => item.party === party)
         ).length;
-        const partyPositions = PARTY_POSITIONS.filter((position) => position.party === party);
+        const partyPositions = listApprovedPositionsByParty(party);
         const codedPositions = new Set(partyPositions.map((position) => position.dossierId)).size;
         const reviewedPositions = partyPositions.filter((position) => position.reviewedByHuman).length;
         const memberCount = members.filter((member) => member.party === party).length;
@@ -71,8 +69,8 @@ export function buildPartyReliability() {
                 "official"
             ),
             positionTraceability: scoreDimension(
-                Math.round((codedPositions / DOSSIERS.length) * 100),
-                `${codedPositions}/${DOSSIERS.length} dossiers met bronstructuur; ${reviewedPositions} menselijk gereviewd`,
+                Math.round((codedPositions / countDossiers()) * 100),
+                `${codedPositions}/${countDossiers()} dossiers met bronstructuur; ${reviewedPositions} menselijk gereviewd`,
                 reviewedPositions > 0 ? "reviewed-source" : "source-mapped"
             ),
             promiseVoteMatch: missingDimension("Nog geen verkiezingsprogramma-koppeling"),
@@ -158,4 +156,3 @@ function knownScoreLabel(dimensions) {
     const known = Object.values(dimensions).filter((dimension) => typeof dimension.score === "number").length;
     return `${known}/${Object.keys(dimensions).length} meetpunten`;
 }
-

@@ -1,0 +1,1502 @@
+[
+  {
+    "id": "corrie-van-brenk-b29c0e00",
+    "party_id": "50plus",
+    "external_id": "b29c0e00-7ac2-4c28-ab4f-8fceb156337b",
+    "name": "Corrie van Brenk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b29c0e00-7ac2-4c28-ab4f-8fceb156337b)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b29c0e00-7ac2-4c28-ab4f-8fceb156337b)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "jan-struijs-21674d1a",
+    "party_id": "50plus",
+    "external_id": "21674d1a-d86e-46e4-bff5-7cc3e4c7d270",
+    "name": "Jan Struijs",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(21674d1a-d86e-46e4-bff5-7cc3e4c7d270)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(21674d1a-d86e-46e4-bff5-7cc3e4c7d270)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "caroline-van-der-plas-b41b2403",
+    "party_id": "bbb",
+    "external_id": "b41b2403-9f06-4d55-adc5-b0777373ca7e",
+    "name": "Caroline van der Plas",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b41b2403-9f06-4d55-adc5-b0777373ca7e)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b41b2403-9f06-4d55-adc5-b0777373ca7e)",
+    "seat_since": "2026-02-24"
+  },
+  {
+    "id": "femke-wiersma-ed5b0339",
+    "party_id": "bbb",
+    "external_id": "ed5b0339-d627-4d4e-8d65-4a9eb88cb6b0",
+    "name": "Femke Wiersma",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ed5b0339-d627-4d4e-8d65-4a9eb88cb6b0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ed5b0339-d627-4d4e-8d65-4a9eb88cb6b0)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "henk-vermeer-02fab128",
+    "party_id": "bbb",
+    "external_id": "02fab128-a8d3-4010-b936-5500a53caf27",
+    "name": "Henk Vermeer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(02fab128-a8d3-4010-b936-5500a53caf27)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(02fab128-a8d3-4010-b936-5500a53caf27)",
+    "seat_since": "2026-02-24"
+  },
+  {
+    "id": "andre-poortman-9039e7f6",
+    "party_id": "cda",
+    "external_id": "9039e7f6-d05b-40a7-b0af-9a4f98fc03ae",
+    "name": "André Poortman",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9039e7f6-d05b-40a7-b0af-9a4f98fc03ae)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "elles-van-ark-60a80b41",
+    "party_id": "cda",
+    "external_id": "60a80b41-2618-47c0-8212-2feb0f67c221",
+    "name": "Elles van Ark",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(60a80b41-2618-47c0-8212-2feb0f67c221)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(60a80b41-2618-47c0-8212-2feb0f67c221)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "etkin-armut-e71290ca",
+    "party_id": "cda",
+    "external_id": "e71290ca-7a53-4466-889b-fe1d113005ec",
+    "name": "Etkin Armut",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e71290ca-7a53-4466-889b-fe1d113005ec)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e71290ca-7a53-4466-889b-fe1d113005ec)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "eveline-tijmstra-f177383d",
+    "party_id": "cda",
+    "external_id": "f177383d-2044-4a7b-b6bb-2b45ff30e972",
+    "name": "Eveline Tijmstra",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(f177383d-2044-4a7b-b6bb-2b45ff30e972)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(f177383d-2044-4a7b-b6bb-2b45ff30e972)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "hanneke-steen-4acb1921",
+    "party_id": "cda",
+    "external_id": "4acb1921-a68d-40af-9f14-35112c020da5",
+    "name": "Hanneke Steen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(4acb1921-a68d-40af-9f14-35112c020da5)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(4acb1921-a68d-40af-9f14-35112c020da5)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "harmen-krul-36ed934d",
+    "party_id": "cda",
+    "external_id": "36ed934d-56c7-4903-a0a8-a9f186d5a96f",
+    "name": "Harmen Krul",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(36ed934d-56c7-4903-a0a8-a9f186d5a96f)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(36ed934d-56c7-4903-a0a8-a9f186d5a96f)",
+    "seat_since": "2023-02-07"
+  },
+  {
+    "id": "henk-jumelet-de44b333",
+    "party_id": "cda",
+    "external_id": "de44b333-86c1-4af7-9439-a0c186d6f2e3",
+    "name": "Henk Jumelet",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(de44b333-86c1-4af7-9439-a0c186d6f2e3)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(de44b333-86c1-4af7-9439-a0c186d6f2e3)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "henri-bontenbal-942a29b8",
+    "party_id": "cda",
+    "external_id": "942a29b8-057f-4dba-a8cd-3c35e5a81aaf",
+    "name": "Henri Bontenbal",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(942a29b8-057f-4dba-a8cd-3c35e5a81aaf)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(942a29b8-057f-4dba-a8cd-3c35e5a81aaf)",
+    "seat_since": "2023-09-05"
+  },
+  {
+    "id": "inge-van-dijk-1ee767b9",
+    "party_id": "cda",
+    "external_id": "1ee767b9-67f3-47e5-9e28-045da1c37b05",
+    "name": "Inge van Dijk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1ee767b9-67f3-47e5-9e28-045da1c37b05)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1ee767b9-67f3-47e5-9e28-045da1c37b05)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "jan-arie-koorevaar-48108814",
+    "party_id": "cda",
+    "external_id": "48108814-4f16-4de8-85b2-e20e75294676",
+    "name": "Jan Arie Koorevaar",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(48108814-4f16-4de8-85b2-e20e75294676)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(48108814-4f16-4de8-85b2-e20e75294676)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "jantine-zwinkels-1b823081",
+    "party_id": "cda",
+    "external_id": "1b823081-5a38-41cf-9d21-63a635df7b06",
+    "name": "Jantine Zwinkels",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1b823081-5a38-41cf-9d21-63a635df7b06)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1b823081-5a38-41cf-9d21-63a635df7b06)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "jeltje-straatman-a4e91a4e",
+    "party_id": "cda",
+    "external_id": "a4e91a4e-3bc4-4dbc-af65-f5770d2eafcb",
+    "name": "Jeltje Straatman",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a4e91a4e-3bc4-4dbc-af65-f5770d2eafcb)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a4e91a4e-3bc4-4dbc-af65-f5770d2eafcb)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "joris-lohman-3c429d84",
+    "party_id": "cda",
+    "external_id": "3c429d84-fe37-4f2a-8d25-8bc2f764b870",
+    "name": "Joris Lohman",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3c429d84-fe37-4f2a-8d25-8bc2f764b870)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "judith-buhler-a9b2e7ac",
+    "party_id": "cda",
+    "external_id": "a9b2e7ac-3f50-4f60-bea6-4d78d3d2aefa",
+    "name": "Judith Bühler",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a9b2e7ac-3f50-4f60-bea6-4d78d3d2aefa)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a9b2e7ac-3f50-4f60-bea6-4d78d3d2aefa)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "lucienne-boelsma-hoekstra-80d02106",
+    "party_id": "cda",
+    "external_id": "80d02106-9cf3-473d-9b4f-3951f48f57ef",
+    "name": "Luciënne Boelsma-Hoekstra",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(80d02106-9cf3-473d-9b4f-3951f48f57ef)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(80d02106-9cf3-473d-9b4f-3951f48f57ef)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "maes-van-lanschot-dc8f53b8",
+    "party_id": "cda",
+    "external_id": "dc8f53b8-8247-4797-908d-fa11cb4116e6",
+    "name": "Maes van Lanschot",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(dc8f53b8-8247-4797-908d-fa11cb4116e6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(dc8f53b8-8247-4797-908d-fa11cb4116e6)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "sarath-hamstra-c9f8c464",
+    "party_id": "cda",
+    "external_id": "c9f8c464-6703-49e3-96af-366d76b161f6",
+    "name": "Sarath Hamstra",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c9f8c464-6703-49e3-96af-366d76b161f6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c9f8c464-6703-49e3-96af-366d76b161f6)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "tijs-van-den-brink-34fc7be9",
+    "party_id": "cda",
+    "external_id": "34fc7be9-6938-4163-8c47-f95c5f87e6b5",
+    "name": "Tijs van den Brink",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(34fc7be9-6938-4163-8c47-f95c5f87e6b5)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(34fc7be9-6938-4163-8c47-f95c5f87e6b5)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "don-ceder-7cbb2d95",
+    "party_id": "christenunie",
+    "external_id": "7cbb2d95-46b2-4fcb-b129-9505f56e7f07",
+    "name": "Don Ceder",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7cbb2d95-46b2-4fcb-b129-9505f56e7f07)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7cbb2d95-46b2-4fcb-b129-9505f56e7f07)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "mirjam-bikker-b53f74bf",
+    "party_id": "christenunie",
+    "external_id": "b53f74bf-e57c-4e01-8d65-de2f319f44db",
+    "name": "Mirjam Bikker",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b53f74bf-e57c-4e01-8d65-de2f319f44db)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b53f74bf-e57c-4e01-8d65-de2f319f44db)",
+    "seat_since": "2023-01-17"
+  },
+  {
+    "id": "pieter-grinwis-d38ca3cf",
+    "party_id": "christenunie",
+    "external_id": "d38ca3cf-9803-48dc-8592-c67c4430168e",
+    "name": "Pieter Grinwis",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d38ca3cf-9803-48dc-8592-c67c4430168e)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d38ca3cf-9803-48dc-8592-c67c4430168e)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "anne-marijke-podt-950c21d2",
+    "party_id": "d66",
+    "external_id": "950c21d2-8a14-406d-b3af-877360bbd0ab",
+    "name": "Anne-Marijke Podt",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(950c21d2-8a14-406d-b3af-877360bbd0ab)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(950c21d2-8a14-406d-b3af-877360bbd0ab)",
+    "seat_since": "2021-09-07"
+  },
+  {
+    "id": "anouschka-biekman-4e24b3c9",
+    "party_id": "d66",
+    "external_id": "4e24b3c9-966c-48bf-947d-231d3feb649d",
+    "name": "Anouschka Biekman",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(4e24b3c9-966c-48bf-947d-231d3feb649d)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(4e24b3c9-966c-48bf-947d-231d3feb649d)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "dion-huidekooper-8a152678",
+    "party_id": "d66",
+    "external_id": "8a152678-92d8-41f4-9002-62ee62d2f7b0",
+    "name": "Dion Huidekooper",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8a152678-92d8-41f4-9002-62ee62d2f7b0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8a152678-92d8-41f4-9002-62ee62d2f7b0)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "fatimazhra-belhirch-59f4fe08",
+    "party_id": "d66",
+    "external_id": "59f4fe08-4b7e-42a0-9551-082b07c5945a",
+    "name": "Fatimazhra Belhirch",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(59f4fe08-4b7e-42a0-9551-082b07c5945a)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(59f4fe08-4b7e-42a0-9551-082b07c5945a)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "felix-klos-3817ddd8",
+    "party_id": "d66",
+    "external_id": "3817ddd8-9797-4b14-8d75-77c909b711e0",
+    "name": "Felix Klos",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3817ddd8-9797-4b14-8d75-77c909b711e0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3817ddd8-9797-4b14-8d75-77c909b711e0)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "hanneke-van-der-werf-6a54c095",
+    "party_id": "d66",
+    "external_id": "6a54c095-9872-4322-81be-114b74233d40",
+    "name": "Hanneke van der Werf",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6a54c095-9872-4322-81be-114b74233d40)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6a54c095-9872-4322-81be-114b74233d40)",
+    "seat_since": "2024-03-29"
+  },
+  {
+    "id": "heera-dijk-0079c245",
+    "party_id": "d66",
+    "external_id": "0079c245-1bd8-45fb-8cb8-afa4b7bc5d36",
+    "name": "Heera Dijk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0079c245-1bd8-45fb-8cb8-afa4b7bc5d36)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0079c245-1bd8-45fb-8cb8-afa4b7bc5d36)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "henk-jan-oosterhuis-5f70fd14",
+    "party_id": "d66",
+    "external_id": "5f70fd14-3d7a-4936-9667-d76b0d524a61",
+    "name": "Henk-Jan Oosterhuis",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(5f70fd14-3d7a-4936-9667-d76b0d524a61)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(5f70fd14-3d7a-4936-9667-d76b0d524a61)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "ilana-rooderkerk-c055003b",
+    "party_id": "d66",
+    "external_id": "c055003b-034e-4d30-ae78-dd271b00dcbf",
+    "name": "Ilana Rooderkerk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c055003b-034e-4d30-ae78-dd271b00dcbf)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c055003b-034e-4d30-ae78-dd271b00dcbf)",
+    "seat_since": "2024-03-29"
+  },
+  {
+    "id": "jan-paternotte-2690bccc",
+    "party_id": "d66",
+    "external_id": "2690bccc-5463-459a-b1df-cb93e222b348",
+    "name": "Jan Paternotte",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(2690bccc-5463-459a-b1df-cb93e222b348)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(2690bccc-5463-459a-b1df-cb93e222b348)",
+    "seat_since": "2026-02-10"
+  },
+  {
+    "id": "jan-schoonis-05c9a6b8",
+    "party_id": "d66",
+    "external_id": "05c9a6b8-4642-449a-9a1e-1df4aca70b10",
+    "name": "Jan Schoonis",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(05c9a6b8-4642-449a-9a1e-1df4aca70b10)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(05c9a6b8-4642-449a-9a1e-1df4aca70b10)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "joost-sneller-da9f33b0",
+    "party_id": "d66",
+    "external_id": "da9f33b0-80ca-49eb-a1ec-def3b46538d9",
+    "name": "Joost Sneller",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(da9f33b0-80ca-49eb-a1ec-def3b46538d9)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(da9f33b0-80ca-49eb-a1ec-def3b46538d9)",
+    "seat_since": "2017-10-31"
+  },
+  {
+    "id": "mahjoub-mathlouti-385c9a11",
+    "party_id": "d66",
+    "external_id": "385c9a11-79c5-428f-9d84-72a49c94bb9a",
+    "name": "Mahjoub Mathlouti",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(385c9a11-79c5-428f-9d84-72a49c94bb9a)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "marc-vervuurt-d36d9afd",
+    "party_id": "d66",
+    "external_id": "d36d9afd-613a-4dbe-bfef-785967a9b807",
+    "name": "Marc Vervuurt",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d36d9afd-613a-4dbe-bfef-785967a9b807)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d36d9afd-613a-4dbe-bfef-785967a9b807)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "marieke-vellinga-beemsterboer-c4082506",
+    "party_id": "d66",
+    "external_id": "c4082506-df19-49de-a2e2-ccee0c5c7a81",
+    "name": "Marieke Vellinga-Beemsterboer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c4082506-df19-49de-a2e2-ccee0c5c7a81)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c4082506-df19-49de-a2e2-ccee0c5c7a81)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "marijke-synhaeve-14642402",
+    "party_id": "d66",
+    "external_id": "14642402-bfc5-4471-9246-7fb6742a35e8",
+    "name": "Marijke Synhaeve",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(14642402-bfc5-4471-9246-7fb6742a35e8)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(14642402-bfc5-4471-9246-7fb6742a35e8)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "michelle-jagtenberg-dc160d87",
+    "party_id": "d66",
+    "external_id": "dc160d87-fc55-486d-9b55-a307330e4da0",
+    "name": "Michelle Jagtenberg",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(dc160d87-fc55-486d-9b55-a307330e4da0)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "mpanzu-bamenga-d4b77771",
+    "party_id": "d66",
+    "external_id": "d4b77771-411c-4d3d-a893-767f38e07c67",
+    "name": "Mpanzu Bamenga",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d4b77771-411c-4d3d-a893-767f38e07c67)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d4b77771-411c-4d3d-a893-767f38e07c67)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "ouafa-oualhadj-a8ec9ff1",
+    "party_id": "d66",
+    "external_id": "a8ec9ff1-6a91-4063-9a8d-c3af07a11a0d",
+    "name": "Ouafa Oualhadj",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a8ec9ff1-6a91-4063-9a8d-c3af07a11a0d)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a8ec9ff1-6a91-4063-9a8d-c3af07a11a0d)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "renilde-huizenga-67261924",
+    "party_id": "d66",
+    "external_id": "67261924-770e-4746-88d3-22e85bf217ed",
+    "name": "Renilde Huizenga",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(67261924-770e-4746-88d3-22e85bf217ed)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(67261924-770e-4746-88d3-22e85bf217ed)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "robert-van-asten-6616f1dc",
+    "party_id": "d66",
+    "external_id": "6616f1dc-73e5-4753-b259-c10856ee7e4d",
+    "name": "Robert van Asten",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6616f1dc-73e5-4753-b259-c10856ee7e4d)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6616f1dc-73e5-4753-b259-c10856ee7e4d)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "robin-van-leijen-7a799770",
+    "party_id": "d66",
+    "external_id": "7a799770-dff0-40ef-9d63-c0a8ed5b0a7a",
+    "name": "Robin van Leijen",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7a799770-dff0-40ef-9d63-c0a8ed5b0a7a)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "sarah-el-boujdaini-ffcac8a5",
+    "party_id": "d66",
+    "external_id": "ffcac8a5-952b-42e8-975a-09860c123d3f",
+    "name": "Sarah El Boujdaini",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ffcac8a5-952b-42e8-975a-09860c123d3f)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ffcac8a5-952b-42e8-975a-09860c123d3f)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "stephan-neijenhuis-707d820c",
+    "party_id": "d66",
+    "external_id": "707d820c-5453-4ca5-a193-15e40c1d3f98",
+    "name": "Stephan Neijenhuis",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(707d820c-5453-4ca5-a193-15e40c1d3f98)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(707d820c-5453-4ca5-a193-15e40c1d3f98)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "ulas-kose-12d92cdf",
+    "party_id": "d66",
+    "external_id": "12d92cdf-9eb4-4e5c-8d1b-b2fa2b00a8ab",
+    "name": "Ulaş Köse",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(12d92cdf-9eb4-4e5c-8d1b-b2fa2b00a8ab)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(12d92cdf-9eb4-4e5c-8d1b-b2fa2b00a8ab)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "wieke-paulusma-d89044ef",
+    "party_id": "d66",
+    "external_id": "d89044ef-b7df-4a15-be10-d342fe381664",
+    "name": "Wieke Paulusma",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d89044ef-b7df-4a15-be10-d342fe381664)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d89044ef-b7df-4a15-be10-d342fe381664)",
+    "seat_since": "2021-04-15"
+  },
+  {
+    "id": "dogukan-ergin-02da66c7",
+    "party_id": "denk",
+    "external_id": "02da66c7-029f-4207-a00d-21babf0d3cc6",
+    "name": "Doğukan Ergin",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(02da66c7-029f-4207-a00d-21babf0d3cc6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(02da66c7-029f-4207-a00d-21babf0d3cc6)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "ismail-el-abassi-209ce05e",
+    "party_id": "denk",
+    "external_id": "209ce05e-66ee-4999-928c-00f152b40ead",
+    "name": "Ismail el Abassi",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(209ce05e-66ee-4999-928c-00f152b40ead)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(209ce05e-66ee-4999-928c-00f152b40ead)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "stephan-van-baarle-859e1824",
+    "party_id": "denk",
+    "external_id": "859e1824-cc60-4304-9293-dca932ebbed2",
+    "name": "Stephan van Baarle",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(859e1824-cc60-4304-9293-dca932ebbed2)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(859e1824-cc60-4304-9293-dca932ebbed2)",
+    "seat_since": "2023-08-03"
+  },
+  {
+    "id": "frederik-jansen-359e90b6",
+    "party_id": "fvd",
+    "external_id": "359e90b6-6f1f-47e9-a46b-d0ff54836077",
+    "name": "Frederik Jansen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(359e90b6-6f1f-47e9-a46b-d0ff54836077)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(359e90b6-6f1f-47e9-a46b-d0ff54836077)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "gideon-van-meijeren-557f8bd5",
+    "party_id": "fvd",
+    "external_id": "557f8bd5-9f66-4bed-9b5f-86746bb0600a",
+    "name": "Gideon van Meijeren",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(557f8bd5-9f66-4bed-9b5f-86746bb0600a)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(557f8bd5-9f66-4bed-9b5f-86746bb0600a)",
+    "seat_since": "2025-04-02"
+  },
+  {
+    "id": "lidewij-de-vos-0fa85a58",
+    "party_id": "fvd",
+    "external_id": "0fa85a58-19e2-4a9e-8d13-0c2bf8ec38da",
+    "name": "Lidewij de Vos",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0fa85a58-19e2-4a9e-8d13-0c2bf8ec38da)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0fa85a58-19e2-4a9e-8d13-0c2bf8ec38da)",
+    "seat_since": "2025-09-04"
+  },
+  {
+    "id": "pepijn-van-houwelingen-64f39510",
+    "party_id": "fvd",
+    "external_id": "64f39510-b420-4b01-8b5e-2b2f2b0aad91",
+    "name": "Pepijn van Houwelingen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(64f39510-b420-4b01-8b5e-2b2f2b0aad91)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(64f39510-b420-4b01-8b5e-2b2f2b0aad91)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "peter-van-duijvenvoorde-71a23ba5",
+    "party_id": "fvd",
+    "external_id": "71a23ba5-15b7-4057-9349-70bf28be58c4",
+    "name": "Peter van Duijvenvoorde",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(71a23ba5-15b7-4057-9349-70bf28be58c4)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(71a23ba5-15b7-4057-9349-70bf28be58c4)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "ralf-dekker-08ad50b1",
+    "party_id": "fvd",
+    "external_id": "08ad50b1-831e-4f50-bed4-97d9d42b0752",
+    "name": "Ralf Dekker",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(08ad50b1-831e-4f50-bed4-97d9d42b0752)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(08ad50b1-831e-4f50-bed4-97d9d42b0752)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "tom-russcher-9d29cdee",
+    "party_id": "fvd",
+    "external_id": "9d29cdee-6873-41d1-b4f5-61940ef11cb7",
+    "name": "Tom Russcher",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9d29cdee-6873-41d1-b4f5-61940ef11cb7)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9d29cdee-6873-41d1-b4f5-61940ef11cb7)",
+    "seat_since": "2026-01-15"
+  },
+  {
+    "id": "ani-zalinyan-6f8efc5e",
+    "party_id": "groenlinks-pvda",
+    "external_id": "6f8efc5e-726c-4919-98d8-c6f1cd6b0b2b",
+    "name": "Ani Zalinyan",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6f8efc5e-726c-4919-98d8-c6f1cd6b0b2b)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6f8efc5e-726c-4919-98d8-c6f1cd6b0b2b)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "barbara-kathmann-9e79de98",
+    "party_id": "groenlinks-pvda",
+    "external_id": "9e79de98-e914-4dc8-8dc7-6d7cb09b93d7",
+    "name": "Barbara Kathmann",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9e79de98-e914-4dc8-8dc7-6d7cb09b93d7)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9e79de98-e914-4dc8-8dc7-6d7cb09b93d7)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "esmah-lahlah-71c301a1",
+    "party_id": "groenlinks-pvda",
+    "external_id": "71c301a1-74a2-433b-9810-c1f15bf86736",
+    "name": "Esmah Lahlah",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(71c301a1-74a2-433b-9810-c1f15bf86736)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(71c301a1-74a2-433b-9810-c1f15bf86736)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "fatihya-abdi-68d64b36",
+    "party_id": "groenlinks-pvda",
+    "external_id": "68d64b36-9e16-4f0f-9a78-6f22b3aa093a",
+    "name": "Fatihya Abdi",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(68d64b36-9e16-4f0f-9a78-6f22b3aa093a)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(68d64b36-9e16-4f0f-9a78-6f22b3aa093a)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "habtamu-de-hoop-e70c3ee3",
+    "party_id": "groenlinks-pvda",
+    "external_id": "e70c3ee3-cca2-4521-abea-b124dcec0952",
+    "name": "Habtamu de Hoop",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e70c3ee3-cca2-4521-abea-b124dcec0952)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e70c3ee3-cca2-4521-abea-b124dcec0952)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "jesse-klaver-0d036fcf",
+    "party_id": "groenlinks-pvda",
+    "external_id": "0d036fcf-a456-4798-9b76-3f44eb74a451",
+    "name": "Jesse Klaver",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0d036fcf-a456-4798-9b76-3f44eb74a451)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0d036fcf-a456-4798-9b76-3f44eb74a451)",
+    "seat_since": "2025-11-03"
+  },
+  {
+    "id": "julian-bushoff-a824c21d",
+    "party_id": "groenlinks-pvda",
+    "external_id": "a824c21d-055a-49ed-a060-a1c7af3262df",
+    "name": "Julian Bushoff",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a824c21d-055a-49ed-a060-a1c7af3262df)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a824c21d-055a-49ed-a060-a1c7af3262df)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "kati-piri-a437e923",
+    "party_id": "groenlinks-pvda",
+    "external_id": "a437e923-725f-415e-a01d-5588a7af933e",
+    "name": "Kati Piri",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a437e923-725f-415e-a01d-5588a7af933e)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a437e923-725f-415e-a01d-5588a7af933e)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "laura-bromet-ccea26dd",
+    "party_id": "groenlinks-pvda",
+    "external_id": "ccea26dd-dcae-4174-8945-ec5cb568e951",
+    "name": "Laura Bromet",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ccea26dd-dcae-4174-8945-ec5cb568e951)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ccea26dd-dcae-4174-8945-ec5cb568e951)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "lisa-vliegenthart-a6a6861d",
+    "party_id": "groenlinks-pvda",
+    "external_id": "a6a6861d-5972-4650-bc4f-38ba958c6bdc",
+    "name": "Lisa Vliegenthart",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a6a6861d-5972-4650-bc4f-38ba958c6bdc)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a6a6861d-5972-4650-bc4f-38ba958c6bdc)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "lisa-westerveld-c7822b58",
+    "party_id": "groenlinks-pvda",
+    "external_id": "c7822b58-103f-4612-87ef-648be97192c6",
+    "name": "Lisa Westerveld",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c7822b58-103f-4612-87ef-648be97192c6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c7822b58-103f-4612-87ef-648be97192c6)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "luc-stultiens-7a727f46",
+    "party_id": "groenlinks-pvda",
+    "external_id": "7a727f46-0e36-493f-8779-736d3250fb27",
+    "name": "Luc Stultiens",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7a727f46-0e36-493f-8779-736d3250fb27)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7a727f46-0e36-493f-8779-736d3250fb27)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "mariette-patijn-3dd43fe1",
+    "party_id": "groenlinks-pvda",
+    "external_id": "3dd43fe1-c99a-4826-b08f-4ed3fc0dd9ba",
+    "name": "Mariëtte Patijn",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3dd43fe1-c99a-4826-b08f-4ed3fc0dd9ba)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3dd43fe1-c99a-4826-b08f-4ed3fc0dd9ba)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "marjolein-moorman-d32c6620",
+    "party_id": "groenlinks-pvda",
+    "external_id": "d32c6620-c63d-41d7-8762-a1dc31ecb882",
+    "name": "Marjolein Moorman",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d32c6620-c63d-41d7-8762-a1dc31ecb882)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d32c6620-c63d-41d7-8762-a1dc31ecb882)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "mikal-tseggai-b8e78559",
+    "party_id": "groenlinks-pvda",
+    "external_id": "b8e78559-8f69-4ec6-89ce-17645a5eecdb",
+    "name": "Mikal Tseggai",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b8e78559-8f69-4ec6-89ce-17645a5eecdb)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b8e78559-8f69-4ec6-89ce-17645a5eecdb)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "mohammed-mohandis-b7a52679",
+    "party_id": "groenlinks-pvda",
+    "external_id": "b7a52679-bac9-4e00-9dfd-06a22a7cf088",
+    "name": "Mohammed Mohandis",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b7a52679-bac9-4e00-9dfd-06a22a7cf088)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b7a52679-bac9-4e00-9dfd-06a22a7cf088)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "sjoukje-van-oosterhout-8f38a474",
+    "party_id": "groenlinks-pvda",
+    "external_id": "8f38a474-1b0a-4fcc-a727-28531df173a6",
+    "name": "Sjoukje van Oosterhout",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8f38a474-1b0a-4fcc-a727-28531df173a6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8f38a474-1b0a-4fcc-a727-28531df173a6)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "songul-mutluer-9f855643",
+    "party_id": "groenlinks-pvda",
+    "external_id": "9f855643-68a2-409e-b4fe-81b92547212a",
+    "name": "Songül Mutluer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9f855643-68a2-409e-b4fe-81b92547212a)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9f855643-68a2-409e-b4fe-81b92547212a)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "suzanne-kroger-89d70a20",
+    "party_id": "groenlinks-pvda",
+    "external_id": "89d70a20-bd10-46ed-866a-2c79362a0559",
+    "name": "Suzanne Kröger",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(89d70a20-bd10-46ed-866a-2c79362a0559)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(89d70a20-bd10-46ed-866a-2c79362a0559)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "tom-van-der-lee-75a44c3a",
+    "party_id": "groenlinks-pvda",
+    "external_id": "75a44c3a-5914-4c8e-9ca4-d987853f5844",
+    "name": "Tom van der Lee",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(75a44c3a-5914-4c8e-9ca4-d987853f5844)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(75a44c3a-5914-4c8e-9ca4-d987853f5844)",
+    "seat_since": "2023-10-27"
+  },
+  {
+    "id": "annelotte-lammers-10c4f889",
+    "party_id": "groep-markuszower",
+    "external_id": "10c4f889-d7de-48bb-a0b7-9a7125f1fc98",
+    "name": "Annelotte Lammers",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(10c4f889-d7de-48bb-a0b7-9a7125f1fc98)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(10c4f889-d7de-48bb-a0b7-9a7125f1fc98)",
+    "seat_since": "2026-01-20"
+  },
+  {
+    "id": "gidi-markuszower-754f2d87",
+    "party_id": "groep-markuszower",
+    "external_id": "754f2d87-8990-4b77-8181-54d8df8fa63a",
+    "name": "Gidi Markuszower",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(754f2d87-8990-4b77-8181-54d8df8fa63a)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(754f2d87-8990-4b77-8181-54d8df8fa63a)",
+    "seat_since": "2026-01-20"
+  },
+  {
+    "id": "hidde-heutink-33290394",
+    "party_id": "groep-markuszower",
+    "external_id": "33290394-05f7-44c4-9187-7c6ec6059c27",
+    "name": "Hidde Heutink",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(33290394-05f7-44c4-9187-7c6ec6059c27)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(33290394-05f7-44c4-9187-7c6ec6059c27)",
+    "seat_since": "2026-01-20"
+  },
+  {
+    "id": "nicole-moinat-5222c31a",
+    "party_id": "groep-markuszower",
+    "external_id": "5222c31a-b0b0-496b-8f74-55988b1b8dda",
+    "name": "Nicole Moinat",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(5222c31a-b0b0-496b-8f74-55988b1b8dda)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(5222c31a-b0b0-496b-8f74-55988b1b8dda)",
+    "seat_since": "2026-01-20"
+  },
+  {
+    "id": "rene-claassen-510ebeb6",
+    "party_id": "groep-markuszower",
+    "external_id": "510ebeb6-5625-4a9f-9853-36bcd54728e0",
+    "name": "René Claassen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(510ebeb6-5625-4a9f-9853-36bcd54728e0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(510ebeb6-5625-4a9f-9853-36bcd54728e0)",
+    "seat_since": "2026-01-20"
+  },
+  {
+    "id": "shanna-schilder-45e9917b",
+    "party_id": "groep-markuszower",
+    "external_id": "45e9917b-95cc-428c-b8a0-9d50cff58a59",
+    "name": "Shanna Schilder",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(45e9917b-95cc-428c-b8a0-9d50cff58a59)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(45e9917b-95cc-428c-b8a0-9d50cff58a59)",
+    "seat_since": "2026-01-20"
+  },
+  {
+    "id": "tamara-ten-hove-14fbb153",
+    "party_id": "groep-markuszower",
+    "external_id": "14fbb153-c31c-4ffd-ac58-2e6314388a38",
+    "name": "Tamara ten Hove",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(14fbb153-c31c-4ffd-ac58-2e6314388a38)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(14fbb153-c31c-4ffd-ac58-2e6314388a38)",
+    "seat_since": "2026-01-20"
+  },
+  {
+    "id": "annabel-nanninga-a4eb6b9e",
+    "party_id": "ja21",
+    "external_id": "a4eb6b9e-dd6c-4cc8-a95c-ccb76860b162",
+    "name": "Annabel Nanninga",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a4eb6b9e-dd6c-4cc8-a95c-ccb76860b162)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a4eb6b9e-dd6c-4cc8-a95c-ccb76860b162)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "daniel-van-den-berg-98f026ef",
+    "party_id": "ja21",
+    "external_id": "98f026ef-74d5-4b6e-80ae-4a76e9ec7e81",
+    "name": "Daniël van den Berg",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(98f026ef-74d5-4b6e-80ae-4a76e9ec7e81)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(98f026ef-74d5-4b6e-80ae-4a76e9ec7e81)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "diederik-boomsma-5c9533b7",
+    "party_id": "ja21",
+    "external_id": "5c9533b7-a733-480e-bb38-711e96129684",
+    "name": "Diederik Boomsma",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(5c9533b7-a733-480e-bb38-711e96129684)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(5c9533b7-a733-480e-bb38-711e96129684)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "ingrid-coenradie-a08790d3",
+    "party_id": "ja21",
+    "external_id": "a08790d3-915b-44d3-9556-6c53048917a0",
+    "name": "Ingrid Coenradie",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a08790d3-915b-44d3-9556-6c53048917a0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a08790d3-915b-44d3-9556-6c53048917a0)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "joost-eerdmans-c6e26bd3",
+    "party_id": "ja21",
+    "external_id": "c6e26bd3-724f-45d3-93af-ef431e6fcd42",
+    "name": "Joost Eerdmans",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c6e26bd3-724f-45d3-93af-ef431e6fcd42)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c6e26bd3-724f-45d3-93af-ef431e6fcd42)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "maarten-goudzwaard-3322191a",
+    "party_id": "ja21",
+    "external_id": "3322191a-8ca5-4a69-bb2f-d516086c28ae",
+    "name": "Maarten Goudzwaard",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3322191a-8ca5-4a69-bb2f-d516086c28ae)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3322191a-8ca5-4a69-bb2f-d516086c28ae)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "michiel-hoogeveen-6938f6a4",
+    "party_id": "ja21",
+    "external_id": "6938f6a4-a336-4f91-bd93-deed5f45e3f0",
+    "name": "Michiel Hoogeveen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6938f6a4-a336-4f91-bd93-deed5f45e3f0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6938f6a4-a336-4f91-bd93-deed5f45e3f0)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "ranjith-clemminck-cf6c0969",
+    "party_id": "ja21",
+    "external_id": "cf6c0969-6741-4130-bd75-ee65ad71ad1d",
+    "name": "Ranjith Clemminck",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(cf6c0969-6741-4130-bd75-ee65ad71ad1d)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(cf6c0969-6741-4130-bd75-ee65ad71ad1d)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "simon-ceulemans-1a02adff",
+    "party_id": "ja21",
+    "external_id": "1a02adff-bc47-4d06-bc1e-fec2d3ed193d",
+    "name": "Simon Ceulemans",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1a02adff-bc47-4d06-bc1e-fec2d3ed193d)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1a02adff-bc47-4d06-bc1e-fec2d3ed193d)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "mona-keijzer-8c5a8186",
+    "party_id": "lid-keijzer",
+    "external_id": "8c5a8186-8f46-4bca-956d-06d4fa521635",
+    "name": "Mona Keijzer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8c5a8186-8f46-4bca-956d-06d4fa521635)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8c5a8186-8f46-4bca-956d-06d4fa521635)",
+    "seat_since": "2026-02-24"
+  },
+  {
+    "id": "christine-teunissen-7564c685",
+    "party_id": "pvdd",
+    "external_id": "7564c685-2691-4796-9159-ebd5df4fdc8d",
+    "name": "Christine Teunissen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7564c685-2691-4796-9159-ebd5df4fdc8d)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7564c685-2691-4796-9159-ebd5df4fdc8d)",
+    "seat_since": "2023-10-26"
+  },
+  {
+    "id": "esther-ouwehand-1c16919b",
+    "party_id": "pvdd",
+    "external_id": "1c16919b-5c3f-486c-9cc7-bdd00e29e9a4",
+    "name": "Esther Ouwehand",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1c16919b-5c3f-486c-9cc7-bdd00e29e9a4)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(1c16919b-5c3f-486c-9cc7-bdd00e29e9a4)",
+    "seat_since": "2023-10-26"
+  },
+  {
+    "id": "ines-kostic-9e16daf1",
+    "party_id": "pvdd",
+    "external_id": "9e16daf1-18e6-4563-b371-aa50c31b79f6",
+    "name": "Ines Kostić",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9e16daf1-18e6-4563-b371-aa50c31b79f6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(9e16daf1-18e6-4563-b371-aa50c31b79f6)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "alexander-kops-77c541d2",
+    "party_id": "pvv",
+    "external_id": "77c541d2-49e3-483f-869d-134df420c5ea",
+    "name": "Alexander Kops",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(77c541d2-49e3-483f-869d-134df420c5ea)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(77c541d2-49e3-483f-869d-134df420c5ea)",
+    "seat_since": "2017-03-23"
+  },
+  {
+    "id": "annette-raijer-50b2f0b4",
+    "party_id": "pvv",
+    "external_id": "50b2f0b4-0fd9-473e-bcde-17bdff81fc73",
+    "name": "Annette Raijer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(50b2f0b4-0fd9-473e-bcde-17bdff81fc73)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(50b2f0b4-0fd9-473e-bcde-17bdff81fc73)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "chris-jansen-3c96ed5d",
+    "party_id": "pvv",
+    "external_id": "3c96ed5d-f7bf-4cae-9ec7-a5a29f5299da",
+    "name": "Chris Jansen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3c96ed5d-f7bf-4cae-9ec7-a5a29f5299da)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3c96ed5d-f7bf-4cae-9ec7-a5a29f5299da)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "dion-graus-819764fa",
+    "party_id": "pvv",
+    "external_id": "819764fa-3a17-467b-8327-30899ed083b6",
+    "name": "Dion Graus",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(819764fa-3a17-467b-8327-30899ed083b6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(819764fa-3a17-467b-8327-30899ed083b6)",
+    "seat_since": "2006-11-30"
+  },
+  {
+    "id": "edgar-mulder-48d02bab",
+    "party_id": "pvv",
+    "external_id": "48d02bab-281c-4bd0-8a50-26bf90a38cc0",
+    "name": "Edgar Mulder",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(48d02bab-281c-4bd0-8a50-26bf90a38cc0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(48d02bab-281c-4bd0-8a50-26bf90a38cc0)",
+    "seat_since": "2017-03-23"
+  },
+  {
+    "id": "elmar-vlottes-71653caa",
+    "party_id": "pvv",
+    "external_id": "71653caa-dc3a-4441-80cb-34f6a737ee1e",
+    "name": "Elmar Vlottes",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(71653caa-dc3a-4441-80cb-34f6a737ee1e)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(71653caa-dc3a-4441-80cb-34f6a737ee1e)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "emiel-van-dijk-81552958",
+    "party_id": "pvv",
+    "external_id": "81552958-ef83-4fab-8a92-6e5b1975c9ef",
+    "name": "Emiel van Dijk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(81552958-ef83-4fab-8a92-6e5b1975c9ef)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(81552958-ef83-4fab-8a92-6e5b1975c9ef)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "erwin-prickaertz-e48a9b77",
+    "party_id": "pvv",
+    "external_id": "e48a9b77-8c42-4369-a967-7262e8facb29",
+    "name": "Erwin Prickaertz",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e48a9b77-8c42-4369-a967-7262e8facb29)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e48a9b77-8c42-4369-a967-7262e8facb29)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "geert-wilders-6d33b9bc",
+    "party_id": "pvv",
+    "external_id": "6d33b9bc-7d3a-4a60-b2d7-c2b70cd11ab1",
+    "name": "Geert Wilders",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6d33b9bc-7d3a-4a60-b2d7-c2b70cd11ab1)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6d33b9bc-7d3a-4a60-b2d7-c2b70cd11ab1)",
+    "seat_since": "2006-11-30"
+  },
+  {
+    "id": "jeremy-mooiman-b4bbefe3",
+    "party_id": "pvv",
+    "external_id": "b4bbefe3-6926-4d81-b8a4-b1bb6ae2e3c6",
+    "name": "Jeremy Mooiman",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b4bbefe3-6926-4d81-b8a4-b1bb6ae2e3c6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(b4bbefe3-6926-4d81-b8a4-b1bb6ae2e3c6)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "maikel-boon-0004fa63",
+    "party_id": "pvv",
+    "external_id": "0004fa63-2652-43fe-9866-4130ca4652d8",
+    "name": "Maikel Boon",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0004fa63-2652-43fe-9866-4130ca4652d8)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0004fa63-2652-43fe-9866-4130ca4652d8)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "marina-vondeling-f3ebacbe",
+    "party_id": "pvv",
+    "external_id": "f3ebacbe-ae1d-4ee9-bf9f-cef7d9e0f489",
+    "name": "Marina Vondeling",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(f3ebacbe-ae1d-4ee9-bf9f-cef7d9e0f489)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(f3ebacbe-ae1d-4ee9-bf9f-cef7d9e0f489)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "marjolein-faber-fe1727e3",
+    "party_id": "pvv",
+    "external_id": "fe1727e3-35bc-4b62-869b-be60b0c861f7",
+    "name": "Marjolein Faber",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(fe1727e3-35bc-4b62-869b-be60b0c861f7)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(fe1727e3-35bc-4b62-869b-be60b0c861f7)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "martin-bosma-034829b1",
+    "party_id": "pvv",
+    "external_id": "034829b1-019f-4ee2-8961-83e82ac2eaa3",
+    "name": "Martin Bosma",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(034829b1-019f-4ee2-8961-83e82ac2eaa3)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(034829b1-019f-4ee2-8961-83e82ac2eaa3)",
+    "seat_since": "2006-11-30"
+  },
+  {
+    "id": "rachel-van-meetelen-0f5bdaad",
+    "party_id": "pvv",
+    "external_id": "0f5bdaad-ea3e-4d01-a85f-46010d9fb514",
+    "name": "Rachel van Meetelen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0f5bdaad-ea3e-4d01-a85f-46010d9fb514)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0f5bdaad-ea3e-4d01-a85f-46010d9fb514)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "raymond-de-roon-c60c655f",
+    "party_id": "pvv",
+    "external_id": "c60c655f-40ba-47b0-8e93-a2c8d1ff4743",
+    "name": "Raymond de Roon",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c60c655f-40ba-47b0-8e93-a2c8d1ff4743)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(c60c655f-40ba-47b0-8e93-a2c8d1ff4743)",
+    "seat_since": "2012-01-31"
+  },
+  {
+    "id": "sebastiaan-stoteler-d58f3da8",
+    "party_id": "pvv",
+    "external_id": "d58f3da8-94f6-4b03-ac9f-67ec50e12bf3",
+    "name": "Sebastiaan Stöteler",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d58f3da8-94f6-4b03-ac9f-67ec50e12bf3)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d58f3da8-94f6-4b03-ac9f-67ec50e12bf3)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "tony-van-dijck-a396ae20",
+    "party_id": "pvv",
+    "external_id": "a396ae20-6309-456b-a5ae-e4068dea8a67",
+    "name": "Tony van Dijck",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a396ae20-6309-456b-a5ae-e4068dea8a67)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a396ae20-6309-456b-a5ae-e4068dea8a67)",
+    "seat_since": "2006-11-30"
+  },
+  {
+    "id": "vicky-maeijer-e5f316f0",
+    "party_id": "pvv",
+    "external_id": "e5f316f0-e4e7-4cf0-a064-ed9321737487",
+    "name": "Vicky Maeijer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e5f316f0-e4e7-4cf0-a064-ed9321737487)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e5f316f0-e4e7-4cf0-a064-ed9321737487)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "andre-flach-2bea63db",
+    "party_id": "sgp",
+    "external_id": "2bea63db-715f-401f-b710-e91c7650df0c",
+    "name": "André Flach",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(2bea63db-715f-401f-b710-e91c7650df0c)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(2bea63db-715f-401f-b710-e91c7650df0c)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "chris-stoffer-98aa8bde",
+    "party_id": "sgp",
+    "external_id": "98aa8bde-85b0-49ed-9795-e2eeb206e3b8",
+    "name": "Chris Stoffer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(98aa8bde-85b0-49ed-9795-e2eeb206e3b8)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(98aa8bde-85b0-49ed-9795-e2eeb206e3b8)",
+    "seat_since": "2023-09-05"
+  },
+  {
+    "id": "diederik-van-dijk-dd85a3cc",
+    "party_id": "sgp",
+    "external_id": "dd85a3cc-916a-4f94-aaed-cb341eb6a036",
+    "name": "Diederik van Dijk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(dd85a3cc-916a-4f94-aaed-cb341eb6a036)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(dd85a3cc-916a-4f94-aaed-cb341eb6a036)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "jimmy-dijk-990b2d9b",
+    "party_id": "sp",
+    "external_id": "990b2d9b-0b83-4dde-ab04-5cd5d8c5c4d3",
+    "name": "Jimmy Dijk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(990b2d9b-0b83-4dde-ab04-5cd5d8c5c4d3)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(990b2d9b-0b83-4dde-ab04-5cd5d8c5c4d3)",
+    "seat_since": "2023-12-13"
+  },
+  {
+    "id": "sandra-beckerman-0ea8e29d",
+    "party_id": "sp",
+    "external_id": "0ea8e29d-3bfe-4982-8594-9350b527d553",
+    "name": "Sandra Beckerman",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0ea8e29d-3bfe-4982-8594-9350b527d553)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0ea8e29d-3bfe-4982-8594-9350b527d553)",
+    "seat_since": "2017-03-23"
+  },
+  {
+    "id": "sarah-dobbe-21cc8db0",
+    "party_id": "sp",
+    "external_id": "21cc8db0-5084-4e4d-a083-99df36fa6170",
+    "name": "Sarah Dobbe",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(21cc8db0-5084-4e4d-a083-99df36fa6170)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(21cc8db0-5084-4e4d-a083-99df36fa6170)",
+    "seat_since": "2023-12-13"
+  },
+  {
+    "id": "laurens-dassen-a68468b6",
+    "party_id": "volt",
+    "external_id": "a68468b6-51ea-440c-9387-b44ba10ad8b6",
+    "name": "Laurens Dassen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a68468b6-51ea-440c-9387-b44ba10ad8b6)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a68468b6-51ea-440c-9387-b44ba10ad8b6)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "alisha-muller-3b3c7923",
+    "party_id": "vvd",
+    "external_id": "3b3c7923-b604-4902-97c1-210aa85182c1",
+    "name": "Alisha Müller",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(3b3c7923-b604-4902-97c1-210aa85182c1)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "arend-kisteman-e0ccfbe3",
+    "party_id": "vvd",
+    "external_id": "e0ccfbe3-9f51-4eaa-8ed6-c1ba3f6236b5",
+    "name": "Arend Kisteman",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e0ccfbe3-9f51-4eaa-8ed6-c1ba3f6236b5)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e0ccfbe3-9f51-4eaa-8ed6-c1ba3f6236b5)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "bart-bikkers-d081e81a",
+    "party_id": "vvd",
+    "external_id": "d081e81a-72b1-4c57-9d25-2f34292da0cf",
+    "name": "Bart Bikkers",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d081e81a-72b1-4c57-9d25-2f34292da0cf)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(d081e81a-72b1-4c57-9d25-2f34292da0cf)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "bente-becker-a962ffcb",
+    "party_id": "vvd",
+    "external_id": "a962ffcb-a300-45e1-8850-70c7173c233e",
+    "name": "Bente Becker",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a962ffcb-a300-45e1-8850-70c7173c233e)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a962ffcb-a300-45e1-8850-70c7173c233e)",
+    "seat_since": "2022-11-28"
+  },
+  {
+    "id": "bjorn-schutz-83886cc3",
+    "party_id": "vvd",
+    "external_id": "83886cc3-def7-45bb-bea6-e10200c1cd9e",
+    "name": "Björn Schutz",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(83886cc3-def7-45bb-bea6-e10200c1cd9e)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(83886cc3-def7-45bb-bea6-e10200c1cd9e)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "claire-martens-america-059453a7",
+    "party_id": "vvd",
+    "external_id": "059453a7-a169-477c-9f89-54dda55b6d40",
+    "name": "Claire Martens-America",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(059453a7-a169-477c-9f89-54dda55b6d40)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(059453a7-a169-477c-9f89-54dda55b6d40)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "daan-de-kort-8767e9de",
+    "party_id": "vvd",
+    "external_id": "8767e9de-869e-4e8a-940f-1a63d15eab3c",
+    "name": "Daan de Kort",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8767e9de-869e-4e8a-940f-1a63d15eab3c)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(8767e9de-869e-4e8a-940f-1a63d15eab3c)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "erik-van-der-maas-7da5d1c6",
+    "party_id": "vvd",
+    "external_id": "7da5d1c6-58a0-4a40-89c0-cc5fc3aff9c4",
+    "name": "Erik van der Maas",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(7da5d1c6-58a0-4a40-89c0-cc5fc3aff9c4)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "harry-bevers-0cd71c11",
+    "party_id": "vvd",
+    "external_id": "0cd71c11-bddf-46af-a796-780a4756c2b0",
+    "name": "Harry Bevers",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0cd71c11-bddf-46af-a796-780a4756c2b0)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(0cd71c11-bddf-46af-a796-780a4756c2b0)",
+    "seat_since": "2024-07-04"
+  },
+  {
+    "id": "hilde-wendel-4b6348d0",
+    "party_id": "vvd",
+    "external_id": "4b6348d0-bf6d-4086-983b-48eb3834efff",
+    "name": "Hilde Wendel",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(4b6348d0-bf6d-4086-983b-48eb3834efff)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(4b6348d0-bf6d-4086-983b-48eb3834efff)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "ingrid-michon-derkzen-973da897",
+    "party_id": "vvd",
+    "external_id": "973da897-66c7-4010-a98d-505e0e97a60c",
+    "name": "Ingrid Michon-Derkzen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(973da897-66c7-4010-a98d-505e0e97a60c)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(973da897-66c7-4010-a98d-505e0e97a60c)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "jurgen-nobel-28982db2",
+    "party_id": "vvd",
+    "external_id": "28982db2-a196-4026-9cfb-43aace37f150",
+    "name": "Jurgen Nobel",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(28982db2-a196-4026-9cfb-43aace37f150)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(28982db2-a196-4026-9cfb-43aace37f150)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "martin-de-beer-6edaeec8",
+    "party_id": "vvd",
+    "external_id": "6edaeec8-fad8-4c2c-8103-7aae8594e772",
+    "name": "Martin de Beer",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6edaeec8-fad8-4c2c-8103-7aae8594e772)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(6edaeec8-fad8-4c2c-8103-7aae8594e772)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "nicole-maes-ebb3123c",
+    "party_id": "vvd",
+    "external_id": "ebb3123c-6520-45ad-9045-d78dd5313b30",
+    "name": "Nicole Maes",
+    "role": "Tweede Kamerlid",
+    "photo_url": null,
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ebb3123c-6520-45ad-9045-d78dd5313b30)",
+    "seat_since": "2026-02-25"
+  },
+  {
+    "id": "peter-de-groot-a0b48551",
+    "party_id": "vvd",
+    "external_id": "a0b48551-42b7-4c55-9556-6b997d978ff2",
+    "name": "Peter de Groot",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a0b48551-42b7-4c55-9556-6b997d978ff2)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(a0b48551-42b7-4c55-9556-6b997d978ff2)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "renate-den-hollander-51036c88",
+    "party_id": "vvd",
+    "external_id": "51036c88-5a8f-4842-8867-0a460bbb611e",
+    "name": "Renate den Hollander",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(51036c88-5a8f-4842-8867-0a460bbb611e)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(51036c88-5a8f-4842-8867-0a460bbb611e)",
+    "seat_since": "2025-11-12"
+  },
+  {
+    "id": "ruben-brekelmans-e5c4753f",
+    "party_id": "vvd",
+    "external_id": "e5c4753f-d2d8-4a4a-ae9d-62118892a731",
+    "name": "Ruben Brekelmans",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e5c4753f-d2d8-4a4a-ae9d-62118892a731)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(e5c4753f-d2d8-4a4a-ae9d-62118892a731)",
+    "seat_since": "2026-02-23"
+  },
+  {
+    "id": "ruud-verkuijlen-13d5095e",
+    "party_id": "vvd",
+    "external_id": "13d5095e-c5df-4cbb-a2f4-c0bb142e9397",
+    "name": "Ruud Verkuijlen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(13d5095e-c5df-4cbb-a2f4-c0bb142e9397)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(13d5095e-c5df-4cbb-a2f4-c0bb142e9397)",
+    "seat_since": "2026-03-31"
+  },
+  {
+    "id": "thom-van-campen-bf494e35",
+    "party_id": "vvd",
+    "external_id": "bf494e35-c009-4c74-a5c6-3cb2cd26bb51",
+    "name": "Thom van Campen",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(bf494e35-c009-4c74-a5c6-3cb2cd26bb51)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(bf494e35-c009-4c74-a5c6-3cb2cd26bb51)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "ulysse-ellian-ea21d788",
+    "party_id": "vvd",
+    "external_id": "ea21d788-7cfe-41ff-b22f-0664397139af",
+    "name": "Ulysse Ellian",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ea21d788-7cfe-41ff-b22f-0664397139af)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(ea21d788-7cfe-41ff-b22f-0664397139af)",
+    "seat_since": "2021-03-31"
+  },
+  {
+    "id": "wendy-van-eijk-05ca01ed",
+    "party_id": "vvd",
+    "external_id": "05ca01ed-8f7f-4e1c-850e-3a480c38e775",
+    "name": "Wendy van Eijk",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(05ca01ed-8f7f-4e1c-850e-3a480c38e775)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(05ca01ed-8f7f-4e1c-850e-3a480c38e775)",
+    "seat_since": "2023-12-06"
+  },
+  {
+    "id": "wim-meulenkamp-de1735dc",
+    "party_id": "vvd",
+    "external_id": "de1735dc-a542-4e58-8c06-9effd9005686",
+    "name": "Wim Meulenkamp",
+    "role": "Tweede Kamerlid",
+    "photo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(de1735dc-a542-4e58-8c06-9effd9005686)/Resource",
+    "source_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon(de1735dc-a542-4e58-8c06-9effd9005686)",
+    "seat_since": "2026-02-25"
+  }
+]

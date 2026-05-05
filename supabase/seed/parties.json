@@ -1,0 +1,121 @@
+[
+  {
+    "id": "50plus",
+    "name": "50PLUS",
+    "short_name": "50PLUS",
+    "logo_url": null,
+    "color": null
+  },
+  {
+    "id": "bbb",
+    "name": "BoerBurgerBeweging",
+    "short_name": "BBB",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(626555ac-e836-44e3-9978-a6a7f0abc3ce)/Resource",
+    "color": null
+  },
+  {
+    "id": "cda",
+    "name": "Christen-Democratisch Appèl",
+    "short_name": "CDA",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(62c1a13c-85ff-40ed-90f7-a9546d61f869)/Resource",
+    "color": null
+  },
+  {
+    "id": "christenunie",
+    "name": "ChristenUnie",
+    "short_name": "ChristenUnie",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(d720f5af-0516-408a-b830-0b6ffb8a581c)/Resource",
+    "color": null
+  },
+  {
+    "id": "d66",
+    "name": "Democraten 66",
+    "short_name": "D66",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(4e9f6f5b-2544-4667-8134-6b85c4ebb4e0)/Resource",
+    "color": null
+  },
+  {
+    "id": "denk",
+    "name": "DENK",
+    "short_name": "DENK",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(deb74bb5-63a9-4ffc-98ed-af577167452e)/Resource",
+    "color": null
+  },
+  {
+    "id": "fvd",
+    "name": "Forum voor Democratie",
+    "short_name": "FVD",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(e0b7b638-de3c-47cc-85bd-341dd65ea33d)/Resource",
+    "color": null
+  },
+  {
+    "id": "groenlinks-pvda",
+    "name": "GroenLinks-PvdA",
+    "short_name": "GroenLinks-PvdA",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(0208097d-ef04-438a-8c29-eebb84956204)/Resource",
+    "color": null
+  },
+  {
+    "id": "groep-markuszower",
+    "name": "Groep Markuszower",
+    "short_name": "Groep Markuszower",
+    "logo_url": null,
+    "color": null
+  },
+  {
+    "id": "ja21",
+    "name": "JA21",
+    "short_name": "JA21",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(fab6e7e1-9d63-446a-a6e1-e1c74e3f679e)/Resource",
+    "color": null
+  },
+  {
+    "id": "lid-keijzer",
+    "name": "Lid Keijzer",
+    "short_name": "Lid Keijzer",
+    "logo_url": null,
+    "color": null
+  },
+  {
+    "id": "pvdd",
+    "name": "Partij voor de Dieren",
+    "short_name": "PvdD",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(d3b4d880-ef37-4ce6-99ec-4940266ac466)/Resource",
+    "color": null
+  },
+  {
+    "id": "pvv",
+    "name": "Partij voor de Vrijheid",
+    "short_name": "PVV",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(65129918-f256-4975-9da4-488da34d6695)/Resource",
+    "color": null
+  },
+  {
+    "id": "sgp",
+    "name": "Staatkundig Gereformeerde Partij",
+    "short_name": "SGP",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(77f9b6f1-b1a9-4d1b-a05e-9936e79d8fa5)/Resource",
+    "color": null
+  },
+  {
+    "id": "sp",
+    "name": "Socialistische Partij",
+    "short_name": "SP",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(a3689bb6-3914-4d5c-a6a8-42e24582e299)/Resource",
+    "color": null
+  },
+  {
+    "id": "volt",
+    "name": "Volt",
+    "short_name": "Volt",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(ae48391e-ce4d-47e0-86e3-ee310282f66f)/Resource",
+    "color": null
+  },
+  {
+    "id": "vvd",
+    "name": "Volkspartij voor Vrijheid en Democratie",
+    "short_name": "VVD",
+    "logo_url": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie(7476e97a-3243-4122-9df6-ba7d82a5279b)/Resource",
+    "color": null
+  }
+]

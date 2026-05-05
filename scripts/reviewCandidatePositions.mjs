@@ -2,13 +2,13 @@
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CANDIDATE_POSITIONS } from "../src/data/candidatePositions.js";
-import { PARTY_POSITIONS } from "../src/data/partyPositions.js";
+import { listApprovedPositions } from "../src/dataAccess/positions.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, "..");
 const outputPath = resolve(projectRoot, "src/data/reviewedPositionImports.json");
 
-const existingIds = new Set(PARTY_POSITIONS.map((position) => position.id));
+const existingIds = new Set(listApprovedPositions().map((position) => position.id));
 const approved = CANDIDATE_POSITIONS.filter((candidate) => candidate.status === "approved");
 const rejected = CANDIDATE_POSITIONS.filter((candidate) => candidate.status === "rejected");
 const pending = CANDIDATE_POSITIONS.filter((candidate) => !["approved", "rejected"].includes(candidate.status));
