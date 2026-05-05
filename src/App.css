@@ -69,28 +69,28 @@
     linear-gradient(135deg, rgba(21, 23, 25, 0.12), rgba(31, 58, 95, 0.02)),
     radial-gradient(circle at 82% 42%, rgba(197, 138, 42, 0.36), transparent 22%),
     linear-gradient(120deg, rgba(31, 58, 95, 0.15), rgba(21, 23, 25, 0.66)),
-    url("/src/assets/images/kamerzaal.jpg");
+    url("./assets/images/kamerzaal.jpg");
 }
 
 .hero-slide-bg.tone-votes {
   background:
     radial-gradient(circle at 78% 32%, rgba(231, 238, 247, 0.28), transparent 24%),
     linear-gradient(120deg, rgba(31, 58, 95, 0.22), rgba(21, 23, 25, 0.58)),
-    url("/src/assets/images/motion-bg.jpg");
+    url("./assets/images/motion-bg.jpg");
 }
 
 .hero-slide-bg.tone-truth {
   background:
     radial-gradient(circle at 80% 44%, rgba(197, 138, 42, 0.22), transparent 26%),
     linear-gradient(120deg, rgba(31, 58, 95, 0.2), rgba(21, 23, 25, 0.66)),
-    url("/src/assets/images/brief-bg.jpg");
+    url("./assets/images/brief-bg.jpg");
 }
 
 .hero-slide-bg.tone-evidence {
   background:
     radial-gradient(circle at 82% 36%, rgba(231, 238, 247, 0.32), transparent 27%),
     linear-gradient(120deg, rgba(31, 58, 95, 0.24), rgba(21, 23, 25, 0.62)),
-    url("/src/assets/images/budget-bg.jpg");
+    url("./assets/images/budget-bg.jpg");
 }
 
 .hero-slide-overlay {
@@ -953,7 +953,7 @@
 }
 
 .kamer-item {
-  --zaak-bg: url("/kamerzaal.jpg");
+  --zaak-bg: url("./assets/images/kamerzaal.jpg");
   background: #596166;
   border: 1px solid rgba(24, 37, 31, 0.16);
   border-radius: 4px;
@@ -963,28 +963,28 @@
 }
 
 .zaak-type-wetgeving {
-  --zaak-bg: url("/kamerzaal.jpg");
+  --zaak-bg: url("./assets/images/kamerzaal.jpg");
 }
 
 .zaak-type-motie {
-  --zaak-bg: url("/motion-bg.jpg");
+  --zaak-bg: url("./assets/images/motion-bg.jpg");
 }
 
 .zaak-type-amendement {
-  --zaak-bg: url("/amendment-bg.jpg");
+  --zaak-bg: url("./assets/images/amendment-bg.jpg");
 }
 
 .zaak-type-begroting {
-  --zaak-bg: url("/budget-bg.jpg");
+  --zaak-bg: url("./assets/images/budget-bg.jpg");
 }
 
 .zaak-type-brief,
 .zaak-type-kamerbrief {
-  --zaak-bg: url("/brief-bg.jpg");
+  --zaak-bg: url("./assets/images/brief-bg.jpg");
 }
 
 .zaak-type-overig {
-  --zaak-bg: url("/kamerzaal.jpg");
+  --zaak-bg: url("./assets/images/kamerzaal.jpg");
 }
 
 .kamer-item.has-votes {
