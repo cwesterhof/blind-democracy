@@ -34,8 +34,8 @@ function BlindTestPage({ partyReliability = [], setPage }) {
     const [activeDataTab, setActiveDataTab] = useState(DATA_TABS[0].id);
     const [expandedPositionId, setExpandedPositionId] = useState(null);
 
-    const sourcesById = mapSourcesById();
-    const importedByDossier = mapImportedDossiersById();
+    const sourcesById = useMemo(() => mapSourcesById(), []);
+    const importedByDossier = useMemo(() => mapImportedDossiersById(), []);
 
     const activeDossier = useMemo(
         () => listDossiers().find((dossier) => dossier.id === activeDossierId) ?? getDefaultDossier(),
@@ -1508,8 +1508,8 @@ function App() {
 function TopicsPage() {
     const [selectedDossierId, setSelectedDossierId] = useState(getDefaultDossier().id);
     const [activeTab, setActiveTab] = useState("standpunten");
-    const sourcesById = mapSourcesById();
-    const importedByDossier = mapImportedDossiersById();
+    const sourcesById = useMemo(() => mapSourcesById(), []);
+    const importedByDossier = useMemo(() => mapImportedDossiersById(), []);
     const selectedDossier = listDossiers().find((dossier) => dossier.id === selectedDossierId) ?? getDefaultDossier();
     const positions = getBlindPositionsForDossier(selectedDossier);
     const importedDossier = importedByDossier[selectedDossier.id];
@@ -1787,7 +1787,7 @@ function MemberKnowledgeCard({ item }) {
                 <h3>Wat weten we:</h3>
                 {checklist.map((entry) => (
                     <div className={entry.available ? "known" : "unknown"} key={entry.id}>
-                        <span aria-hidden="true">{entry.available ? "?" : "?"}</span>
+                        <span aria-hidden="true">{entry.available ? "✓" : "✗"}</span>
                         <p>{entry.text}</p>
                     </div>
                 ))}
@@ -2522,7 +2522,7 @@ function buildApprovedPositionsFromReview(reviewItems) {
 
 function PromiseVoteReviewPage({ embedded = false }) {
     const [selectedDossierId, setSelectedDossierId] = useState("all");
-    const statementItems = buildPromiseVoteStatementItems();
+    const statementItems = useMemo(() => buildPromiseVoteStatementItems(), []);
     const filteredItems = selectedDossierId === "all"
         ? statementItems
         : statementItems.filter((item) => item.dossierId === selectedDossierId);
@@ -2776,10 +2776,10 @@ function LieDetectorPage() {
 }
 
 function verdictIcon(verdict) {
-    if (verdict === "broken") return "?";
-    if (verdict === "kept") return "?";
-    if (verdict === "mixed") return "?";
-    return "•";
+    if (verdict === "broken") return "✗";  // ✗
+    if (verdict === "kept") return "✓";    // ✓
+    if (verdict === "mixed") return "~";   // ~
+    return "•";                            // •
 }
 
 function voteLabel(vote) {
