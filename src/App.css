@@ -5213,7 +5213,19 @@
     }
 
 @media (max-width: 768px) {
-    .platform-nav > .language-switcher {
+    .desktop-nav .language-switcher {
         display: none;
+    }
+
+    .mobile-menu-language {
+        padding: 8px 4px 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 4px;
+    }
+
+    .mobile-menu-language .language-switcher {
+        margin-left: 0;
+        margin-right: 0;
+        justify-content: center;
     }
 }

@@ -124,9 +124,8 @@ function App() {
                             {t(`nav.${item.id}`)}
                         </button>
                     ))}
+                    <LanguageSwitcher />
                 </div>
-
-                <LanguageSwitcher />
 
                 {mobileNavOpen && (
                     <>
