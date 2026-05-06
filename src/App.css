@@ -4878,15 +4878,40 @@
   }
 
   .mobile-menu-panel {
-    background: rgba(15, 17, 19, 0.28);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: rgba(15, 17, 19, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 14px;
     box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
     display: grid;
     gap: 6px;
     grid-column: 1 / -1;
+    margin: 0;
     padding: 8px;
     z-index: 50;
+  }
+
+  .mobile-menu-item {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 16px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .mobile-menu-item.active {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-menu-item:hover {
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .platform-tab {
@@ -5218,14 +5243,26 @@
     }
 
     .mobile-menu-language {
-        padding: 8px 4px 4px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        margin-top: 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        margin-top: 8px;
+        padding: 12px 8px 8px;
     }
 
     .mobile-menu-language .language-switcher {
+        justify-content: center;
         margin-left: 0;
         margin-right: 0;
-        justify-content: center;
+    }
+
+    .mobile-menu-language .language-switcher button {
+        color: white;
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .mobile-menu-language .language-switcher button.active {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+        color: white;
     }
 }

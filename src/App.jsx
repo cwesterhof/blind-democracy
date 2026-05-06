@@ -100,17 +100,9 @@ function App() {
                     onClick={() => setMobileNavOpen((current) => !current)}
                     type="button"
                 >
-                    {mobileNavOpen ? (
-                        <span aria-hidden="true" style={{ fontSize: "20px" }}>
-                            ✕
-                        </span>
-                    ) : (
-                        <>
-                            <span aria-hidden="true" />
-                            <span aria-hidden="true" />
-                            <span aria-hidden="true" />
-                        </>
-                    )}
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
                 </button>
 
                 <div className="desktop-nav" id="primary-navigation">
