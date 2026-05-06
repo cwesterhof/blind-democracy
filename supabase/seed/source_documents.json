@@ -1,0 +1,223 @@
+[
+  {
+    "id": "source-d66-nieuwe-energie-voor-nederland",
+    "kind": "party_program",
+    "title": "Nieuwe energie voor Nederland",
+    "url": "https://dnpprepo.ub.rug.nl/87786/7/D66%20Verkiezingsprogramma%202023-2027.pdf",
+    "party_id": "d66",
+    "politician_id": null,
+    "published_at": "2023-09-23",
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": 52,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-cda-recht-doen",
+    "kind": "party_program",
+    "title": "Recht doen",
+    "url": "https://dnpprepo.ub.rug.nl/87714/7/CDA%20Verkiezingsprogramma%202023-2027.pdf",
+    "party_id": "cda",
+    "politician_id": null,
+    "published_at": "2023-09-23",
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": 12,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-vvd-ruimte-geven-grenzen-stellen",
+    "kind": "party_program",
+    "title": "Ruimte geven. Grenzen stellen.",
+    "url": "https://www.vvd.nl/wp-content/uploads/2023/10/Verkiezingsprogramma-VVD-2023-2027.pdf",
+    "party_id": "vvd",
+    "politician_id": null,
+    "published_at": "2023-09-23",
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": 55,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-volt-toekomst-nu-een-europees-verhaal-van-optimisme",
+    "kind": "party_program",
+    "title": "Toekomst, nu. Een Europees verhaal van optimisme",
+    "url": "https://dnpprepo.ub.rug.nl/87719/7/VoltNL%20Verkiezingsprogramma%202023.pdf",
+    "party_id": "volt",
+    "politician_id": null,
+    "published_at": "2023-09-23",
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": 3,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-groenlinks-pvda-samen-voor-een-hoopvolle-toekomst",
+    "kind": "party_program",
+    "title": "Samen voor een hoopvolle toekomst",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "groenlinks-pvda",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-vvd-ruimte-geven-grenzen-stellen",
+    "kind": "party_program",
+    "title": "Ruimte geven. Grenzen stellen",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "vvd",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-cda-recht-doen",
+    "kind": "party_program",
+    "title": "Recht doen",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "cda",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-pvv-nederland-weer-op-1",
+    "kind": "party_program",
+    "title": "Nederland weer op 1",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "pvv",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-d66-nieuwe-energie-voor-nederland",
+    "kind": "party_program",
+    "title": "Nieuwe energie voor Nederland",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "d66",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-bbb-van-vertrouwenscrisis-naar-noaberstaat",
+    "kind": "party_program",
+    "title": "Van vertrouwenscrisis naar noaberstaat",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "bbb",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-volt-toekomst-nu",
+    "kind": "party_program",
+    "title": "Toekomst, nu.",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "volt",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-sp-nu-de-mensen",
+    "kind": "party_program",
+    "title": "Nu de mensen",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "sp",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  },
+  {
+    "id": "source-fvd-het-programma-van-hoop-optimisme-en-herstel-2023-2027",
+    "kind": "party_program",
+    "title": "Het programma van hoop, optimisme en herstel 2023-2027",
+    "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023",
+    "party_id": "fvd",
+    "politician_id": null,
+    "published_at": null,
+    "raw_storage_path": null,
+    "raw_text": null,
+    "checksum": null,
+    "metadata": {
+      "originalType": "verkiezingsprogramma",
+      "page": null,
+      "importMode": "local-seed"
+    }
+  }
+]

@@ -7,8 +7,27 @@
     "promise": "Stoppen met duur nationaal klimaatbeleid.",
     "vote_title": "Vaststelling begrotingsstaat Klimaatfonds 2026",
     "verdict": "kept",
-    "severity": 1,
+    "severity": 0,
     "explanation": "Tegenstemmen bij de begrotingsstaat van het Klimaatfonds past bij de belofte om nationaal klimaatbeleid en klimaatuitgaven af te remmen.",
+    "raw_check": {
+      "promiseOwnerType": "party",
+      "promiseOwnerId": "fvd",
+      "voteLevel": "party",
+      "voteActorId": "fvd",
+      "evidenceLevel": "direct",
+      "promiseSource": {
+        "title": "Verkiezingsprogramma FVD 2023",
+        "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+      },
+      "vote": {
+        "title": "Vaststelling begrotingsstaat Klimaatfonds 2026",
+        "level": "party",
+        "actorId": "fvd",
+        "voted": "against",
+        "date": "2026-05-04",
+        "sourceUrl": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(c519746c-8d25-4f43-9230-0f957581f9a3)"
+      }
+    },
     "review_status": "approved"
   },
   {
@@ -19,8 +38,27 @@
     "promise": "Meer woningen bouwen en procedures op de woningmarkt beter laten werken.",
     "vote_title": "Wet toekomstbestendige huurcommissie",
     "verdict": "kept",
-    "severity": 1,
+    "severity": 0,
     "explanation": "Voorstemmen bij de Wet toekomstbestendige huurcommissie sluit aan bij de belofte om procedures rond huur en woningmarkt werkbaarder te maken.",
+    "raw_check": {
+      "promiseOwnerType": "party",
+      "promiseOwnerId": "vvd",
+      "voteLevel": "party",
+      "voteActorId": "vvd",
+      "evidenceLevel": "direct",
+      "promiseSource": {
+        "title": "Verkiezingsprogramma VVD 2023",
+        "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+      },
+      "vote": {
+        "title": "Wet toekomstbestendige huurcommissie",
+        "level": "party",
+        "actorId": "vvd",
+        "voted": "for",
+        "date": "2026-04-21",
+        "sourceUrl": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(56cc4a04-48c0-42b2-9fb1-a4911a71faa6)"
+      }
+    },
     "review_status": "approved"
   },
   {
@@ -31,8 +69,27 @@
     "promise": "Snellere procedures, betere Europese samenwerking en een juridisch houdbaar migratiestelsel.",
     "vote_title": "Wet invoering tweestatusstelsel",
     "verdict": "mixed",
-    "severity": 1,
+    "severity": 2,
     "explanation": "Tegenstemmen bij aanscherping van nareis en invoering van een tweestatusstelsel past deels bij een juridisch terughoudender migratielijn, maar de koppeling met Europese verdeling blijft inhoudelijk breder dan deze ene stemming.",
+    "raw_check": {
+      "promiseOwnerType": "party",
+      "promiseOwnerId": "d66",
+      "voteLevel": "party",
+      "voteActorId": "d66",
+      "evidenceLevel": "direct",
+      "promiseSource": {
+        "title": "Verkiezingsprogramma D66 2023",
+        "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+      },
+      "vote": {
+        "title": "Wet invoering tweestatusstelsel",
+        "level": "party",
+        "actorId": "d66",
+        "voted": "against",
+        "date": "2026-04-21",
+        "sourceUrl": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(5ac89466-e75a-489d-a74e-217222177483)"
+      }
+    },
     "review_status": "approved"
   },
   {
@@ -43,8 +100,27 @@
     "promise": "Asielinstroom beperken en nareisregels aanscherpen.",
     "vote_title": "Wet invoering tweestatusstelsel",
     "verdict": "kept",
-    "severity": 1,
+    "severity": 0,
     "explanation": "Voorstemmen bij een tweestatusstelsel en strengere nareisvoorwaarden sluit aan bij de belofte om asielbeleid verder aan te scherpen.",
+    "raw_check": {
+      "promiseOwnerType": "party",
+      "promiseOwnerId": "pvv",
+      "voteLevel": "party",
+      "voteActorId": "pvv",
+      "evidenceLevel": "direct",
+      "promiseSource": {
+        "title": "Verkiezingsprogramma PVV 2023",
+        "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+      },
+      "vote": {
+        "title": "Wet invoering tweestatusstelsel",
+        "level": "party",
+        "actorId": "pvv",
+        "voted": "for",
+        "date": "2026-04-21",
+        "sourceUrl": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(5ac89466-e75a-489d-a74e-217222177483)"
+      }
+    },
     "review_status": "approved"
   },
   {
@@ -55,8 +131,27 @@
     "promise": "Huurders sterker beschermen en publieke regie op betaalbaar wonen vergroten.",
     "vote_title": "Wet toekomstbestendige huurcommissie",
     "verdict": "kept",
-    "severity": 1,
+    "severity": 0,
     "explanation": "Voorstemmen bij versterking en toekomstbestendigheid van huurcommissieprocedures sluit aan bij een lijn waarin huurdersbescherming centraal staat.",
+    "raw_check": {
+      "promiseOwnerType": "party",
+      "promiseOwnerId": "groenlinks-pvda",
+      "voteLevel": "party",
+      "voteActorId": "groenlinks-pvda",
+      "evidenceLevel": "direct",
+      "promiseSource": {
+        "title": "Verkiezingsprogramma GroenLinks-PvdA 2023",
+        "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+      },
+      "vote": {
+        "title": "Wet toekomstbestendige huurcommissie",
+        "level": "party",
+        "actorId": "groenlinks-pvda",
+        "voted": "for",
+        "date": "2026-04-21",
+        "sourceUrl": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(56cc4a04-48c0-42b2-9fb1-a4911a71faa6)"
+      }
+    },
     "review_status": "approved"
   },
   {
@@ -67,8 +162,27 @@
     "promise": "Klimaatbeleid moet betaalbaar blijven en rekening houden met landbouw, regio en uitvoerbaarheid.",
     "vote_title": "Vaststelling begrotingsstaat Klimaatfonds 2026",
     "verdict": "kept",
-    "severity": 1,
+    "severity": 0,
     "explanation": "Tegenstemmen bij de begrotingsstaat van het Klimaatfonds past bij een lijn die klimaatuitgaven kritisch weegt op betaalbaarheid en uitvoerbaarheid.",
+    "raw_check": {
+      "promiseOwnerType": "party",
+      "promiseOwnerId": "bbb",
+      "voteLevel": "party",
+      "voteActorId": "bbb",
+      "evidenceLevel": "direct",
+      "promiseSource": {
+        "title": "Verkiezingsprogramma BBB 2023",
+        "url": "https://www.rug.nl/research/dnpp/verkiezingen/tweede-kamer/verkiezingsprogrammas-tk2023"
+      },
+      "vote": {
+        "title": "Vaststelling begrotingsstaat Klimaatfonds 2026",
+        "level": "party",
+        "actorId": "bbb",
+        "voted": "against",
+        "date": "2026-05-04",
+        "sourceUrl": "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(c519746c-8d25-4f43-9230-0f957581f9a3)"
+      }
+    },
     "review_status": "approved"
   }
 ]

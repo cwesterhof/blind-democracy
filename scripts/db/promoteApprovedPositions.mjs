@@ -54,7 +54,8 @@ function normalizeApprovedPosition(position) {
             title: position.source?.title ?? "Goedgekeurde review-import",
             url: position.source?.url ?? "",
             page: position.source?.page ?? null,
-            quote: position.source?.quote ?? null
+            quote: position.source?.quote ?? null,
+            politicianId: position.source?.politicianId ?? position.politicianId ?? null
         },
         confidence: position.confidence ?? "sourceMapped",
         reviewStatus: position.reviewStatus ?? "Goedgekeurd via lokale review-import.",

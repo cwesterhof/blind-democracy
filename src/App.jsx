@@ -5,7 +5,14 @@ import { mapImportedDossiersById } from "./dataAccess/kamerVotes.js";
 import { RELIABILITY_DIMENSIONS, buildMemberReliability, buildPartyReliability } from "./data/reliability.js";
 import { POSITION_CONFIDENCE, listApprovedPositions, listApprovedPositionsForDossier } from "./dataAccess/positions.js";
 import { CANDIDATE_POSITIONS, CANDIDATE_STATUSES } from "./data/candidatePositions.js";
-import { PROMISE_CHECKS, PROMISE_VERDICTS } from "./data/promiseChecks";
+import {
+    PROMISE_CHECKS,
+    PROMISE_EVIDENCE_LEVELS,
+    PROMISE_OWNER_TYPES,
+    PROMISE_VERDICTS,
+    PROMISE_VOTE_LEVELS
+} from "./data/promiseChecks";
+import members from "./data/members.json";
 import Footer from "./components/Footer";
 import navLogo from "/favicon.svg";
 import HeroSlider from "./components/HeroSlider";
@@ -844,6 +851,71 @@ function formatDate(dateValue) {
     }).format(new Date(dateValue));
 }
 
+function formatDaysSince(dateValue) {
+    if (!dateValue) return "Nog onbekend";
+
+    const daysOpen = daysSince(dateValue);
+
+    return `${daysOpen} ${daysOpen === 1 ? "dag" : "dagen"}`;
+}
+
+function daysSince(dateValue) {
+    if (!dateValue) return null;
+
+    const startDate = new Date(dateValue);
+    const today = new Date();
+    const startDay = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+    const currentDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    return Math.max(0, Math.floor((currentDay - startDay) / 86400000));
+}
+
+function getSourcePageUrl(source) {
+    if (!source?.url || !source?.page) return source?.url ?? "#";
+
+    return `${source.url}#page=${source.page}`;
+}
+
+function extractionMethodLabel(method) {
+    const labels = {
+        "manual-seed": "Handmatig ingevoerd",
+        manual: "Handmatig ingevoerd",
+        ai: "Automatisch voorgesteld",
+        "ai-extraction": "Automatisch voorgesteld",
+        import: "Geimporteerd uit brondata",
+        "local-seed": "Voorbeelddata"
+    };
+
+    return labels[method] ?? "Herkomst onbekend";
+}
+
+function extractionConfidenceLabel(confidence) {
+    const labels = {
+        high: "Hoge zekerheid",
+        medium: "Middelmatige zekerheid",
+        low: "Lage zekerheid",
+        weak: "Zwakke koppeling"
+    };
+
+    return labels[confidence] ?? "Zekerheid onbekend";
+}
+
+function extractionSummaryLabel(extraction) {
+    return `${extractionMethodLabel(extraction?.method)} · ${extractionConfidenceLabel(extraction?.confidence)}`;
+}
+
+function positionDirectionLabel(position) {
+    const labels = {
+        for: "Voor",
+        against: "Tegen",
+        neutral: "Neutraal",
+        mixed: "Gemengd",
+        unknown: "Richting nog onbekend"
+    };
+
+    return labels[position] ?? "Richting nog onbekend";
+}
+
 function getChosenPositions(answers, resultsRevealed) {
     if (!resultsRevealed) return [];
 
@@ -1203,6 +1275,53 @@ const PROMISE_REVIEW_STATUSES = {
     missing: "Stem ontbreekt",
     uncoded: "Belofte ontbreekt"
 };
+
+const REVIEW_AGE_FILTERS = [
+    { id: "all", label: "Alle looptijden" },
+    { id: "today", label: "Vandaag ontvangen" },
+    { id: "oneToThree", label: "1-3 dagen open" },
+    { id: "fourToSeven", label: "4-7 dagen open" },
+    { id: "older", label: "Langer dan 7 dagen" }
+];
+
+function reviewAgeMatches(candidate, ageFilter) {
+    const daysOpen = daysSince(candidate.receivedForReviewAt);
+
+    if (daysOpen === null) return ageFilter === "unknown";
+    if (ageFilter === "today") return daysOpen === 0;
+    if (ageFilter === "oneToThree") return daysOpen >= 1 && daysOpen <= 3;
+    if (ageFilter === "fourToSeven") return daysOpen >= 4 && daysOpen <= 7;
+    if (ageFilter === "older") return daysOpen > 7;
+
+    return true;
+}
+
+function promiseOwnerLabel(item) {
+    if (item.promiseOwnerType === "person") {
+        return item.politician ?? item.promiseOwnerId ?? "Kamerlid";
+    }
+
+    return item.party;
+}
+
+function promiseEvidenceNote(item) {
+    if (item.promiseOwnerType === "person" && item.vote?.level === "party") {
+        return "Persoonlijke belofte, maar alleen fractiestem vastgesteld.";
+    }
+
+    if (item.promiseOwnerType === "person" && item.vote?.level === "person") {
+        return "Persoonlijke belofte vergeleken met persoonlijke stem.";
+    }
+
+    return "Partijbelofte vergeleken met fractiestem.";
+}
+
+const REVIEW_STATUS_GROUPS = [
+    { id: "needsReview", label: "Review nodig" },
+    { id: "needsSource", label: "Meer bron nodig" },
+    { id: "approved", label: "Goedgekeurd" },
+    { id: "rejected", label: "Afgewezen" }
+];
 
 const REVIEW_QUEUE_STORAGE_KEY = "blind-democracy.review-queue.v1";
 const ADMIN_MODE_STORAGE_KEY = "blind-democracy.admin-mode.v1";
@@ -1731,17 +1850,48 @@ function ReliabilityGauge({ score, label }) {
 
 function PositionReviewPage() {
     const [statusFilter, setStatusFilter] = useState("all");
+    const [partyFilter, setPartyFilter] = useState("all");
+    const [dossierFilter, setDossierFilter] = useState("all");
+    const [ageFilter, setAgeFilter] = useState("all");
     const [reviewState, setReviewState] = useState(readStoredReviewQueue);
     const dossierById = mapDossiersById();
+    const memberById = useMemo(() => new Map(members.map((member) => [member.id, member])), []);
+    const membersByParty = useMemo(() => {
+        const grouped = new Map();
+
+        members.forEach((member) => {
+            if (!grouped.has(member.party)) grouped.set(member.party, []);
+            grouped.get(member.party).push(member);
+        });
+
+        grouped.forEach((partyMembers) => {
+            partyMembers.sort((a, b) => a.name.localeCompare(b.name, "nl"));
+        });
+
+        return grouped;
+    }, []);
     const reviewItems = CANDIDATE_POSITIONS.map((candidate) => applyCandidateReviewEdits({
         candidate,
         edits: reviewState.edits[candidate.id],
         effectiveStatus: reviewState.decisions[candidate.id] ?? candidate.status,
         effectiveNotes: reviewState.notes[candidate.id] ?? candidate.reviewerNotes
     }));
-    const filteredItems = statusFilter === "all"
-        ? reviewItems
-        : reviewItems.filter((candidate) => candidate.effectiveStatus === statusFilter);
+    const partyOptions = [...new Set(reviewItems.map((candidate) => candidate.party))].sort((a, b) => a.localeCompare(b, "nl"));
+    const dossierOptions = [...new Set(reviewItems.map((candidate) => candidate.dossierId))]
+        .map((dossierId) => dossierById[dossierId] ?? { id: dossierId, title: dossierId })
+        .sort((a, b) => a.title.localeCompare(b.title, "nl"));
+    const filteredItems = reviewItems.filter((candidate) => {
+        const matchesStatus = statusFilter === "all" || candidate.effectiveStatus === statusFilter;
+        const matchesParty = partyFilter === "all" || candidate.party === partyFilter;
+        const matchesDossier = dossierFilter === "all" || candidate.dossierId === dossierFilter;
+        const matchesAge = ageFilter === "all" || reviewAgeMatches(candidate, ageFilter);
+
+        return matchesStatus && matchesParty && matchesDossier && matchesAge;
+    });
+    const groupedReviewItems = REVIEW_STATUS_GROUPS.map((group) => ({
+        ...group,
+        items: filteredItems.filter((candidate) => candidate.effectiveStatus === group.id)
+    }));
     const summary = reviewItems.reduce((acc, candidate) => {
         acc[candidate.effectiveStatus] = (acc[candidate.effectiveStatus] ?? 0) + 1;
         return acc;
@@ -1846,6 +1996,7 @@ function PositionReviewPage() {
         if (field === "source.quote") return candidate.source?.quote ?? "";
         if (field === "source.page") return candidate.source?.page ?? "";
         if (field === "reviewerNotes") return candidate.reviewerNotes ?? "";
+        if (field === "politicianId") return candidate.politicianId ?? "";
 
         return candidate[field] ?? "";
     }
@@ -1856,13 +2007,26 @@ function PositionReviewPage() {
 
     return (
         <main className="reliability-page review-page">
-            <header className="page-heading">
-                <p className="eyebrow">Standpunten-review</p>
-                <h1>Review queue</h1>
-                <p>
-                    Kandidaten komen uit programma-extractie of handmatige invoer. De review gebeurt hier eerst
-                    lokaal: niets wordt live gezet totdat een standpunt expliciet is goedgekeurd.
-                </p>
+            <header className="page-heading review-page-heading">
+                <div>
+                    <p className="eyebrow">Standpunten-review</p>
+                    <h1>Review queue</h1>
+                    <p>
+                        Kandidaten komen uit programma-extractie of handmatige invoer. De review gebeurt hier eerst
+                        lokaal: niets wordt live gezet totdat een standpunt expliciet is goedgekeurd.
+                    </p>
+                </div>
+                <div className="review-export-actions" aria-label="Review exportacties">
+                    <a download="blind-democracy-review-report.json" href={reviewReportUrl}>
+                        Exporteer reviewrapport
+                    </a>
+                    <a download="blind-democracy-approved-positions.json" href={approvedPositionsUrl}>
+                        Exporteer approved positions
+                    </a>
+                    <button onClick={resetLocalReview} type="button">
+                        Reset lokale review
+                    </button>
+                </div>
             </header>
 
             <section className="review-summary">
@@ -1884,76 +2048,127 @@ function PositionReviewPage() {
                 </article>
             </section>
 
-            <section className="review-workflow-note">
-                <div>
-                    <p className="eyebrow">Publicatiegrens</p>
-                    <strong>Alleen goedgekeurde standpunten mogen later naar approved_positions.</strong>
-                    <span>Deze lokale queue verandert de publieke blind test nog niet.</span>
-                </div>
-                <div className="review-export-actions">
-                    <a download="blind-democracy-review-report.json" href={reviewReportUrl}>
-                        Exporteer reviewrapport
-                    </a>
-                    <a download="blind-democracy-approved-positions.json" href={approvedPositionsUrl}>
-                        Exporteer approved positions
-                    </a>
-                    <button onClick={resetLocalReview} type="button">
-                        Reset lokale review
-                    </button>
-                </div>
+            <section className="review-filter-panel" aria-label="Filter kandidaatstandpunten">
+                <label>
+                    <span>Status</span>
+                    <select onChange={(event) => setStatusFilter(event.target.value)} value={statusFilter}>
+                        <option value="all">Alle statussen</option>
+                        {REVIEW_STATUS_GROUPS.map((status) => (
+                            <option key={status.id} value={status.id}>{status.label}</option>
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    <span>Partij</span>
+                    <select onChange={(event) => setPartyFilter(event.target.value)} value={partyFilter}>
+                        <option value="all">Alle partijen</option>
+                        {partyOptions.map((party) => (
+                            <option key={party} value={party}>{party}</option>
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    <span>Dossier</span>
+                    <select onChange={(event) => setDossierFilter(event.target.value)} value={dossierFilter}>
+                        <option value="all">Alle dossiers</option>
+                        {dossierOptions.map((dossier) => (
+                            <option key={dossier.id} value={dossier.id}>{dossier.title}</option>
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    <span>Looptijd</span>
+                    <select onChange={(event) => setAgeFilter(event.target.value)} value={ageFilter}>
+                        {REVIEW_AGE_FILTERS.map((filter) => (
+                            <option key={filter.id} value={filter.id}>{filter.label}</option>
+                        ))}
+                    </select>
+                </label>
+                <button
+                    className="review-filter-reset"
+                    onClick={() => {
+                        setStatusFilter("all");
+                        setPartyFilter("all");
+                        setDossierFilter("all");
+                        setAgeFilter("all");
+                    }}
+                    type="button"
+                >
+                    Filters wissen
+                </button>
             </section>
 
-            <div className="dossier-filter review-filter" aria-label="Filter kandidaatstandpunten">
-                <button className={statusFilter === "all" ? "active" : ""} onClick={() => setStatusFilter("all")} type="button">
-                    Alles
-                </button>
-                <button className={statusFilter === "needsReview" ? "active" : ""} onClick={() => setStatusFilter("needsReview")} type="button">
-                    Review nodig
-                </button>
-                <button className={statusFilter === "approved" ? "active" : ""} onClick={() => setStatusFilter("approved")} type="button">
-                    Goedgekeurd
-                </button>
-                <button className={statusFilter === "needsSource" ? "active" : ""} onClick={() => setStatusFilter("needsSource")} type="button">
-                    Meer bron nodig
-                </button>
-                <button className={statusFilter === "rejected" ? "active" : ""} onClick={() => setStatusFilter("rejected")} type="button">
-                    <span>Afgewezen</span>
-                </button>
-            </div>
+            <section className="review-status-board">
+                {groupedReviewItems.map((group) => (
+                    <section className={`review-status-column status-${group.id}`} key={group.id}>
+                        <header className="review-status-heading">
+                            <div>
+                                <h2>{group.label}</h2>
+                                <span>{group.items.length} items</span>
+                            </div>
+                        </header>
 
-            <section className="candidate-grid">
-                {filteredItems.map((candidate) => (
-                    <CandidateReviewCard
-                        candidate={candidate}
-                        dossier={dossierById[candidate.dossierId]}
-                        history={(reviewState.history ?? []).filter((entry) => entry.candidateId === candidate.id)}
-                        key={candidate.id}
-                        onClearHistory={clearCandidateHistory}
-                        onFieldChange={updateCandidateField}
-                        onNoteChange={updateCandidateNote}
-                        onStatusChange={setCandidateStatus}
-                    />
+                        <div className="review-status-list">
+                            {group.items.length > 0 ? group.items.map((candidate) => (
+                                <CandidateReviewCard
+                                    candidate={candidate}
+                                    dossier={dossierById[candidate.dossierId]}
+                                    history={(reviewState.history ?? []).filter((entry) => entry.candidateId === candidate.id)}
+                                    key={candidate.id}
+                                    member={memberById.get(candidate.politicianId)}
+                                    onClearHistory={clearCandidateHistory}
+                                    onFieldChange={updateCandidateField}
+                                    onNoteChange={updateCandidateNote}
+                                    onStatusChange={setCandidateStatus}
+                                    partyMembers={membersByParty.get(candidate.party) ?? []}
+                                />
+                            )) : (
+                                <p className="review-empty-state">Geen items in deze status.</p>
+                            )}
+                        </div>
+                    </section>
                 ))}
             </section>
         </main>
     );
 }
 
-function CandidateReviewCard({ candidate, dossier, history, onClearHistory, onFieldChange, onNoteChange, onStatusChange }) {
+function CandidateReviewCard({ candidate, dossier, history, member, onClearHistory, onFieldChange, onNoteChange, onStatusChange, partyMembers }) {
     const hasQuote = Boolean(candidate.source?.quote);
     const hasPage = Boolean(candidate.source?.page);
     const sourceReady = hasQuote && hasPage;
+    const publicationDate = candidate.source?.publishedAt ? formatDate(candidate.source.publishedAt) : "Nog onbekend";
+    const receivedDate = candidate.receivedForReviewAt ? formatDate(candidate.receivedForReviewAt) : "Nog onbekend";
+    const reviewStatus = CANDIDATE_STATUSES[candidate.effectiveStatus] ?? candidate.effectiveStatus;
+    const attributionLabel = member ? `${member.name} (${member.party})` : "Partijbron / nog geen Kamerlid gekoppeld";
 
     return (
-        <article className={`candidate-card review-candidate status-${candidate.effectiveStatus}`}>
+        <details className={`candidate-card review-candidate status-${candidate.effectiveStatus}`}>
+            <summary className="review-item-summary">
+                <span className="review-party-name">{candidate.party}</span>
+                <span className="review-summary-copy">
+                    <strong>{candidate.statement}</strong>
+                    <small>{dossier?.title ?? candidate.dossierId}{candidate.issueId ? ` / ${candidate.issueId}` : ""}</small>
+                </span>
+            </summary>
+
+            <div className="review-item-detail">
             <div className="candidate-topline">
                 <div>
-                    <p className="eyebrow">{dossier?.title ?? candidate.dossierId}</p>
+                    <p className="eyebrow">{dossier?.title ?? candidate.dossierId}{candidate.issueId ? ` / ${candidate.issueId}` : ""}</p>
                     <h2>{candidate.party}</h2>
                 </div>
                 <span>{CANDIDATE_STATUSES[candidate.effectiveStatus] ?? candidate.effectiveStatus}</span>
             </div>
 
+            <div className="review-compact-meta" aria-label="Review metadata">
+                <span>{positionDirectionLabel(candidate.position)}</span>
+                <span>{extractionMethodLabel(candidate.extraction.method)}</span>
+                <span>{extractionConfidenceLabel(candidate.extraction.confidence)}</span>
+                <span>{sourceReady ? "Bron compleet" : "Bron incompleet"}</span>
+            </div>
+
+            <div className="review-card-body">
             <div className="review-proposal">
                 <p className="eyebrow">AI / import voorstel</p>
                 <label className="review-edit-field">
@@ -1968,7 +2183,7 @@ function CandidateReviewCard({ candidate, dossier, history, onClearHistory, onFi
                     <span>Uitleg</span>
                     <textarea
                         onChange={(event) => onFieldChange(candidate.id, "explanation", event.target.value)}
-                        rows="3"
+                        rows="2"
                         value={candidate.explanation}
                     />
                 </label>
@@ -2013,34 +2228,78 @@ function CandidateReviewCard({ candidate, dossier, history, onClearHistory, onFi
                         value={candidate.source?.quote ?? ""}
                     />
                 </label>
+                <label className="review-edit-field">
+                    <span>Gezegd/bevestigd door</span>
+                    <select
+                        onChange={(event) => onFieldChange(candidate.id, "politicianId", event.target.value)}
+                        value={candidate.politicianId ?? ""}
+                    >
+                        <option value="">Partijbron / geen Kamerlid gekoppeld</option>
+                        {partyMembers.map((partyMember) => (
+                            <option key={partyMember.id} value={partyMember.id}>
+                                {partyMember.name}
+                            </option>
+                        ))}
+                    </select>
+                </label>
             </div>
 
-            <dl className="review-evidence-grid">
-                <div>
-                    <dt>Dossier</dt>
-                    <dd>{dossier?.title ?? candidate.dossierId}</dd>
-                </div>
-                <div>
-                    <dt>Bron</dt>
-                    <dd><a href={candidate.source.url} rel="noreferrer" target="_blank">{candidate.source.title}</a></dd>
-                </div>
-                <div>
-                    <dt>Bronquote</dt>
-                    <dd>{candidate.source.quote ?? "Nog geen exacte quote gekoppeld"}</dd>
-                </div>
-                <div>
-                    <dt>Pagina</dt>
-                    <dd>{candidate.source.page ?? "Nog onbekend"}</dd>
-                </div>
-                <div>
-                    <dt>Extractie</dt>
-                    <dd>{candidate.extraction.method} · {candidate.extraction.confidence}</dd>
-                </div>
-                <div>
-                    <dt>Bronstatus</dt>
-                    <dd>{sourceReady ? "Quote en pagina aanwezig" : "Meer broncontrole nodig"}</dd>
-                </div>
-            </dl>
+            <aside className="review-metadata-panel" aria-label="Bron en reviewcontext">
+                <section className="review-metadata-section review-metadata-primary">
+                    <h3>Bron & validiteit</h3>
+                    <dl>
+                        <div>
+                            <dt>Bron</dt>
+                            <dd><a href={candidate.source.url} rel="noreferrer" target="_blank">{candidate.source.title}</a></dd>
+                        </div>
+                        <div>
+                            <dt>Pagina</dt>
+                            <dd>
+                                {candidate.source.page ?? "Nog onbekend"}
+                                {candidate.source.page && (
+                                    <a className="review-page-link" href={getSourcePageUrl(candidate.source)} rel="noreferrer" target="_blank">
+                                        Open pagina
+                                    </a>
+                                )}
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Bronquote aanwezig</dt>
+                            <dd>{hasQuote ? "Ja" : "Nee"}</dd>
+                        </div>
+                        <div>
+                            <dt>Gezegd/bevestigd door</dt>
+                            <dd>{attributionLabel}</dd>
+                        </div>
+                        <div>
+                            <dt>Herkomst voorstel</dt>
+                            <dd>{extractionSummaryLabel(candidate.extraction)}</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section className="review-metadata-section review-metadata-secondary">
+                    <h3>Review context</h3>
+                    <dl>
+                        <div>
+                            <dt>Ontvangen review</dt>
+                            <dd>{receivedDate}</dd>
+                        </div>
+                        <div>
+                            <dt>Open sinds</dt>
+                            <dd>{formatDaysSince(candidate.receivedForReviewAt)}</dd>
+                        </div>
+                        <div>
+                            <dt>Publicatie datum</dt>
+                            <dd>{publicationDate}</dd>
+                        </div>
+                        <div>
+                            <dt>Review status</dt>
+                            <dd>{reviewStatus}</dd>
+                        </div>
+                    </dl>
+                </section>
+            </aside>
 
             {!sourceReady && (
                 <p className="review-warning">
@@ -2056,6 +2315,7 @@ function CandidateReviewCard({ candidate, dossier, history, onClearHistory, onFi
                     value={candidate.effectiveNotes}
                 />
             </label>
+            </div>
 
             <details className="review-history">
                 <summary>Reviewlog · {history.length}</summary>
@@ -2092,7 +2352,8 @@ function CandidateReviewCard({ candidate, dossier, history, onClearHistory, onFi
                     Terug naar review
                 </button>
             </div>
-        </article>
+            </div>
+        </details>
     );
 }
 
@@ -2201,6 +2462,7 @@ function buildLocalReviewReport(reviewItems, summary, history = []) {
             id: candidate.id,
             dossierId: candidate.dossierId,
             party: candidate.party,
+            politicianId: candidate.politicianId ?? null,
             status: candidate.effectiveStatus,
             position: candidate.position ?? "unknown",
             statement: candidate.statement,
@@ -2211,7 +2473,8 @@ function buildLocalReviewReport(reviewItems, summary, history = []) {
                 title: candidate.source?.title,
                 url: candidate.source?.url,
                 page: candidate.source?.page ?? null,
-                quote: candidate.source?.quote ?? null
+                quote: candidate.source?.quote ?? null,
+                politicianId: candidate.politicianId ?? null
             },
             reviewLogs: history.filter((entry) => entry.candidateId === candidate.id)
         }))
@@ -2244,7 +2507,8 @@ function buildApprovedPositionsFromReview(reviewItems) {
                 title: candidate.source?.title ?? null,
                 url: candidate.source?.url ?? null,
                 page: candidate.source?.page ?? null,
-                quote: candidate.source?.quote ?? null
+                quote: candidate.source?.quote ?? null,
+                politicianId: candidate.politicianId ?? null
             },
             confidence: candidate.source?.quote && candidate.source?.page ? "sourceQuoted" : "sourceMapped",
             reviewStatus: "Goedgekeurd in lokale review queue; klaar voor approved_positions-import.",
@@ -2460,12 +2724,27 @@ function LieDetectorPage() {
                             <div className="candidate-topline">
                                 <div>
                                     <p className="eyebrow">{item.dossierId}</p>
-                                    <h2>{item.party}</h2>
+                                    <h2>{promiseOwnerLabel(item)}</h2>
                                 </div>
                                 <span className={`verdict-badge verdict-${item.verdict}`}>
                                     {verdictIcon(item.verdict)} {PROMISE_VERDICTS[item.verdict]}
                                 </span>
                             </div>
+
+                            <dl className="promise-context-grid">
+                                <div>
+                                    <dt>Belofte-eigenaar</dt>
+                                    <dd>{PROMISE_OWNER_TYPES[item.promiseOwnerType] ?? item.promiseOwnerType}</dd>
+                                </div>
+                                <div>
+                                    <dt>Stemniveau</dt>
+                                    <dd>{PROMISE_VOTE_LEVELS[item.vote?.level] ?? item.vote?.level ?? "Onbekend"}</dd>
+                                </div>
+                                <div>
+                                    <dt>Bewijssterkte</dt>
+                                    <dd>{PROMISE_EVIDENCE_LEVELS[item.evidenceLevel] ?? item.evidenceLevel ?? "Review nodig"}</dd>
+                                </div>
+                            </dl>
 
                             <strong>Belofte</strong>
                             <p>{item.promise}</p>
@@ -2476,6 +2755,7 @@ function LieDetectorPage() {
                             </p>
 
                             <p>{item.explanation}</p>
+                            <p className="promise-evidence-note">{promiseEvidenceNote(item)}</p>
 
                             <div className="promise-source-row">
                                 <a href={item.promiseSource.url} rel="noreferrer" target="_blank">

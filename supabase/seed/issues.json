@@ -1,0 +1,26 @@
+[
+  {
+    "id": "klimaatbeleid-uitvoerbaarheid",
+    "dossier_id": "klimaat",
+    "title": "Klimaatbeleid Uitvoerbaarheid",
+    "description": "Werkissue voor CDA: Klimaatbeleid moet haalbaar en betaalbaar zijn, met aandacht voor gezinnen, bedrijven en regio's."
+  },
+  {
+    "id": "klimaatneutraliteit-2040",
+    "dossier_id": "klimaat",
+    "title": "Klimaatneutraliteit 2040",
+    "description": "Werkissue voor Volt: Nederland en Europa moeten in 2040 klimaatneutraal zijn."
+  },
+  {
+    "id": "betaalbaar-bouwen",
+    "dossier_id": "wonen",
+    "title": "Betaalbaar Bouwen",
+    "description": "Werkissue voor D66: Meer betaalbare woningen bouwen, met nadruk op duurzame nieuwbouw en betere benutting van bestaande ruimte."
+  },
+  {
+    "id": "bouwprocedures",
+    "dossier_id": "wonen",
+    "title": "Bouwprocedures",
+    "description": "Werkissue voor VVD: Sneller bouwen door procedures en regels te verminderen."
+  }
+]

@@ -94,6 +94,29 @@ The first repository boundaries live in `src/dataAccess`:
 UI and scripts should prefer these modules over direct imports from `src/data`.
 Later these modules can switch from local JS/JSON data to Supabase reads.
 
+## Current Seed Export
+
+`npm run db:export-seeds` exports the local prototype data into `supabase/seed`:
+
+- `parties.json`
+- `politicians.json`
+- `dossiers.json`
+- `source_documents.json`
+- `extracted_passages.json`
+- `candidate_positions.json`
+- `approved_positions.json`
+- `kamer_votes.json`
+- `promise_checks.json`
+
+The export keeps deterministic text ids for editorial records such as source documents,
+candidate positions, approved positions, and promise checks. This makes review exports,
+promotion imports, and later database sync reproducible.
+
+At this stage `source_documents` records are created from known party-program sources.
+`extracted_passages` remains empty until exact source quotes and page references are
+available. That is intentional: the project should not claim passage-level evidence
+until a real quote has been captured and reviewed.
+
 ## Access Model
 
 The database scaffold already includes role-based RLS in

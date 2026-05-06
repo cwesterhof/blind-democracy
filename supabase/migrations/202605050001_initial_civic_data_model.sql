@@ -88,7 +88,7 @@ create table public.issues (
 );
 
 create table public.source_documents (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key default gen_random_uuid()::text,
   kind public.source_kind not null,
   title text not null,
   url text,
@@ -104,8 +104,8 @@ create table public.source_documents (
 );
 
 create table public.extracted_passages (
-  id uuid primary key default gen_random_uuid(),
-  source_document_id uuid not null references public.source_documents(id) on delete cascade,
+  id text primary key default gen_random_uuid()::text,
+  source_document_id text not null references public.source_documents(id) on delete cascade,
   dossier_id text references public.dossiers(id),
   issue_id text references public.issues(id),
   quote text not null,
@@ -118,7 +118,7 @@ create table public.extracted_passages (
 );
 
 create table public.candidate_positions (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key default gen_random_uuid()::text,
   dossier_id text not null references public.dossiers(id),
   issue_id text references public.issues(id),
   party_id text not null references public.parties(id),
@@ -129,8 +129,8 @@ create table public.candidate_positions (
   how text,
   pros text[] not null default '{}',
   cons text[] not null default '{}',
-  source_document_id uuid references public.source_documents(id),
-  source_passage_id uuid references public.extracted_passages(id),
+  source_document_id text references public.source_documents(id),
+  source_passage_id text references public.extracted_passages(id),
   source_quote text,
   confidence text not null default 'medium',
   review_status public.review_status not null default 'needs_human_review',
@@ -141,8 +141,8 @@ create table public.candidate_positions (
 );
 
 create table public.approved_positions (
-  id uuid primary key default gen_random_uuid(),
-  candidate_position_id uuid references public.candidate_positions(id),
+  id text primary key default gen_random_uuid()::text,
+  candidate_position_id text references public.candidate_positions(id),
   dossier_id text not null references public.dossiers(id),
   issue_id text references public.issues(id),
   party_id text not null references public.parties(id),
@@ -153,8 +153,8 @@ create table public.approved_positions (
   how text,
   pros text[] not null default '{}',
   cons text[] not null default '{}',
-  source_document_id uuid references public.source_documents(id),
-  source_passage_id uuid references public.extracted_passages(id),
+  source_document_id text references public.source_documents(id),
+  source_passage_id text references public.extracted_passages(id),
   source_quote text,
   approved_by text,
   approved_at timestamptz not null default now(),
@@ -185,12 +185,12 @@ create table public.kamer_votes (
 );
 
 create table public.promise_checks (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key default gen_random_uuid()::text,
   dossier_id text references public.dossiers(id),
   issue_id text references public.issues(id),
   party_id text references public.parties(id),
   politician_id text references public.politicians(id),
-  promise_position_id uuid references public.approved_positions(id),
+  promise_position_id text references public.approved_positions(id),
   kamer_vote_id uuid references public.kamer_votes(id),
   promise text not null,
   vote_title text,

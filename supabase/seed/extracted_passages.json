@@ -1,0 +1,50 @@
+[
+  {
+    "id": "passage-candidate-wonen-d66-betaalbaar-bouwen",
+    "source_document_id": "source-d66-nieuwe-energie-voor-nederland",
+    "dossier_id": "wonen",
+    "issue_id": "betaalbaar-bouwen",
+    "quote": "D66 wil voorkomen dat de bouw van betaalbare woningen stilvalt.",
+    "page_number": 52,
+    "start_offset": null,
+    "end_offset": null,
+    "extraction_method": "manual-seed",
+    "confidence": 0.85
+  },
+  {
+    "id": "passage-candidate-klimaat-cda-realistisch",
+    "source_document_id": "source-cda-recht-doen",
+    "dossier_id": "klimaat",
+    "issue_id": "klimaatbeleid-uitvoerbaarheid",
+    "quote": "Klimaatbeleid moet ambitieus, realistisch en sociaal zijn.",
+    "page_number": 12,
+    "start_offset": null,
+    "end_offset": null,
+    "extraction_method": "manual-seed",
+    "confidence": 0.85
+  },
+  {
+    "id": "passage-candidate-wonen-vvd-procedures-regels",
+    "source_document_id": "source-vvd-ruimte-geven-grenzen-stellen",
+    "dossier_id": "wonen",
+    "issue_id": "bouwprocedures",
+    "quote": "We zetten een mes in procedures en regels.",
+    "page_number": 55,
+    "start_offset": null,
+    "end_offset": null,
+    "extraction_method": "manual-seed",
+    "confidence": 0.85
+  },
+  {
+    "id": "passage-candidate-klimaat-volt-2040",
+    "source_document_id": "source-volt-toekomst-nu-een-europees-verhaal-van-optimisme",
+    "dossier_id": "klimaat",
+    "issue_id": "klimaatneutraliteit-2040",
+    "quote": "Nederland en de EU moeten klimaatneutraal zijn in 2040.",
+    "page_number": 3,
+    "start_offset": null,
+    "end_offset": null,
+    "extraction_method": "manual-seed",
+    "confidence": 0.85
+  }
+]
