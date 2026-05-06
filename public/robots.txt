@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blind-democracy.carlowesterhof.workers.dev/sitemap.xml

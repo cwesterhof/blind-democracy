@@ -40,7 +40,7 @@ function pageFromLocation() {
 }
 
 function App() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [page, setActivePage] = useState(pageFromLocation);
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
@@ -66,6 +66,23 @@ function App() {
             window.removeEventListener("popstate", syncPageFromHash);
         };
     }, []);
+
+    useEffect(() => {
+        document.documentElement.lang = i18n.language === "en" ? "en" : "nl";
+    }, [i18n.language]);
+
+    useEffect(() => {
+        const pageTitles = {
+            blind: t("nav.blindTest"),
+            onderwerpen: t("nav.onderwerpen"),
+            betrouwbaarheid: t("nav.betrouwbaarheid"),
+            leugens: t("nav.leugendetector"),
+            methode: t("nav.methode"),
+            juridisch: t("nav.juridisch"),
+        };
+        const pageTitle = pageTitles[page] ?? t("nav.blindTest");
+        document.title = `${pageTitle} — Blind Democracy`;
+    }, [page, i18n.language, t]);
 
     function setPage(nextPage) {
         const normalizedPage = normalizePageId(nextPage);

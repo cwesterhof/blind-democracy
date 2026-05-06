@@ -1,0 +1,13 @@
+{
+  "name": "Blind Democracy",
+  "short_name": "Blind Democracy",
+  "description": "Kies eerlijk op basis van wat politici echt doen",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#151719",
+  "theme_color": "#151719",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
