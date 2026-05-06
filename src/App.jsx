@@ -27,7 +27,7 @@ const DATA_TABS = [
     { id: "bronnen", label: "Bronnen" }
 ];
 
-function BlindTestPage({ partyReliability = [], setPage }) {
+function BlindTestPage({ partyReliability = [], setPage, mobileNavOpen }) {
     const [activeDossierId, setActiveDossierId] = useState(getDefaultDossier().id);
     const [answers, setAnswers] = useState({});
     const [showPriorityModal, setShowPriorityModal] = useState(false);
@@ -126,7 +126,7 @@ function BlindTestPage({ partyReliability = [], setPage }) {
     return (
         <>
             <div className={showPriorityModal ? "app-content blurred" : "app-content"}>
-                <HeroSlider setPage={setPage} />
+                <HeroSlider setPage={setPage} paused={mobileNavOpen} />
 
                 <main className="product-shell test-shell">
                 <section className="mobile-test-controls" aria-label="Voortgang blind test">
@@ -1454,9 +1454,14 @@ function App() {
                     onClick={() => setMobileNavOpen((current) => !current)}
                     type="button"
                 >
-                    <span aria-hidden="true" />
-                    <span aria-hidden="true" />
-                    <span aria-hidden="true" />
+                    {mobileNavOpen
+                        ? <span aria-hidden="true" style={{ fontSize: "20px" }}>×</span>
+                        : <>
+                            <span aria-hidden="true" />
+                            <span aria-hidden="true" />
+                            <span aria-hidden="true" />
+                          </>
+                    }
                 </button>
 
                 <div className="desktop-nav" id="primary-navigation">
@@ -1473,6 +1478,8 @@ function App() {
                 </div>
 
                 {mobileNavOpen && (
+                    <>
+                    <div className="mobile-menu-overlay" onClick={() => setMobileNavOpen(false)} />
                     <div className="mobile-menu-panel">
                         {visiblePages.map((item) => (
                             <button
@@ -1485,10 +1492,11 @@ function App() {
                             </button>
                         ))}
                     </div>
+                    </>
                 )}
             </nav>
 
-            {page === "blind" && <ErrorBoundary key="blind"><BlindTestPage setPage={setPage} partyReliability={partyReliability} /></ErrorBoundary>}
+            {page === "blind" && <ErrorBoundary key="blind"><BlindTestPage setPage={setPage} partyReliability={partyReliability} mobileNavOpen={mobileNavOpen} /></ErrorBoundary>}
             {page === "onderwerpen" && <ErrorBoundary key="onderwerpen"><TopicsPage /></ErrorBoundary>}
             {page === "betrouwbaarheid" && <ErrorBoundary key="betrouwbaarheid"><ReliabilityHub memberReliability={memberReliability} partyReliability={partyReliability} /></ErrorBoundary>}
             {page === "leugens" && <ErrorBoundary key="leugens"><LieDetectorPage /></ErrorBoundary>}
@@ -2745,7 +2753,7 @@ function LieDetectorPage() {
 
                             <strong>Stemming</strong>
                             <p>
-                                {item.vote.title} ? {voteLabel(item.vote.voted)}
+                                {item.vote.title} — {voteLabel(item.vote.voted)}
                             </p>
 
                             <p>{item.explanation}</p>

@@ -35,28 +35,29 @@ const HERO_SLIDES = [
     }
 ];
 
-export default function HeroSlider({ setPage }) {
+export default function HeroSlider({ setPage, paused }) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setActiveIndex((current) => (current + 1) % HERO_SLIDES.length);
+            if (!paused) {
+                setActiveIndex((current) => (current + 1) % HERO_SLIDES.length);
+            }
         }, 7000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [paused]);
 
     function handleCtaClick(targetPage) {
-        if (targetPage && targetPage !== "blind") {
-            setPage(targetPage);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            return;
+        setPage(targetPage);
+        if (targetPage === "blind") {
+            setTimeout(() => {
+                document.querySelector(".match-workspace")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 150);
         }
-
-        document.querySelector(".test-shell")?.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
     }
 
     return (

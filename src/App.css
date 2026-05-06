@@ -4102,6 +4102,19 @@
   flex: 0 0 auto;
 }
 
+@media (max-width: 768px) {
+  .topic-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+  .topic-tabs .tab-button {
+    flex-shrink: 0;
+  }
+}
+
 .topic-positions-grid {
   display: grid;
   gap: 12px;
@@ -4873,6 +4886,7 @@
     gap: 6px;
     grid-column: 1 / -1;
     padding: 8px;
+    z-index: 50;
   }
 
   .platform-tab {
@@ -5151,4 +5165,11 @@
 
 .footer-legal-link:hover {
     color: var(--accent);
+}
+
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 49;
 }
