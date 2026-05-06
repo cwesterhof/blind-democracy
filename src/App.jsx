@@ -15,6 +15,7 @@ import {
 import members from "./data/members.json";
 import Footer from "./components/Footer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import LegalPage from "./pages/LegalPage";
 import navLogo from "/favicon.svg";
 import HeroSlider from "./components/HeroSlider";
 import "./App.css";
@@ -1258,7 +1259,8 @@ const PAGES = [
     { id: "betrouwbaarheid", label: "Betrouwbaarheid" },
     { id: "leugens", label: "Leugendetector" },
     { id: "redactie", label: "Redactie", adminOnly: true },
-    { id: "methode", label: "Methode" }
+    { id: "methode", label: "Methode" },
+    { id: "juridisch", label: "Juridisch", hidden: true }
 ];
 
 const DEFAULT_PAGE = "blind";
@@ -1405,7 +1407,7 @@ function App() {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const partyReliability = useMemo(() => buildPartyReliability(), []);
     const memberReliability = useMemo(() => buildMemberReliability(), []);
-    const visiblePages = PAGES.filter((item) => !item.adminOnly || import.meta.env.DEV);
+    const visiblePages = PAGES.filter((item) => !item.adminOnly && !item.hidden || item.adminOnly && import.meta.env.DEV);
 
     useEffect(() => {
         function syncPageFromHash() {
@@ -1496,6 +1498,7 @@ function App() {
                 </ErrorBoundary>
             )}
             {page === "methode" && <ErrorBoundary key="methode"><MethodPage /></ErrorBoundary>}
+            {page === "juridisch" && <ErrorBoundary key="juridisch"><LegalPage /></ErrorBoundary>}
 
             <Footer setPage={setPage} />
         </>
@@ -1806,8 +1809,8 @@ function buildMemberChecklist(item) {
         },
         {
             id: "positionTraceability",
-            available: dimensions.positionTraceability.score !== null && dimensions.positionTraceability.score >= 100,
-            text: dimensions.positionTraceability.score >= 100
+            available: (dimensions.positionTraceability.score ?? 0) >= 100,
+            text: (dimensions.positionTraceability.score ?? 0) >= 100
                 ? "De belangrijkste standpunten zijn bekend"
                 : "We kennen nog niet alle belangrijke standpunten"
         },

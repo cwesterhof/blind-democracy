@@ -24,6 +24,7 @@ export default function Footer({ setPage }) {
                     <div>
                         <h3>Transparantie</h3>
                         <button onClick={() => setPage("methode")}>Methode</button>
+                        <button onClick={() => setPage("juridisch")}>Disclaimer & Privacy</button>
                         <button type="button" aria-disabled="true" title="Binnenkort beschikbaar">Onafhankelijkheid</button>
                         <button type="button" aria-disabled="true" title="Binnenkort beschikbaar">Hoe wij geld verdienen</button>
                     </div>
@@ -49,6 +50,9 @@ export default function Footer({ setPage }) {
             <div className="footer-bottom">
                 <small>(c) {new Date().getFullYear()} Blind Democracy</small>
                 <small>Gebouwd voor transparantie en eerlijkheid</small>
+                <button className="footer-legal-link" onClick={() => setPage("juridisch")}>
+                    Disclaimer & Privacy
+                </button>
             </div>
         </footer>
     );

@@ -1,11 +1,18 @@
 import importedTweedeKamer from "../data/importedTweedeKamer.json" with { type: "json" };
 
+let _importedById = null;
+
 export function listImportedDossiers() {
     return importedTweedeKamer.dossiers;
 }
 
 export function mapImportedDossiersById() {
-    return Object.fromEntries(importedTweedeKamer.dossiers.map((dossier) => [dossier.dossierId, dossier]));
+    if (!_importedById) {
+        _importedById = Object.fromEntries(
+            importedTweedeKamer.dossiers.map((dossier) => [dossier.dossierId, dossier])
+        );
+    }
+    return _importedById;
 }
 
 export function getImportedDossierById(dossierId) {
