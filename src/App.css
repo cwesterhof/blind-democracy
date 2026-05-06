@@ -5213,7 +5213,7 @@
     }
 
 @media (max-width: 768px) {
-    .language-switcher {
+    .platform-nav > .language-switcher {
         display: none;
     }
 }
