@@ -11,6 +11,8 @@ import MethodPage from "./pages/MethodPage";
 import EditorialHub from "./pages/EditorialHub";
 import ReliabilityHub from "./pages/ReliabilityHub";
 import navLogo from "/favicon.svg";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 import "./App.css";
 
 const PAGES = [
@@ -34,6 +36,7 @@ function pageFromLocation() {
 }
 
 function App() {
+    const { t } = useTranslation();
     const [page, setActivePage] = useState(pageFromLocation);
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
     const partyReliability = useMemo(() => buildPartyReliability(), []);
@@ -86,7 +89,7 @@ function App() {
                     type="button"
                 >
                     {mobileNavOpen
-                        ? <span aria-hidden="true" style={{ fontSize: "20px" }}>?</span>
+                        ? <span aria-hidden="true" style={{ fontSize: "20px" }}>✕</span>
                         : <>
                             <span aria-hidden="true" />
                             <span aria-hidden="true" />
@@ -103,10 +106,12 @@ function App() {
                             onClick={() => setPage(item.id)}
                             type="button"
                         >
-                            {item.label}
+                            {t(`nav.${item.id}`)}
                         </button>
                     ))}
                 </div>
+
+                <LanguageSwitcher />
 
                 {mobileNavOpen && (
                     <>
@@ -116,10 +121,14 @@ function App() {
                             <button
                                 className={page === item.id ? "platform-tab active" : "platform-tab"}
                                 key={item.id}
-                                onClick={() => setPage(item.id)}
+                                onClick={() => {
+                                    setPage(item.id);
+                                    setMobileNavOpen(false);
+                                }}
                                 type="button"
+                                aria-label={`Ga naar ${t(`nav.${item.id}`)}`}
                             >
-                                {item.label}
+                                {t(`nav.${item.id}`)}
                             </button>
                         ))}
                     </div>

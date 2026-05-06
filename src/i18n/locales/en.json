@@ -1,3 +1,12 @@
 {
-  "app.title": "Blind Democracy"
+  "brand.name": "Blind Democracy",
+  "brand.tagline": "Vote honestly based on what politicians actually do",
+
+  "nav.blind": "Blind test",
+  "nav.onderwerpen": "Topics",
+  "nav.betrouwbaarheid": "Reliability",
+  "nav.leugens": "Lie detector",
+  "nav.redactie": "Editorial",
+  "nav.methode": "Method",
+  "nav.juridisch": "Legal"
 }

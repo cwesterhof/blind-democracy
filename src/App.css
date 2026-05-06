@@ -5173,3 +5173,47 @@
     background: rgba(0,0,0,0.45);
     z-index: 49;
 }
+
+/* LANGUAGE SWITCHER */
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 12px;
+    margin-right: 8px; 
+}
+
+    .language-switcher button {
+        background: transparent;
+        border: none;
+        color: rgba(255,255,255,0.65);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 4px 6px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        letter-spacing: 0.02em;
+    }
+
+        .language-switcher button:hover {
+            color: white;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .language-switcher button.active {
+            color: white;
+            background: rgba(255,255,255,0.10);
+        }
+
+    .language-switcher span {
+        color: rgba(255,255,255,0.35);
+        font-size: 12px;
+    }
+
+@media (max-width: 768px) {
+    .language-switcher {
+        display: none;
+    }
+}
