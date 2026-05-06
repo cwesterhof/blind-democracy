@@ -2205,7 +2205,7 @@ function CandidateReviewCard({ candidate, dossier, history, member, onClearHisto
                 </label>
                 <div className="review-edit-row">
                     <label className="review-edit-field">
-                        <span>Richting</span>
+                        <span>Richting t.o.v. huidige situatie</span>
                         <select
                             onChange={(event) => onFieldChange(candidate.id, "position", event.target.value)}
                             value={candidate.position ?? "unknown"}
@@ -2215,7 +2215,10 @@ function CandidateReviewCard({ candidate, dossier, history, member, onClearHisto
                             <option value="against">Tegen</option>
                             <option value="neutral">Neutraal</option>
                             <option value="mixed">Gemengd</option>
-                        </select>
+                         </select>
+                                <small style={{ color: "var(--muted)", fontSize: "12px", marginTop: "4px", display: "block" }}>
+                                    Voor = partij steunt dit beleid. Tegen = partij wil dit afschaffen of verminderen.
+                                </small>
                     </label>
                     <label className="review-edit-field">
                         <span>Pagina</span>
