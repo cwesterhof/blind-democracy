@@ -24,8 +24,8 @@ export default function Footer({ setPage }) {
                     <div>
                         <h3>Transparantie</h3>
                         <button onClick={() => setPage("methode")}>Methode</button>
-                        <button type="button">Onafhankelijkheid</button>
-                        <button type="button">Hoe wij geld verdienen</button>
+                        <button type="button" aria-disabled="true" title="Binnenkort beschikbaar">Onafhankelijkheid</button>
+                        <button type="button" aria-disabled="true" title="Binnenkort beschikbaar">Hoe wij geld verdienen</button>
                     </div>
 
                     <div>
@@ -36,8 +36,8 @@ export default function Footer({ setPage }) {
 
                     <div>
                         <h3>Support</h3>
-                        <button type="button">Doneer</button>
-                        <button type="button">Word lid</button>
+                        <button type="button" aria-disabled="true" title="Binnenkort beschikbaar">Doneer</button>
+                        <button type="button" aria-disabled="true" title="Binnenkort beschikbaar">Word lid</button>
                     </div>
                 </div>
 

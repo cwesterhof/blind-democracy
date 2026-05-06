@@ -3,26 +3,31 @@ import { countDossiers } from "../dataAccess/dossiers.js";
 import { listImportedVoteCases } from "../dataAccess/kamerVotes.js";
 import { listApprovedPositions, listApprovedPositionsByParty } from "../dataAccess/positions.js";
 
-const partiesFromVotes = new Set();
-const voteCases = listImportedVoteCases();
+let _cache = null;
 
-voteCases.forEach((zaak) => {
-    zaak.voteSummary.parties.forEach((item) => partiesFromVotes.add(item.party));
-});
+function getReliabilityCache() {
+    if (_cache) return _cache;
 
-const partiesFromPositions = new Set(listApprovedPositions().map((position) => position.party));
+    const voteCases = listImportedVoteCases();
+    const partiesFromVotes = new Set();
+    voteCases.forEach((zaak) => {
+        zaak.voteSummary.parties.forEach((item) => partiesFromVotes.add(item.party));
+    });
 
-const partiesFromMembers = new Set(members.map((member) => member.party));
-const partyMetaByParty = members.reduce((acc, member) => {
-    if (!acc[member.party]) {
-        acc[member.party] = {
-            partyName: member.partyName,
-            logoUrl: member.partyLogoUrl
-        };
-    }
-
-    return acc;
-}, {});
+    _cache = {
+        voteCases,
+        partiesFromVotes,
+        partiesFromPositions: new Set(listApprovedPositions().map((position) => position.party)),
+        partiesFromMembers: new Set(members.map((member) => member.party)),
+        partyMetaByParty: members.reduce((acc, member) => {
+            if (!acc[member.party]) {
+                acc[member.party] = { partyName: member.partyName, logoUrl: member.partyLogoUrl };
+            }
+            return acc;
+        }, {})
+    };
+    return _cache;
+}
 
 export const RELIABILITY_DIMENSIONS = [
     {
@@ -48,6 +53,7 @@ export const RELIABILITY_DIMENSIONS = [
 ];
 
 export function buildPartyReliability() {
+    const { voteCases, partiesFromVotes, partiesFromPositions, partiesFromMembers, partyMetaByParty } = getReliabilityCache();
     const parties = [...new Set([...partiesFromVotes, ...partiesFromPositions, ...partiesFromMembers])].sort((a, b) =>
         a.localeCompare(b, "nl")
     );

@@ -14,6 +14,7 @@ import {
 } from "./data/promiseChecks";
 import members from "./data/members.json";
 import Footer from "./components/Footer";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import navLogo from "/favicon.svg";
 import HeroSlider from "./components/HeroSlider";
 import "./App.css";
@@ -115,8 +116,9 @@ function BlindTestPage({ partyReliability = [], setPage }) {
     }
 
     function goToNextDossier() {
-        const currentIndex = listDossiers().findIndex((dossier) => dossier.id === activeDossier.id);
-        const next = listDossiers()[currentIndex + 1] ?? getDefaultDossier();
+        const dossiers = listDossiers();
+        const currentIndex = dossiers.findIndex((dossier) => dossier.id === activeDossier.id);
+        const next = dossiers[currentIndex + 1] ?? getDefaultDossier();
         chooseDossier(next.id);
     }
 
@@ -1324,7 +1326,6 @@ const REVIEW_STATUS_GROUPS = [
 ];
 
 const REVIEW_QUEUE_STORAGE_KEY = "blind-democracy.review-queue.v1";
-const ADMIN_MODE_STORAGE_KEY = "blind-democracy.admin-mode.v1";
 
 const PARTY_VISUALS = {
     "BBB": { color: "#72bf44" },
@@ -1402,10 +1403,9 @@ function buildPromiseVoteStatementItems() {
 function App() {
     const [page, setActivePage] = useState(pageFromLocation);
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
-    const [adminMode, setAdminMode] = useState(readStoredAdminMode);
     const partyReliability = useMemo(() => buildPartyReliability(), []);
     const memberReliability = useMemo(() => buildMemberReliability(), []);
-    const visiblePages = PAGES.filter((item) => !item.adminOnly || adminMode);
+    const visiblePages = PAGES.filter((item) => !item.adminOnly || import.meta.env.DEV);
 
     useEffect(() => {
         function syncPageFromHash() {
@@ -1420,10 +1420,6 @@ function App() {
             window.removeEventListener("popstate", syncPageFromHash);
         };
     }, []);
-
-    useEffect(() => {
-        window.localStorage.setItem(ADMIN_MODE_STORAGE_KEY, adminMode ? "true" : "false");
-    }, [adminMode]);
 
     function setPage(nextPage) {
         const normalizedPage = normalizePageId(nextPage);
@@ -1490,15 +1486,16 @@ function App() {
                 )}
             </nav>
 
-            {page === "blind" && <BlindTestPage setPage={setPage} partyReliability={partyReliability} />}
-            {page === "onderwerpen" && <TopicsPage />}
-            {page === "betrouwbaarheid" && <ReliabilityHub memberReliability={memberReliability} partyReliability={partyReliability} />}
-            {page === "leugens" && <LieDetectorPage />}
-            {page === "redactie" && (adminMode
-                ? <EditorialHub onDisableAdmin={() => setAdminMode(false)} />
-                : <AdminAccessPage onEnableAdmin={() => setAdminMode(true)} />
+            {page === "blind" && <ErrorBoundary key="blind"><BlindTestPage setPage={setPage} partyReliability={partyReliability} /></ErrorBoundary>}
+            {page === "onderwerpen" && <ErrorBoundary key="onderwerpen"><TopicsPage /></ErrorBoundary>}
+            {page === "betrouwbaarheid" && <ErrorBoundary key="betrouwbaarheid"><ReliabilityHub memberReliability={memberReliability} partyReliability={partyReliability} /></ErrorBoundary>}
+            {page === "leugens" && <ErrorBoundary key="leugens"><LieDetectorPage /></ErrorBoundary>}
+            {page === "redactie" && (
+                <ErrorBoundary key="redactie">
+                    {import.meta.env.DEV ? <EditorialHub /> : <AdminAccessPage />}
+                </ErrorBoundary>
             )}
-            {page === "methode" && <MethodPage />}
+            {page === "methode" && <ErrorBoundary key="methode"><MethodPage /></ErrorBoundary>}
 
             <Footer setPage={setPage} />
         </>
@@ -1848,6 +1845,16 @@ function ReliabilityGauge({ score, label }) {
     );
 }
 
+function downloadJson(data, filename) {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
 function PositionReviewPage() {
     const [statusFilter, setStatusFilter] = useState("all");
     const [partyFilter, setPartyFilter] = useState("all");
@@ -1898,8 +1905,6 @@ function PositionReviewPage() {
     }, {});
     const reviewReport = buildLocalReviewReport(reviewItems, summary, reviewState.history ?? []);
     const promotedPositions = buildApprovedPositionsFromReview(reviewItems);
-    const reviewReportUrl = `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(reviewReport, null, 2))}`;
-    const approvedPositionsUrl = `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(promotedPositions, null, 2))}`;
 
     useEffect(() => {
         window.localStorage.setItem(REVIEW_QUEUE_STORAGE_KEY, JSON.stringify(reviewState));
@@ -2017,12 +2022,12 @@ function PositionReviewPage() {
                     </p>
                 </div>
                 <div className="review-export-actions" aria-label="Review exportacties">
-                    <a download="blind-democracy-review-report.json" href={reviewReportUrl}>
+                    <button onClick={() => downloadJson(reviewReport, "blind-democracy-review-report.json")} type="button">
                         Exporteer reviewrapport
-                    </a>
-                    <a download="blind-democracy-approved-positions.json" href={approvedPositionsUrl}>
+                    </button>
+                    <button onClick={() => downloadJson(promotedPositions, "blind-democracy-approved-positions.json")} type="button">
                         Exporteer approved positions
-                    </a>
+                    </button>
                     <button onClick={resetLocalReview} type="button">
                         Reset lokale review
                     </button>
@@ -2374,13 +2379,6 @@ function readStoredReviewQueue() {
     }
 }
 
-function readStoredAdminMode() {
-    try {
-        return window.localStorage.getItem(ADMIN_MODE_STORAGE_KEY) === "true";
-    } catch {
-        return false;
-    }
-}
 
 function appendReviewHistory(current, entry) {
     const previous = current.history ?? [];
@@ -2621,25 +2619,21 @@ function PromiseVoteReviewPage({ embedded = false }) {
     );
 }
 
-function AdminAccessPage({ onEnableAdmin }) {
+function AdminAccessPage() {
     return (
         <main className="reliability-page admin-access-page">
             <section className="admin-access-card">
                 <p className="eyebrow">Admin / moderatie</p>
                 <h1>Redactie is afgeschermd</h1>
                 <p>
-                    In productie komt deze omgeving achter Supabase Auth en rolrechten. Deze lokale knop is alleen
-                    bedoeld om de admin-workflow tijdens ontwikkeling te bekijken.
+                    Deze omgeving is afgeschermd achter Supabase Auth en rolrechten.
                 </p>
-                <button className="primary-action" onClick={onEnableAdmin} type="button">
-                    Lokale adminmodus activeren
-                </button>
             </section>
         </main>
     );
 }
 
-function EditorialHub({ onDisableAdmin }) {
+function EditorialHub() {
     const [activeTab, setActiveTab] = useState("standpunten");
 
     return (
@@ -2650,9 +2644,6 @@ function EditorialHub({ onDisableAdmin }) {
                 </button>
                 <button className={activeTab === "stemreview" ? "active" : ""} onClick={() => setActiveTab("stemreview")} type="button">
                     Stemkoppelingen
-                </button>
-                <button className="admin-exit-button" onClick={onDisableAdmin} type="button">
-                    Adminmodus uit
                 </button>
             </section>
             {activeTab === "standpunten" && <PositionReviewPage />}

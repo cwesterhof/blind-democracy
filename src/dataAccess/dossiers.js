@@ -7,6 +7,7 @@ export function listDossiers() {
 }
 
 export function getDefaultDossier() {
+    if (DOSSIERS.length === 0) throw new Error("No dossiers configured — check src/data/dossiers.js");
     return DOSSIERS[0];
 }
 
