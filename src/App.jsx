@@ -73,14 +73,14 @@ function App() {
 
     useEffect(() => {
         const pageTitles = {
-            blind: t("nav.blindTest"),
+            blind: t("nav.blind"),
             onderwerpen: t("nav.onderwerpen"),
             betrouwbaarheid: t("nav.betrouwbaarheid"),
-            leugens: t("nav.leugendetector"),
+            leugens: t("nav.leugens"),
             methode: t("nav.methode"),
             juridisch: t("nav.juridisch"),
         };
-        const pageTitle = pageTitles[page] ?? t("nav.blindTest");
+        const pageTitle = pageTitles[page] ?? t("nav.blind");
         document.title = `${pageTitle} — Blind Democracy`;
     }, [page, i18n.language, t]);
 

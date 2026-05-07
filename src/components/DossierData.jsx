@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { EVIDENCE_LEVELS } from "../dataAccess/dossiers";
 import { DOSSIER_STATUSES } from "../dataAccess/sources";
 import { POSITION_CONFIDENCE } from "../dataAccess/positions";
@@ -79,8 +80,9 @@ function ImportedKamerData({ importedDossier }) {
 }
 
 function KamerZaakItem({ zaak }) {
+    const { t } = useTranslation();
     const voteStats = getVoteStats(zaak);
-    const status = voteStats ? (voteStats.accepted ? "AANGENOMEN" : "VERWORPEN") : "Geen stemdata";
+    const status = voteStats ? (voteStats.accepted ? t("votes.accepted") : t("votes.rejected")) : t("votes.noData");
     const statusClass = voteStats ? (voteStats.accepted ? "accepted" : "rejected") : "no-data";
 
     return (
@@ -91,7 +93,7 @@ function KamerZaakItem({ zaak }) {
                     <span className="kamer-type">{zaak.number ? `${zaak.number} · ${zaak.type}` : zaak.type}</span>
                     <strong>{shortTitle(zaak.title)}</strong>
                     <span className={`kamer-vote-line ${statusClass}`}>
-                        {voteStats ? status : "Geen fractiestemming gevonden"}
+                        {voteStats ? status : t("votes.noVoteFound")}
                     </span>
                 </span>
                 <span className="kamer-summary-action">
@@ -126,7 +128,7 @@ function KamerZaakItem({ zaak }) {
                         </dl>
 
                         <a className="kamer-source-button" href={zaak.sourceUrl} rel="noreferrer" target="_blank">
-                            Bekijk volledige Kamerzaak ?
+                            {t("votes.viewCase")}
                         </a>
                     </div>
                 </div>
@@ -136,22 +138,23 @@ function KamerZaakItem({ zaak }) {
 }
 
 function VotePartyBreakdown({ zaak }) {
+    const { t } = useTranslation();
     const voteStats = getVoteStats(zaak);
 
     if (!voteStats) {
-        return <p className="no-votes">Geen fractiestemming gevonden in deze zaak.</p>;
+        return <p className="no-votes">{t("votes.noVoteFound")}.</p>;
     }
 
     return (
         <div className="vote-detail-panel">
             <div className={voteStats.accepted ? "vote-outcome accepted" : "vote-outcome rejected"}>
-                <span>{voteStats.accepted ? "Aangenomen" : "Verworpen"}</span>
-                <strong>{voteStats.forSeats} voor · {voteStats.againstSeats} tegen</strong>
+                <span>{voteStats.accepted ? t("votes.passed") : t("votes.failed")}</span>
+                <strong>{voteStats.forSeats} {t("votes.for").toLowerCase()} · {voteStats.againstSeats} {t("votes.against").toLowerCase()}</strong>
                 <small>{voteStats.totalVotes} zetels geteld</small>
             </div>
             <div className="vote-columns">
-                <VotePartyColumn label="Voor" parties={voteStats.forParties} tone="for" />
-                <VotePartyColumn label="Tegen" parties={voteStats.againstParties} tone="against" />
+                <VotePartyColumn label={t("votes.for")} parties={voteStats.forParties} tone="for" />
+                <VotePartyColumn label={t("votes.against")} parties={voteStats.againstParties} tone="against" />
             </div>
         </div>
     );
@@ -234,6 +237,7 @@ function PositionSource({ position }) {
         </article>
     );
 }
+
 function SourceChips({ sourceIds = [], sourcesById }) {
     return (
         <div className="source-chips">

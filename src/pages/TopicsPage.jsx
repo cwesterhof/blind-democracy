@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { getDefaultDossier, listDossiers } from "../dataAccess/dossiers";
 import { mapImportedDossiersById } from "../dataAccess/kamerVotes";
 import { POSITION_CONFIDENCE } from "../dataAccess/positions";
@@ -7,6 +8,7 @@ import { DossierSources, EvidenceData, ImpactData, ImportedKamerData } from "../
 import { getBlindPositionsForDossier } from "../utils/blindPositions";
 
 export default function TopicsPage() {
+    const { t } = useTranslation();
     const [selectedDossierId, setSelectedDossierId] = useState(getDefaultDossier().id);
     const [activeTab, setActiveTab] = useState("standpunten");
     const sourcesById = useMemo(() => mapSourcesById(), []);
@@ -16,6 +18,14 @@ export default function TopicsPage() {
     const importedDossier = importedByDossier[selectedDossier.id];
     const voteableCount = importedDossier?.zaken.filter((zaak) => zaak.voteSummary.totalVotes > 0).length ?? 0;
 
+    const TABS = [
+        ["standpunten", t("topics.tabs.positions")],
+        ["stemgedrag", t("topics.tabs.votes")],
+        ["bewijs", t("topics.tabs.evidence")],
+        ["impact", t("topics.tabs.impact")],
+        ["bronnen", t("topics.tabs.sources")],
+    ];
+
     function selectDossier(dossierId) {
         setSelectedDossierId(dossierId);
         setActiveTab("standpunten");
@@ -24,15 +34,13 @@ export default function TopicsPage() {
     return (
         <main className="topics-page">
             <header className="page-heading topics-heading">
-                <p className="eyebrow">Onderwerpen</p>
-                <h1>Open een dossier en bekijk de onderliggende data.</h1>
-                <p>
-                    Elk onderwerp brengt partijstandpunten, Tweede Kamer-stemdata, bewijsclaims, impact en bronnen bij elkaar.
-                </p>
+                <p className="eyebrow">{t("topics.title")}</p>
+                <h1>{t("topics.intro")}</h1>
+                <p>{t("topics.description")}</p>
             </header>
 
             <section className="topics-layout">
-                <aside className="topic-card-list" aria-label="Onderwerpen">
+                <aside className="topic-card-list" aria-label={t("topics.title")}>
                     {listDossiers().map((dossier) => {
                         const dossierPositions = getBlindPositionsForDossier(dossier);
                         const imported = importedByDossier[dossier.id];
@@ -47,7 +55,7 @@ export default function TopicsPage() {
                             >
                                 <strong>{dossier.title}</strong>
                                 <p>{dossier.summary}</p>
-                                <span>{dossierPositions.length} standpunten · {votes} stemzaken</span>
+                                <span>{dossierPositions.length} {t("topics.tabs.positions").toLowerCase()} · {votes} stemzaken</span>
                             </button>
                         );
                     })}
@@ -61,20 +69,14 @@ export default function TopicsPage() {
                             <p>{selectedDossier.context}</p>
                         </div>
                         <div className="topic-stats">
-                            <span>{positions.length} standpunten</span>
+                            <span>{positions.length} {t("topics.tabs.positions").toLowerCase()}</span>
                             <span>{voteableCount} stemzaken</span>
                             <span>{selectedDossier.evidence.length} claims</span>
                         </div>
                     </div>
 
                     <div className="tab-list topic-tabs" role="tablist" aria-label="Dossierdetails">
-                        {[
-                            ["standpunten", "Standpunten"],
-                            ["stemgedrag", "Stemgedrag"],
-                            ["bewijs", "Bewijsniveau"],
-                            ["impact", "Impact"],
-                            ["bronnen", "Bronnen"]
-                        ].map(([id, label]) => (
+                        {TABS.map(([id, label]) => (
                             <button
                                 className={activeTab === id ? "tab-button active" : "tab-button"}
                                 key={id}
@@ -86,7 +88,7 @@ export default function TopicsPage() {
                         ))}
                     </div>
 
-                    {activeTab === "standpunten" && <TopicPositions positions={positions} />}
+                    {activeTab === "standpunten" && <TopicPositions positions={positions} disclaimer={t("topics.positionsDisclaimer")} />}
                     {activeTab === "stemgedrag" && <ImportedKamerData importedDossier={importedDossier} />}
                     {activeTab === "bewijs" && <EvidenceData dossier={selectedDossier} sourcesById={sourcesById} />}
                     {activeTab === "impact" && <ImpactData dossier={selectedDossier} />}
@@ -97,9 +99,14 @@ export default function TopicsPage() {
     );
 }
 
-function TopicPositions({ positions }) {
+function TopicPositions({ positions, disclaimer }) {
     return (
         <section className="topic-positions-grid">
+            {disclaimer && (
+                <p style={{ color: "var(--muted)", fontSize: "13px", gridColumn: "1 / -1" }}>
+                    {disclaimer}
+                </p>
+            )}
             {positions.map((position) => (
                 <article className="topic-position-card" key={position.id}>
                     <div className="topic-position-topline">

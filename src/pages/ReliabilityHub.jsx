@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { RELIABILITY_DIMENSIONS } from "../data/reliability";
 
 const PARTY_VISUALS = {
@@ -17,33 +18,35 @@ const PARTY_VISUALS = {
 };
 
 export default function ReliabilityHub({ memberReliability, partyReliability }) {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState("partijen");
 
     return (
         <>
             <section className="hub-tabs" aria-label="Betrouwbaarheid weergave">
                 <button className={activeTab === "partijen" ? "active" : ""} onClick={() => setActiveTab("partijen")} type="button">
-                    Partijen
+                    {t("reliability.tabs.parties")}
                 </button>
                 <button className={activeTab === "kamerleden" ? "active" : ""} onClick={() => setActiveTab("kamerleden")} type="button">
-                    Kamerleden
+                    {t("reliability.tabs.members")}
                 </button>
             </section>
-            {activeTab === "partijen" && <ReliabilityPage items={partyReliability} title="Betrouwbaarheid per partij" type="party" />}
-            {activeTab === "kamerleden" && <ReliabilityPage items={memberReliability} title="Wat weten we over dit Kamerlid?" type="member" />}
+            {activeTab === "partijen" && <ReliabilityPage items={partyReliability} type="party" />}
+            {activeTab === "kamerleden" && <ReliabilityPage items={memberReliability} type="member" />}
         </>
     );
 }
 
-function ReliabilityPage({ items, title, type }) {
+function ReliabilityPage({ items, type }) {
+    const { t } = useTranslation();
     const isMemberPage = type === "member";
 
     return (
         <main className={isMemberPage ? "reliability-page member-knowledge-page" : "reliability-page"}>
             <header className="page-heading">
-                <p className="eyebrow">{isMemberPage ? "Kamerleden" : "Betrouwbaarheidsmeter"}</p>
-                <h1>{title}</h1>
-                <p>{isMemberPage ? "We laten zien wat we al kunnen controleren — en wat nog niet." : "Scores tonen alleen wat nu meetbaar is. Ontbrekende onderdelen blijven zichtbaar als open meetpunt, zodat de meter niet meer zekerheid suggereert dan de data toelaat."}</p>
+                <p className="eyebrow">{isMemberPage ? t("reliability.tabs.members") : "Betrouwbaarheidsmeter"}</p>
+                <h1>{isMemberPage ? t("reliability.tabs.members") : t("reliability.title")}</h1>
+                <p>{isMemberPage ? t("reliability.membersIntro") : t("reliability.intro")}</p>
             </header>
 
             {!isMemberPage && (
@@ -67,6 +70,8 @@ function ReliabilityPage({ items, title, type }) {
 }
 
 function ReliabilityCard({ item, type }) {
+    const { t } = useTranslation();
+
     if (type === "member") {
         return <MemberKnowledgeCard item={item} />;
     }
@@ -79,7 +84,7 @@ function ReliabilityCard({ item, type }) {
                     <div>
                         <p className="eyebrow">{type === "party" ? "Partij" : item.party}</p>
                         <h2>{type === "party" ? item.party : item.name}</h2>
-                        {type === "party" && <small>{item.memberCount} Kamerleden uit Tweede Kamer Open Data</small>}
+                        {type === "party" && <small>{item.memberCount} {t("reliability.members")}</small>}
                     </div>
                 </div>
                 <ReliabilityGauge score={item.score} label={item.scoreLabel} />
@@ -95,7 +100,10 @@ function ReliabilityCard({ item, type }) {
                                 <strong>{definition.label}</strong>
                                 <small>{dimension.note}</small>
                             </div>
-                            {dimension.score === null ? <span className="missing-score">Open</span> : <span>{dimension.score}%</span>}
+                            {dimension.score === null
+                                ? <span className="missing-score">{t("reliability.open")}</span>
+                                : <span>{dimension.score}%</span>
+                            }
                         </div>
                     );
                 })}
@@ -150,7 +158,8 @@ function personInitials(name) {
 }
 
 function MemberKnowledgeCard({ item }) {
-    const checklist = buildMemberChecklist(item);
+    const { t } = useTranslation();
+    const checklist = buildMemberChecklist(item, t);
 
     return (
         <article className="member-knowledge-card">
@@ -165,10 +174,10 @@ function MemberKnowledgeCard({ item }) {
                         <h2>{item.name}</h2>
                     </div>
                 </div>
-                <span>{knowledgeLabel(checklist)}</span>
+                <span>{knowledgeLabel(checklist, t)}</span>
             </div>
 
-            <div className="knowledge-dots" aria-label={knowledgeLabel(checklist)}>
+            <div className="knowledge-dots" aria-label={knowledgeLabel(checklist, t)}>
                 {checklist.map((entry) => (
                     <span className={entry.available ? "filled" : ""} key={entry.id} />
                 ))}
@@ -187,7 +196,7 @@ function MemberKnowledgeCard({ item }) {
     );
 }
 
-function buildMemberChecklist(item) {
+function buildMemberChecklist(item, t) {
     const dimensions = item.dimensions;
 
     return [
@@ -195,47 +204,49 @@ function buildMemberChecklist(item) {
             id: "voteCoverage",
             available: dimensions.voteCoverage.score !== null,
             text: dimensions.voteCoverage.score === null
-                ? "We weten nog niet hoe deze partij stemt"
-                : "We weten hoe deze partij meestal stemt"
+                ? t("reliability.votingUnknown")
+                : t("reliability.votingKnown")
         },
         {
             id: "positionTraceability",
             available: (dimensions.positionTraceability.score ?? 0) >= 100,
             text: (dimensions.positionTraceability.score ?? 0) >= 100
-                ? "De belangrijkste standpunten zijn bekend"
-                : "We kennen nog niet alle belangrijke standpunten"
+                ? t("reliability.positionsKnown")
+                : t("reliability.positionsUnknown")
         },
         {
             id: "promiseVoteMatch",
             available: dimensions.promiseVoteMatch.score !== null,
             text: dimensions.promiseVoteMatch.score === null
-                ? "We weten nog niet of beloftes worden nagekomen"
-                : "We kunnen zien of beloftes worden nagekomen"
+                ? t("reliability.promisesUnknown")
+                : t("reliability.promisesKnown")
         },
         {
             id: "claimAccuracy",
             available: dimensions.claimAccuracy.score !== null,
             text: dimensions.claimAccuracy.score === null
-                ? "We weten nog niet of uitspraken kloppen"
-                : "We kunnen uitspraken controleren"
+                ? t("reliability.claimsUnknown")
+                : t("reliability.claimsKnown")
         }
     ];
 }
 
-function knowledgeLabel(checklist) {
+function knowledgeLabel(checklist, t) {
     const known = checklist.filter((entry) => entry.available).length;
 
-    if (known >= 3) return "Goed controleerbaar";
-    if (known >= 2) return "Gedeeltelijk controleerbaar";
-    return "Nauwelijks controleerbaar";
+    if (known >= 3) return t("reliability.scoreHigh");
+    if (known >= 2) return t("reliability.scoreMid");
+    return t("reliability.scoreLow");
 }
 
 function ReliabilityGauge({ score, label }) {
+    const { t } = useTranslation();
+    const counts = label.split(" ")[0];
+
     return (
         <div className="reliability-gauge" style={{ "--score": `${score}%` }}>
             <strong>{score}%</strong>
-            <small>{label}</small>
+            <small>{counts} {t("reliability.dataPoints")}</small>
         </div>
     );
 }
-

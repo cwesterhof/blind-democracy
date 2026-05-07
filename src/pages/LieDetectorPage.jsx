@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
     PROMISE_CHECKS,
     PROMISE_EVIDENCE_LEVELS,
     PROMISE_OWNER_TYPES,
-    PROMISE_VERDICTS,
     PROMISE_VOTE_LEVELS
 } from "../data/promiseChecks";
 import PromiseVoteReviewPage from "./PromiseVoteReviewPage";
@@ -29,15 +29,10 @@ function promiseEvidenceNote(item) {
 }
 
 export default function LieDetectorPage() {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState("partij");
     const sortedChecks = [...PROMISE_CHECKS].sort((a, b) => {
-        const order = {
-            broken: 1,
-            mixed: 2,
-            unclear: 3,
-            kept: 4
-        };
-
+        const order = { broken: 1, mixed: 2, unclear: 3, kept: 4 };
         return order[a.verdict] - order[b.verdict];
     });
 
@@ -45,18 +40,16 @@ export default function LieDetectorPage() {
         <main className="reliability-page">
             <header className="page-heading">
                 <p className="eyebrow">De Leugendetector</p>
-                <h1>Belofte vs stemgedrag</h1>
-                <p>
-                    Welke partijen en politici stemmen anders dan ze beloofden?
-                </p>
+                <h1>{t("liedetector.title")}</h1>
+                <p>{t("liedetector.intro")}</p>
             </header>
 
             <section className="hub-tabs inline-tabs" aria-label="Leugendetector weergave">
                 <button className={activeTab === "partij" ? "active" : ""} onClick={() => setActiveTab("partij")} type="button">
-                    Per partij
+                    {t("liedetector.byParty")}
                 </button>
                 <button className={activeTab === "stelling" ? "active" : ""} onClick={() => setActiveTab("stelling")} type="button">
-                    Per stelling
+                    {t("liedetector.byStatement")}
                 </button>
             </section>
 
@@ -70,7 +63,7 @@ export default function LieDetectorPage() {
                                     <h2>{promiseOwnerLabel(item)}</h2>
                                 </div>
                                 <span className={`verdict-badge verdict-${item.verdict}`}>
-                                    {verdictIcon(item.verdict)} {PROMISE_VERDICTS[item.verdict]}
+                                    {verdictIcon(item.verdict)} {verdictLabel(item.verdict, t)}
                                 </span>
                             </div>
 
@@ -89,23 +82,21 @@ export default function LieDetectorPage() {
                                 </div>
                             </dl>
 
-                            <strong>Belofte</strong>
+                            <strong>{t("liedetector.promise")}</strong>
                             <p>{item.promise}</p>
 
-                            <strong>Stemming</strong>
-                            <p>
-                                {item.vote.title} — {voteLabel(item.vote.voted)}
-                            </p>
+                            <strong>{t("liedetector.vote")}</strong>
+                            <p>{item.vote.title} — {voteLabel(item.vote.voted, t)}</p>
 
                             <p>{item.explanation}</p>
                             <p className="promise-evidence-note">{promiseEvidenceNote(item)}</p>
 
                             <div className="promise-source-row">
                                 <a href={item.promiseSource.url} rel="noreferrer" target="_blank">
-                                    Beloftebron
+                                    {t("liedetector.promiseSource")}
                                 </a>
                                 <a href={item.vote.sourceUrl} rel="noreferrer" target="_blank">
-                                    Stembron
+                                    {t("liedetector.voteSource")}
                                 </a>
                             </div>
                         </article>
@@ -119,14 +110,21 @@ export default function LieDetectorPage() {
 }
 
 function verdictIcon(verdict) {
-    if (verdict === "broken") return "✗";  // ✗
-    if (verdict === "kept") return "✓";    // ✓
-    if (verdict === "mixed") return "~";   // ~
-    return "•";                            // •
+    if (verdict === "broken") return "✗";
+    if (verdict === "kept") return "✓";
+    if (verdict === "mixed") return "~";
+    return "•";
 }
 
-function voteLabel(vote) {
-    if (vote === "for") return "Voor";
-    if (vote === "against") return "Tegen";
+function verdictLabel(verdict, t) {
+    if (verdict === "kept") return t("liedetector.verdictKept");
+    if (verdict === "broken") return t("liedetector.verdictBroken");
+    if (verdict === "mixed") return t("liedetector.verdictMixed");
+    return verdict;
+}
+
+function voteLabel(vote, t) {
+    if (vote === "for") return t("votes.for");
+    if (vote === "against") return t("votes.against");
     return vote;
 }
