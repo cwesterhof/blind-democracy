@@ -5,9 +5,9 @@ import Footer from "./components/Footer";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 
-import AdminAccessPage from "./pages/AdminAccessPage";
 import BlindTestPage from "./pages/BlindTestPage";
 import EditorialHub from "./pages/EditorialHub";
+import EditorialLoginPage from "./pages/EditorialLoginPage";
 import LegalPage from "./pages/LegalPage";
 import LieDetectorPage from "./pages/LieDetectorPage";
 import MethodPage from "./pages/MethodPage";
@@ -43,6 +43,13 @@ function App() {
     const { t, i18n } = useTranslation();
     const [page, setActivePage] = useState(pageFromLocation);
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
+    const [editorialUnlocked, setEditorialUnlocked] = useState(() => {
+        try {
+            return sessionStorage.getItem("blind-democracy.editorial-session") !== null;
+        } catch {
+            return false;
+        }
+    });
 
     const partyReliability = useMemo(() => buildPartyReliability(), []);
     const memberReliability = useMemo(() => buildMemberReliability(), []);
@@ -191,9 +198,9 @@ function App() {
             )}
 
             {page === "redactie" && (
-                <ErrorBoundary key="redactie">
-                    {import.meta.env.DEV ? <EditorialHub /> : <AdminAccessPage />}
-                </ErrorBoundary>
+                import.meta.env.DEV || editorialUnlocked
+                    ? <ErrorBoundary key="redactie"><EditorialHub /></ErrorBoundary>
+                    : <EditorialLoginPage onUnlock={() => setEditorialUnlocked(true)} />
             )}
 
             {page === "methode" && (
