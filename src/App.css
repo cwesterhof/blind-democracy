@@ -5328,3 +5328,156 @@
         color: white;
     }
 }
+
+/* ─── Method page ─── */
+.method-page .page-heading {
+    margin-bottom: 2.5rem;
+}
+
+.method-section {
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 3rem;
+    max-width: 740px;
+    padding-bottom: 3rem;
+}
+
+.method-section:last-child {
+    border-bottom: none;
+}
+
+.method-section h2 {
+    color: var(--trust);
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.method-section p {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+}
+
+.method-section p:last-child {
+    margin-bottom: 0;
+}
+
+.method-section a {
+    color: var(--trust);
+    text-decoration: underline;
+}
+
+.method-section a:hover {
+    color: var(--accent);
+}
+
+.method-sources-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 1.25rem;
+}
+
+.method-source-card {
+    background: var(--color-background-secondary, var(--surface));
+    border: 0.5px solid var(--line);
+    border-radius: var(--border-radius-lg, 12px);
+    padding: 1rem 1.1rem;
+}
+
+.method-source-card strong {
+    color: var(--trust);
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.method-source-card a {
+    color: var(--accent);
+    display: block;
+    font-size: 12px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.method-source-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.method-steps {
+    counter-reset: method-step;
+    display: grid;
+    gap: 1rem;
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+}
+
+.method-steps li {
+    align-items: start;
+    counter-increment: method-step;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 32px 1fr;
+}
+
+.method-steps li::before {
+    align-items: center;
+    background: var(--trust);
+    border-radius: 50%;
+    color: white;
+    content: counter(method-step);
+    display: flex;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+    height: 32px;
+    justify-content: center;
+    margin-top: 2px;
+    width: 32px;
+}
+
+.method-steps li strong {
+    color: var(--trust);
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.method-steps li p {
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.method-limitations {
+    margin: 1rem 0 0 1.25rem;
+    padding: 0;
+}
+
+.method-limitations li {
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 0.6rem;
+}
+
+.method-limitations li::marker {
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .method-sources-grid {
+        grid-template-columns: 1fr;
+    }
+}
