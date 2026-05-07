@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-    PROMISE_CHECKS,
-    PROMISE_EVIDENCE_LEVELS,
-    PROMISE_OWNER_TYPES,
-    PROMISE_VOTE_LEVELS
-} from "../data/promiseChecks";
+import { PROMISE_CHECKS } from "../data/promiseChecks";
 import PromiseVoteReviewPage from "./PromiseVoteReviewPage";
 
 function promiseOwnerLabel(item) {
@@ -56,50 +51,7 @@ export default function LieDetectorPage() {
             {activeTab === "partij" && (
                 <section className="candidate-grid">
                     {sortedChecks.map((item) => (
-                        <article className={`candidate-card promise-card verdict-${item.verdict}`} key={item.id}>
-                            <div className="candidate-topline">
-                                <div>
-                                    <p className="eyebrow">{item.dossierId}</p>
-                                    <h2>{promiseOwnerLabel(item)}</h2>
-                                </div>
-                                <span className={`verdict-badge verdict-${item.verdict}`}>
-                                    {verdictIcon(item.verdict)} {verdictLabel(item.verdict, t)}
-                                </span>
-                            </div>
-
-                            <dl className="promise-context-grid">
-                                <div>
-                                    <dt>Belofte-eigenaar</dt>
-                                    <dd>{PROMISE_OWNER_TYPES[item.promiseOwnerType] ?? item.promiseOwnerType}</dd>
-                                </div>
-                                <div>
-                                    <dt>Stemniveau</dt>
-                                    <dd>{PROMISE_VOTE_LEVELS[item.vote?.level] ?? item.vote?.level ?? "Onbekend"}</dd>
-                                </div>
-                                <div>
-                                    <dt>Bewijssterkte</dt>
-                                    <dd>{PROMISE_EVIDENCE_LEVELS[item.evidenceLevel] ?? item.evidenceLevel ?? "Review nodig"}</dd>
-                                </div>
-                            </dl>
-
-                            <strong>{t("liedetector.promise")}</strong>
-                            <p>{item.promise}</p>
-
-                            <strong>{t("liedetector.vote")}</strong>
-                            <p>{item.vote.title} — {voteLabel(item.vote.voted, t)}</p>
-
-                            <p>{item.explanation}</p>
-                            <p className="promise-evidence-note">{promiseEvidenceNote(item)}</p>
-
-                            <div className="promise-source-row">
-                                <a href={item.promiseSource.url} rel="noreferrer" target="_blank">
-                                    {t("liedetector.promiseSource")}
-                                </a>
-                                <a href={item.vote.sourceUrl} rel="noreferrer" target="_blank">
-                                    {t("liedetector.voteSource")}
-                                </a>
-                            </div>
-                        </article>
+                        <PromiseCard key={item.id} item={item} t={t} />
                     ))}
                 </section>
             )}
@@ -109,8 +61,67 @@ export default function LieDetectorPage() {
     );
 }
 
+function PromiseCard({ item, t }) {
+    const expectedVote = item.expectedVote ?? "unclear";
+
+    return (
+        <article className={`promise-card verdict-${item.verdict}`}>
+            <div className="promise-card-header">
+                <div>
+                    <p className="eyebrow">{item.dossierId}</p>
+                    <h2>{promiseOwnerLabel(item)}</h2>
+                </div>
+                <span className={`verdict-badge verdict-${item.verdict}`}>
+                    {verdictIcon(item.verdict)} {verdictLabel(item.verdict, t)}
+                </span>
+            </div>
+
+            <div className="promise-comparison">
+                <div className="promise-vote-box expected">
+                    <span>{t("liedetector.expectedVote")}</span>
+                    <strong className={`vote-value-${expectedVote}`}>
+                        {voteValueLabel(expectedVote, t)}
+                    </strong>
+                </div>
+                <div className={`promise-match-indicator verdict-${item.verdict}`} aria-hidden="true">
+                    {verdictIcon(item.verdict)}
+                </div>
+                <div className="promise-vote-box actual">
+                    <span>{t("liedetector.actualVote")}</span>
+                    <strong className={`vote-value-${item.vote.voted}`}>
+                        {voteValueLabel(item.vote.voted, t)}
+                    </strong>
+                </div>
+            </div>
+
+            <div className="promise-detail-sections">
+                <div className="promise-section">
+                    <span className="promise-section-label">{t("liedetector.promise")}</span>
+                    <p>{item.promise}</p>
+                </div>
+                <div className="promise-section">
+                    <span className="promise-section-label">{t("liedetector.vote")}</span>
+                    <p>{item.vote.title} — {voteLabel(item.vote.voted, t)}</p>
+                </div>
+            </div>
+
+            <p className="promise-explanation">{item.explanation}</p>
+            <p className="promise-evidence-note">{promiseEvidenceNote(item)}</p>
+
+            <div className="promise-source-row">
+                <a href={item.promiseSource.url} rel="noreferrer" target="_blank">
+                    {t("liedetector.promiseSource")}
+                </a>
+                <a href={item.vote.sourceUrl} rel="noreferrer" target="_blank">
+                    {t("liedetector.voteSource")}
+                </a>
+            </div>
+        </article>
+    );
+}
+
 function verdictIcon(verdict) {
-    if (verdict === "broken") return "✗";
+    if (verdict === "broken") return "✕";
     if (verdict === "kept") return "✓";
     if (verdict === "mixed") return "~";
     return "•";
@@ -120,7 +131,15 @@ function verdictLabel(verdict, t) {
     if (verdict === "kept") return t("liedetector.verdictKept");
     if (verdict === "broken") return t("liedetector.verdictBroken");
     if (verdict === "mixed") return t("liedetector.verdictMixed");
+    if (verdict === "unclear") return t("liedetector.verdictUnclear");
     return verdict;
+}
+
+function voteValueLabel(vote, t) {
+    if (vote === "for") return t("votes.for").toUpperCase();
+    if (vote === "against") return t("votes.against").toUpperCase();
+    if (vote === "abstain") return t("votes.abstain").toUpperCase();
+    return t("votes.unclear").toUpperCase();
 }
 
 function voteLabel(vote, t) {

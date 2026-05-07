@@ -44,6 +44,7 @@ export const PROMISE_CHECKS = [
             date: "2026-05-04",
             sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(c519746c-8d25-4f43-9230-0f957581f9a3)"
         },
+        expectedVote: "against",
         evidenceLevel: "direct",
         verdict: "kept",
         explanation:
@@ -71,6 +72,7 @@ export const PROMISE_CHECKS = [
             date: "2026-04-21",
             sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(56cc4a04-48c0-42b2-9fb1-a4911a71faa6)"
         },
+        expectedVote: "for",
         evidenceLevel: "direct",
         verdict: "kept",
         explanation:
@@ -98,6 +100,7 @@ export const PROMISE_CHECKS = [
             date: "2026-04-21",
             sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(5ac89466-e75a-489d-a74e-217222177483)"
         },
+        expectedVote: "unclear",
         evidenceLevel: "direct",
         verdict: "mixed",
         explanation:
@@ -125,6 +128,7 @@ export const PROMISE_CHECKS = [
             date: "2026-04-21",
             sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(5ac89466-e75a-489d-a74e-217222177483)"
         },
+        expectedVote: "for",
         evidenceLevel: "direct",
         verdict: "kept",
         explanation:
@@ -152,6 +156,7 @@ export const PROMISE_CHECKS = [
             date: "2026-04-21",
             sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(56cc4a04-48c0-42b2-9fb1-a4911a71faa6)"
         },
+        expectedVote: "for",
         evidenceLevel: "direct",
         verdict: "kept",
         explanation:
@@ -179,6 +184,7 @@ export const PROMISE_CHECKS = [
             date: "2026-05-04",
             sourceUrl: "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Zaak(c519746c-8d25-4f43-9230-0f957581f9a3)"
         },
+        expectedVote: "against",
         evidenceLevel: "direct",
         verdict: "kept",
         explanation:
